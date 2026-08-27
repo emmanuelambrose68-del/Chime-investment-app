@@ -1,9 +1,13 @@
-let balance = 0;
+let balance = 5000;
+let earnings = 250;
 
 let investments = [];
 
 
-// Telegram Mini App
+// ================================
+// TELEGRAM MINI APP
+// ================================
+
 const tg = window.Telegram?.WebApp;
 
 if (tg) {
@@ -13,204 +17,296 @@ if (tg) {
     const user = tg.initDataUnsafe?.user;
 
     if (user) {
-        const fullName = `${user.first_name || ""} ${user.last_name || ""}`.trim();
-
-        document.getElementById("username").textContent =
-            fullName || "Telegram User";
+        console.log("Telegram user:", user);
     }
 }
 
 
-// PAGE NAVIGATION
-
-function showPage(pageName) {
-
-    const pages = document.querySelectorAll(".page");
-
-    pages.forEach(page => {
-        page.classList.remove("active");
-    });
-
-    const selectedPage = document.getElementById(pageName);
-
-    if (selectedPage) {
-        selectedPage.classList.add("active");
-    }
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-// UPDATE BALANCE
-
-function updateBalance() {
-
-    document.getElementById("balance").textContent =
-        "₦" + balance.toLocaleString("en-NG", {
-            minimumFractionDigits: 2
-        });
-
-    document.getElementById("profileBalance").textContent =
-        "₦" + balance.toLocaleString("en-NG", {
-            minimumFractionDigits: 2
-        });
-
-    document.getElementById("investmentCount").textContent =
-        investments.length;
-}
-
-
+// ================================
 // DEPOSIT
+// ================================
+
+function openDeposit() {
+
+    document.getElementById("depositModal").style.display = "flex";
+}
+
+
+// ================================
+// WITHDRAW
+// ================================
+
+function openWithdraw() {
+
+    document.getElementById("withdrawModal").style.display = "flex";
+}
+
+
+// ================================
+// CLOSE MODALS
+// ================================
+
+function closeModals() {
+
+    document.getElementById("depositModal").style.display = "none";
+
+    document.getElementById("withdrawModal").style.display = "none";
+}
+
+
+// ================================
+// DEPOSIT ACTION
+// ================================
 
 function deposit() {
 
-    const amount =
-        Number(document.getElementById("depositAmount").value);
+    const input =
+        document.getElementById("depositAmount");
+
+    const amount = Number(input.value);
 
     if (!amount || amount <= 0) {
+
         alert("Please enter a valid amount.");
+
         return;
     }
 
     alert(
         "Deposit request received for ₦" +
         amount.toLocaleString("en-NG") +
-        ". Payment integration will be added later."
+        "."
     );
 
-    document.getElementById("depositAmount").value = "";
+    input.value = "";
+
+    closeModals();
 }
 
 
-// WITHDRAW
+// ================================
+// WITHDRAW ACTION
+// ================================
 
 function withdraw() {
 
-    const amount =
-        Number(document.getElementById("withdrawAmount").value);
+    const input =
+        document.getElementById("withdrawAmount");
+
+    const amount = Number(input.value);
 
     if (!amount || amount <= 0) {
+
         alert("Please enter a valid amount.");
+
         return;
     }
 
     if (amount > balance) {
-        alert("Insufficient balance.");
-        return;
-    }
 
-    alert(
-        "Withdrawal request received for ₦" +
-        amount.toLocaleString("en-NG") +
-        "."
-    );
-
-    document.getElementById("withdrawAmount").value = "";
-}
-
-
-// SELECT INVESTMENT PLAN
-
-function selectPlan(name, amount, profit, duration) {
-
-    const confirmation = confirm(
-        `Investment Plan: ${name}\n\n` +
-        `Amount: ₦${amount.toLocaleString("en-NG")}\n` +
-        `Profit: ${profit}%\n` +
-        `Duration: ${duration} days\n\n` +
-        `Do you want to continue?`
-    );
-
-    if (!confirmation) {
-        return;
-    }
-
-    if (balance < amount) {
-
-        alert(
-            "You need at least ₦" +
-            amount.toLocaleString("en-NG") +
-            " in your balance to invest."
-        );
-
-        showPage("deposit");
+        alert("Insufficient available balance.");
 
         return;
     }
 
     balance -= amount;
 
-    const investment = {
-        name: name,
-        amount: amount,
-        profit: profit,
-        duration: duration,
-        date: new Date().toLocaleDateString()
-    };
-
-    investments.push(investment);
-
     updateBalance();
 
-    displayInvestments();
+    addTransaction(
+        "Withdrawal Request",
+        "-₦" + amount.toLocaleString("en-NG"),
+        false
+    );
 
-    alert("Investment created successfully!");
+    input.value = "";
 
-    showPage("investments");
+    closeModals();
+
+    alert("Withdrawal request submitted.");
 }
 
 
-// DISPLAY INVESTMENTS
+// ================================
+// INVESTMENT
+// ================================
 
-function displayInvestments() {
+function invest(planName, amount) {
 
-    const list =
-        document.getElementById("investmentList");
+    if (balance < amount) {
 
-    if (investments.length === 0) {
-
-        list.innerHTML = `
-            <div class="empty-state">
-                📊
-                <h3>No Investments Yet</h3>
-                <p>Your active investments will appear here.</p>
-            </div>
-        `;
+        alert(
+            "You need at least ₦" +
+            amount.toLocaleString("en-NG") +
+            " to invest in this plan."
+        );
 
         return;
     }
 
-    list.innerHTML = "";
+    const confirmInvestment = confirm(
 
-    investments.forEach(investment => {
+        planName +
+        "\n\nInvestment amount: ₦" +
+        amount.toLocaleString("en-NG") +
+        "\n\nDo you want to continue?"
+    );
 
-        const card = document.createElement("div");
+    if (!confirmInvestment) {
 
-        card.className = "plan";
+        return;
+    }
 
-        card.innerHTML = `
-            <h4>${investment.name}</h4>
+    balance -= amount;
 
-            <p class="amount">
-                ₦${investment.amount.toLocaleString("en-NG")}
-            </p>
+    investments.push({
 
-            <p>Profit: <strong>${investment.profit}%</strong></p>
+        plan: planName,
 
-            <p>Duration: ${investment.duration} days</p>
+        amount: amount,
 
-            <p>Started: ${investment.date}</p>
-        `;
+        date: new Date().toLocaleDateString()
 
-        list.appendChild(card);
     });
+
+    updateBalance();
+
+    addTransaction(
+
+        planName,
+
+        "-₦" + amount.toLocaleString("en-NG"),
+
+        false
+    );
+
+    alert(
+
+        "Your " +
+        planName +
+        " investment has been created."
+    );
 }
 
 
-// START APP
+// ================================
+// UPDATE BALANCE
+// ================================
+
+function updateBalance() {
+
+    document.getElementById("balance").textContent =
+
+        "₦" +
+        balance.toLocaleString("en-NG", {
+
+            minimumFractionDigits: 2,
+
+            maximumFractionDigits: 2
+
+        });
+}
+
+
+// ================================
+// ADD TRANSACTION
+// ================================
+
+function addTransaction(title, amount, positive) {
+
+    const list =
+        document.getElementById("transactionList");
+
+    const transaction =
+        document.createElement("div");
+
+    transaction.className = "transaction";
+
+    transaction.innerHTML = `
+
+        <div>
+
+            <strong>${title}</strong>
+
+            <p>Just now</p>
+
+        </div>
+
+        <span class="${positive ? "positive" : "status"}">
+
+            ${amount}
+
+        </span>
+
+    `;
+
+    list.prepend(transaction);
+}
+
+
+// ================================
+// MY INVESTMENTS
+// ================================
+
+function showInvestments() {
+
+    if (investments.length === 0) {
+
+        alert(
+            "You don't have any active investments yet."
+        );
+
+        return;
+    }
+
+    let message =
+        "My Investments\n\n";
+
+    investments.forEach((investment, index) => {
+
+        message +=
+
+            (index + 1) +
+            ". " +
+            investment.plan +
+            "\nAmount: ₦" +
+            investment.amount.toLocaleString("en-NG") +
+            "\nStarted: " +
+            investment.date +
+            "\n\n";
+    });
+
+    alert(message);
+}
+
+
+// ================================
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+// ================================
+
+window.addEventListener("click", function(event) {
+
+    const depositModal =
+        document.getElementById("depositModal");
+
+    const withdrawModal =
+        document.getElementById("withdrawModal");
+
+    if (event.target === depositModal) {
+
+        closeModals();
+    }
+
+    if (event.target === withdrawModal) {
+
+        closeModals();
+    }
+
+});
+
+
+// ================================
+// INITIAL BALANCE
+// ================================
 
 updateBalance();
-displayInvestments();
