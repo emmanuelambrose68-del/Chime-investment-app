@@ -2,413 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#172033">
 
     <title>Chime Investment</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Telegram Mini App -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <p>Welcome back</p>
-        <h1>My Investment</h1>
-    </header>
+    <!-- ======================================
+         WELCOME SCREEN
+    ======================================= -->
 
+    <section id="welcomePage" class="welcome-page">
 
-    <main class="container">
+        <div class="welcome-content">
 
-        <!-- BALANCE CARD -->
-        <section class="balance-card">
+            <div class="logo">
+                C
+            </div>
 
-            <p class="balance-label">Available Balance</p>
+            <h1>Chime Investment</h1>
 
-            <h2 id="balance">₦5,000.00</h2>
-
-            <p class="earnings">
-                +₦250.00 earnings
+            <p class="welcome-subtitle">
+                Invest smarter. Grow your future.
             </p>
 
-            <div class="balance-buttons">
+            <div class="welcome-info">
 
-                <button
-                    class="deposit-btn"
-                    onclick="openDeposit()">
-                    Deposit
-                </button>
-
-                <button
-                    class="withdraw-btn"
-                    onclick="openWithdraw()">
-                    Withdraw
-                </button>
-
-            </div>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Chime Investment</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-</head>
-
-<body>
-
-    <!-- HEADER -->
-    <header class="header">
-        <p>Welcome back</p>
-        <h1>My Investment</h1>
-    </header>
-
-
-    <main class="container">
-
-        <!-- BALANCE CARD -->
-        <section class="balance-card">
-
-            <p class="balance-label">Available Balance</p>
-
-            <h2 id="balance">₦5,000.00</h2>
-
-            <p class="earnings">
-                +₦250.00 earnings
-            </p>
-
-            <div class="balance-buttons">
-
-                <button
-                    class="deposit-btn"
-                    onclick="openDeposit()">
-                    Deposit
-                </button>
-
-                <button
-                    class="withdraw-btn"
-                    onclick="openWithdraw()">
-                    Withdraw
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- INVESTMENT PLANS -->
-        <section>
-
-            <div class="section-title">
-                <h2>Investment Plans</h2>
-            </div>
-
-            <div class="plans">
-
-                <!-- STARTER -->
-                <div class="plan-card">
-
+                <div class="welcome-feature">
+                    <span>💰</span>
                     <div>
-                        <h3>Starter Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦5,000
-                        </p>
-
-                        <p>
-                            Return: 5%
-                        </p>
-
-                        <p>
-                            Duration: 7 days
-                        </p>
+                        <strong>Investment Plans</strong>
+                        <p>Choose a plan that suits you.</p>
                     </div>
-
-                    <button onclick="invest('Starter Plan', 5000)">
-                        Invest
-                    </button>
-
                 </div>
 
-
-                <!-- GROWTH -->
-                <div class="plan-card">
-
+                <div class="welcome-feature">
+                    <span>📈</span>
                     <div>
-                        <h3>Growth Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦20,000
-                        </p>
-
-                        <p>
-                            Return: 10%
-                        </p>
-
-                        <p>
-                            Duration: 14 days
-                        </p>
+                        <strong>Track Your Growth</strong>
+                        <p>Monitor your investments easily.</p>
                     </div>
-
-                    <button onclick="invest('Growth Plan', 20000)">
-                        Invest
-                    </button>
-
                 </div>
 
-
-                <!-- PREMIUM -->
-                <div class="plan-card">
-
+                <div class="welcome-feature">
+                    <span>🔐</span>
                     <div>
-                        <h3>Premium Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦50,000
-                        </p>
-
-                        <p>
-                            Return: 20%
-                        </p>
-
-                        <p>
-                            Duration: 30 days
-                        </p>
+                        <strong>Simple & Secure</strong>
+                        <p>Manage your account in one place.</p>
                     </div>
-
-                    <button onclick="invest('Premium Plan', 50000)">
-                        Invest
-                    </button>
-
                 </div>
 
             </div>
-
-        </section>
-
-
-        <!-- RECENT TRANSACTIONS -->
-        <section class="transactions">
-
-            <div class="section-title">
-                <h2>Recent Transactions</h2>
-            </div>
-
-            <div id="transactionList">
-
-                <div class="transaction">
-                    <div>
-                        <strong>Investment Account Created</strong>
-                        <p>Account created</p>
-                    </div>
-
-                    <span class="status">
-                        Completed
-                    </span>
-                </div>
-
-
-                <div class="transaction">
-                    <div>
-                        <strong>Welcome Bonus</strong>
-                        <p>₦250.00 bonus</p>
-                    </div>
-
-                    <span class="positive">
-                        +₦250
-                    </span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- INVESTMENT DASHBOARD -->
-        <section class="dashboard-card">
-
-            <h3>Investment Dashboard</h3>
-
-            <p>
-                Manage your investments, deposits and withdrawals
-                from your account.
-            </p>
-
-            <button onclick="showInvestments()">
-                View My Investments
-            </button>
-
-        </section>
-
-    </main>
-
-
-    <!-- DEPOSIT MODAL -->
-    <div id="depositModal" class="modal">
-
-        <div class="modal-box">
-
-            <button class="close" onclick="closeModals()">×</button>
-
-            <h2>Deposit</h2>
-
-            <p>Enter the amount you want to deposit.</p>
-
-            <input
-                type="number"
-                id="depositAmount"
-                placeholder="Enter amount">
 
             <button
-                class="modal-button"
-                onclick="deposit()">
-                Continue
+                class="welcome-button"
+                onclick="enterApp()"
+            >
+                Get Started
             </button>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- WITHDRAW MODAL -->
-    <div id="withdrawModal" class="modal">
+    <!-- ======================================
+         MAIN APP
+    ======================================= -->
 
-        <div class="modal-box">
+    <div id="app" class="app hidden">
 
-            <button class="close" onclick="closeModals()">×</button>
+        <!-- HEADER -->
 
-            <h2>Withdraw</h2>
+        <header class="header">
 
-            <p>Enter the amount you want to withdraw.</p>
+            <div class="header-left">
 
-            <input
-                type="number"
-                id="withdrawAmount"
-                placeholder="Enter amount">
-
-            <button
-                class="modal-button"
-                onclick="withdraw()">
-                Continue
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- JAVASCRIPT -->
-    <script src="app.js"></script>
-
-</body>
-</html>￼Enter  </section>
-
-
-        <!-- INVESTMENT PLANS -->
-        <section>
-
-            <div class="section-title">
-                <h2>Investment Plans</h2>
-            </div>
-
-            <div class="plans">
-
-                <!-- STARTER -->
-                <div class="plan-card">
-
-                    <div>
-                        <h3>Starter Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦5,000
-                        </p>
-
-                        <p>
-                            Return: 5%
-                        </p>
-
-                        <p>
-                            Duration: 7 days
-                        </p>
-                    </div>
-
-                    <button onclick="invest('Starter Plan', 5000)">
-                        Invest
-                    </button>
-
-                </div>
-
-
-                <!-- GROWTH -->
-                <div class="plan-card">
-
-                    <div>
-                        <h3>Growth Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦20,000
-                        </p>
-
-                        <p>
-                            Return: 10%
-                        </p>
-
-                        <p>
-                            Duration: 14 days
-                        </p>
-                    </div>
-
-                    <button onclick="invest('Growth Plan', 20000)">
-                        Invest
-                    </button>
-
-                </div>
-
-
-                <!-- PREMIUM -->
-                <div class="plan-card">
-
-                    <div>
-                        <h3>Premium Plan</h3>
-
-                        <p>
-                            Minimum investment: ₦50,000
-                        </p>
-
-                        <p>
-                            Return: 20%
-                        </p>
-
-                        <p>
-                            Duration: 30 days
-                        </p>
-                    </div>
-
-                    <button onclick="invest('Premium Plan', 50000)">
-                        Invest
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- RECENT TRANSACTIONS -->
-        <section class="transactions">
-
-            <div class="section-title">
-                <h2>Recent Transactions</h2>
-            </div>
-
-            <div id="transactionList">
-
-                <div class="transaction">
+                <
