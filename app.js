@@ -981,3 +981,121 @@ document.addEventListener(
     "DOMContentLoaded",
     updateAccountDetails
 );
+/* =========================================
+   CHIME — CREATE ACCOUNT
+========================================= */
+
+window.createChimeAccount = function () {
+
+    const name =
+        document.getElementById("signupName").value.trim();
+
+    const email =
+        document.getElementById("signupEmail").value.trim();
+
+    const telegram =
+        document.getElementById("signupTelegram").value.trim();
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+    const confirmPassword =
+        document.getElementById("signupConfirmPassword").value;
+
+    const terms =
+        document.getElementById("signupTerms").checked;
+
+    const message =
+        document.getElementById("signupMessage");
+
+
+    /* Validation */
+
+    if (!name) {
+        message.textContent = "Please enter your full name.";
+        return;
+    }
+
+
+    if (!email || !email.includes("@")) {
+        message.textContent = "Please enter a valid email address.";
+        return;
+    }
+
+
+    if (password.length < 6) {
+        message.textContent =
+            "Password must be at least 6 characters.";
+        return;
+    }
+
+
+    if (password !== confirmPassword) {
+        message.textContent =
+            "Passwords do not match.";
+        return;
+    }
+
+
+    if (!terms) {
+        message.textContent =
+            "Please accept the terms to continue.";
+        return;
+    }
+
+
+    /* Save basic account information */
+
+    localStorage.setItem(
+        "chimeAccountCreated",
+        new Date().toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        )
+    );
+
+    localStorage.setItem(
+        "chimeUserName",
+        name
+    );
+
+    localStorage.setItem(
+        "chimeEmail",
+        email
+    );
+
+    localStorage.setItem(
+        "chimeHasEnteredApp",
+        "true"
+    );
+
+
+    /* Update profile */
+
+    const profileName =
+        document.getElementById("profileName");
+
+    if (profileName) {
+        profileName.textContent = name;
+    }
+
+
+    /* Success */
+
+    message.textContent =
+        "Account created successfully.";
+
+
+    /* Open dashboard */
+
+    setTimeout(function () {
+
+        showPage("dashboard");
+
+    }, 600);
+
+};
