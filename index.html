@@ -1,1156 +1,1322 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10182b">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#172033">
+<meta name="mobile-web-app-capable" content="yes">
 
 <title>Chime Investment</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<!-- Chime Styles -->
+<link rel="stylesheet" href="./style.css">
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6fa;
-    color: #172033;
-}
+<!-- Telegram Mini App -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-button {
-    border: 0;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-}
+</head><body><!-- ======================================
+     WELCOME PAGE
+====================================== --><section id="welcomePage" class="welcome-page"><div class="welcome-content">
 
-/* WELCOME */
-
-#welcome {
-    min-height: 100vh;
-    background: linear-gradient(145deg, #08101f, #192743);
-    color: white;
-    padding: 40px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.welcome-box {
-    width: 100%;
-    max-width: 480px;
-    text-align: center;
-}
-
-.logo {
-    width: 90px;
-    height: 90px;
-    background: white;
-    color: #10182b;
-    border-radius: 28px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 52px;
-    font-weight: bold;
-}
-
-.welcome-box h1 {
-    font-size: 36px;
-    margin-top: 25px;
-}
-
-.welcome-box > p {
-    color: #aeb9ca;
-    margin-top: 10px;
-}
-
-.features {
-    margin-top: 30px;
-}
-
-.feature {
-    background: #27344d;
-    border-radius: 20px;
-    padding: 18px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-}
-
-.feature-icon {
-    width: 50px;
-    height: 50px;
-    background: #35435e;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-right: 15px;
-}
-
-.feature strong {
-    font-size: 15px;
-}
-
-.feature p {
-    color: #aab5c7;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.start {
-    width: 100%;
-    height: 58px;
-    margin-top: 15px;
-    background: white;
-    color: #10182b;
-    border-radius: 17px;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-
-/* APP */
-
-#app {
-    display: none;
-    min-height: 100vh;
-    padding-bottom: 90px;
-}
-
-.header {
-    background: #111a2d;
-    color: white;
-    padding: 25px 20px 35px;
-    border-radius: 0 0 30px 30px;
-}
-
-.header small {
-    color: #8794aa;
-}
-
-.header h2 {
-    margin-top: 5px;
-    font-size: 25px;
-}
-
-.container {
-    width: calc(100% - 30px);
-    max-width: 600px;
-    margin: -15px auto 0;
-}
-
-
-/* BALANCE */
-
-.balance {
-    background: linear-gradient(135deg, #17243b, #2b4169);
-    color: white;
-    padding: 24px;
-    border-radius: 25px;
-}
-
-.balance small {
-    color: #aeb9ca;
-}
-
-.balance h1 {
-    font-size: 35px;
-    margin-top: 8px;
-}
-
-.earnings {
-    color: #65d39a;
-    font-weight: bold;
-    margin-top: 7px;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.actions button {
-    flex: 1;
-    height: 48px;
-    border-radius: 14px;
-    font-weight: bold;
-}
-
-.deposit {
-    background: white;
-    color: #111a2d;
-}
-
-.withdraw {
-    background: #3b4c69;
-    color: white;
-}
-
-
-/* SECTIONS */
-
-.section {
-    margin-top: 25px;
-}
-
-.section h3 {
-    margin-bottom: 12px;
-    font-size: 20px;
-}
-
-
-/* QUICK BUTTONS */
-
-.quick {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.quick button {
-    background: white;
-    border-radius: 17px;
-    padding: 14px 5px;
-    min-height: 90px;
-}
-
-.quick-icon {
-    display: block;
-    font-size: 23px;
-    margin-bottom: 8px;
-}
-
-.quick button strong {
-    font-size: 10px;
-}
-
-
-/* PLANS */
-
-.plan {
-    background: white;
-    border-radius: 21px;
-    padding: 18px;
-    margin-bottom: 12px;
-}
-
-.badge {
-    display: inline-block;
-    background: #eaf5ef;
-    color: #237b59;
-    padding: 5px 8px;
-    border-radius: 7px;
-    font-size: 9px;
-    font-weight: bold;
-}
-
-.plan h3 {
-    margin-top: 8px;
-    margin-bottom: 5px;
-}
-
-.plan p {
-    color: #8d949f;
-    font-size: 12px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
-    margin: 15px 0;
-}
-
-.stat {
-    background: #f5f7f9;
-    padding: 10px 5px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.stat small {
-    color: #9299a5;
-    display: block;
-    font-size: 9px;
-}
-
-.stat strong {
-    display: block;
-    font-size: 11px;
-    margin-top: 5px;
-}
-
-.plan button {
-    width: 100%;
-    height: 45px;
-    border-radius: 13px;
-    background: #121c30;
-    color: white;
-    font-weight: bold;
-}
-
-
-/* PAGES */
-
-.page {
-    display: none;
-    padding-top: 25px;
-}
-
-.page.active {
-    display: block;
-}
-
-.page-title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.back {
-    width: 42px;
-    height: 42px;
-    background: white;
-    border-radius: 13px;
-    margin-right: 12px;
-    font-size: 20px;
-}
-
-.page-title small {
-    color: #9299a5;
-    font-size: 9px;
-}
-
-.page-title h2 {
-    font-size: 21px;
-    margin-top: 3px;
-}
-
-
-/* TRANSACTIONS */
-
-.transaction {
-    background: white;
-    padding: 16px;
-    border-radius: 17px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.transaction-icon {
-    width: 43px;
-    height: 43px;
-    background: #edf0f5;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-}
-
-.transaction-info {
-    flex: 1;
-}
-
-.transaction-info strong {
-    display: block;
-    font-size: 13px;
-}
-
-.transaction-info small {
-    color: #9299a5;
-    font-size: 10px;
-}
-
-.green {
-    color: #237b59;
-    font-weight: bold;
-}
-
-
-/* PROFILE */
-
-.profile {
-    background: white;
-    border-radius: 23px;
-    padding: 30px;
-    text-align: center;
-}
-
-.avatar {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background: #e9edf3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    font-size: 30px;
-}
-
-.profile h2 {
-    margin-top: 12px;
-}
-
-.profile p {
-    color: #9299a5;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-
-/* NAVIGATION */
-
-.nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 75px;
-    background: white;
-    border-top: 1px solid #ddd;
-    display: flex;
-    z-index: 50;
-}
-
-.nav button {
-    flex: 1;
-    background: white;
-    color: #9299a5;
-}
-
-.nav button.active {
-    color: #111a2d;
-}
-
-.nav span {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 4px;
-}
-
-.nav small {
-    font-size: 9px;
-}
-
-
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    z-index: 100;
-    align-items: flex-end;
-}
-
-.modal-box {
-    width: 100%;
-    background: white;
-    border-radius: 25px 25px 0 0;
-    padding: 25px;
-}
-
-.modal-box h2 {
-    font-size: 21px;
-}
-
-.modal-box p {
-    color: #8d949f;
-    font-size: 12px;
-    margin: 8px 0 18px;
-}
-
-.modal-box input {
-    width: 100%;
-    height: 52px;
-    border: 1px solid #ddd;
-    border-radius: 13px;
-    padding: 12px;
-    font-size: 16px;
-}
-
-.modal-box button {
-    width: 100%;
-    height: 48px;
-    border-radius: 13px;
-    background: #121c30;
-    color: white;
-    margin-top: 12px;
-    font-weight: bold;
-}
-
-.modal-box .cancel {
-    background: #edf0f3;
-    color: #172033;
-}
-</style>
-</head>
-
-<body>
-
-
-<!-- WELCOME -->
-
-<div id="welcome">
-
-    <div class="welcome-box">
-
-        <div class="logo">C</div>
-
-        <h1>Chime Investment</h1>
-
-        <p>Invest smart. Grow your future.</p>
-
-        <div class="features">
-
-            <div class="feature">
-                <div class="feature-icon">💰</div>
-                <div>
-                    <strong>Investment Plans</strong>
-                    <p>Explore available investment plans.</p>
-                </div>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">📈</div>
-                <div>
-                    <strong>Track Your Growth</strong>
-                    <p>Monitor your portfolio easily.</p>
-                </div>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🔐</div>
-                <div>
-                    <strong>Simple & Secure</strong>
-                    <p>Manage your account in one place.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <button class="start" onclick="startApp()">
-            Get Started →
-        </button>
-
+    <div class="logo">
+        C
     </div>
 
-</div>
+    <h1>Chime Investment</h1>
 
+    <p class="welcome-subtitle">
+        Invest smart. Grow your future.
+    </p>
 
-<!-- APP -->
 
-<div id="app">
+    <div class="welcome-info">
 
-    <header class="header">
-        <small>WELCOME BACK</small>
-        <h2>Chime Investor</h2>
-    </header>
+        <div class="welcome-feature">
 
+            <span>💰</span>
 
-    <div class="container">
-
-
-        <!-- HOME -->
-
-        <div id="home" class="page active">
-
-            <div class="balance">
-
-                <small>AVAILABLE BALANCE</small>
-
-                <h1>₦5,000.00</h1>
-
-                <div class="earnings">
-                    ↗ +₦250.00 earnings
-                </div>
-
-                <div class="actions">
-
-                    <button class="deposit" onclick="openModal('depositModal')">
-                        ＋ Deposit
-                    </button>
-
-                    <button class="withdraw" onclick="openModal('withdrawModal')">
-                        ↗ Withdraw
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="section">
-
-                <h3>Quick Actions</h3>
-
-                <div class="quick">
-
-                    <button onclick="openModal('depositModal')">
-                        <span class="quick-icon">💰</span>
-                        <strong>Deposit</strong>
-                    </button>
-
-                    <button onclick="openModal('withdrawModal')">
-                        <span class="quick-icon">💸</span>
-                        <strong>Withdraw</strong>
-                    </button>
-
-                    <button onclick="showPage('plans')">
-                        <span class="quick-icon">📈</span>
-                        <strong>Invest</strong>
-                    </button>
-
-                    <button onclick="showPage('history')">
-                        <span class="quick-icon">🧾</span>
-                        <strong>History</strong>
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="section">
-
-                <h3>Featured Plans</h3>
-
-                <div class="plan">
-
-                    <span class="badge">STARTER</span>
-
-                    <h3>🌱 Starter Plan</h3>
-
-                    <p>Begin your investment journey.</p>
-
-                    <div class="stats">
-
-                        <div class="stat">
-                            <small>Minimum</small>
-                            <strong>₦5,000</strong>
-                        </div>
-
-                        <div class="stat">
-                            <small>Return</small>
-                            <strong>5%</strong>
-                        </div>
-
-                        <div class="stat">
-                            <small>Duration</small>
-                            <strong>7 Days</strong>
-                        </div>
-
-                    </div>
-
-                    <button onclick="selectPlan('Starter Plan')">
-                        View Plan
-                    </button>
-
-                </div>
-
-
-                <div class="plan">
-
-                    <span class="badge">POPULAR</span>
-
-                    <h3>📈 Growth Plan</h3>
-
-                    <p>For users seeking a larger plan.</p>
-
-                    <div class="stats">
-
-                        <div class="stat">
-                            <small>Minimum</small>
-                            <strong>₦20,000</strong>
-                        </div>
-
-                        <div class="stat">
-                            <small>Return</small>
-                            <strong>10%</strong>
-                        </div>
-
-                        <div class="stat">
-                            <small>Duration</small>
-                            <strong>14 Days</strong>
-                        </div>
-
-                    </div>
-
-                    <button onclick="selectPlan('Growth Plan')">
-                        View Plan
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PLANS -->
-
-        <div id="plans" class="page">
-
-            <div class="page-title">
-
-                <button class="back" onclick="showPage('home')">
-                    ←
-                </button>
-
-                <div>
-                    <small>EXPLORE</small>
-                    <h2>Investment Plans</h2>
-                </div>
-
-            </div>
-
-
-            <div class="plan">
-
-                <span class="badge">STARTER</span>
-
-                <h3>🌱 Starter Plan</h3>
-
-                <p>Minimum investment ₦5,000.</p>
-
-                <div class="stats">
-                    <div class="stat">
-                        <small>Return</small>
-                        <strong>5%</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Duration</small>
-                        <strong>7 Days</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Risk</small>
-                        <strong>Demo</strong>
-                    </div>
-                </div>
-
-                <button onclick="selectPlan('Starter Plan')">
-                    Select Plan
-                </button>
-
-            </div>
-
-
-            <div class="plan">
-
-                <span class="badge">POPULAR</span>
-
-                <h3>📈 Growth Plan</h3>
-
-                <p>Minimum investment ₦20,000.</p>
-
-                <div class="stats">
-                    <div class="stat">
-                        <small>Return</small>
-                        <strong>10%</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Duration</small>
-                        <strong>14 Days</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Risk</small>
-                        <strong>Demo</strong>
-                    </div>
-                </div>
-
-                <button onclick="selectPlan('Growth Plan')">
-                    Select Plan
-                </button>
-
-            </div>
-
-
-            <div class="plan">
-
-                <span class="badge">PREMIUM</span>
-
-                <h3>💎 Premium Plan</h3>
-
-                <p>Minimum investment ₦50,000.</p>
-
-                <div class="stats">
-                    <div class="stat">
-                        <small>Return</small>
-                        <strong>20%</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Duration</small>
-                        <strong>30 Days</strong>
-                    </div>
-
-                    <div class="stat">
-                        <small>Risk</small>
-                        <strong>Demo</strong>
-                    </div>
-                </div>
-
-                <button onclick="selectPlan('Premium Plan')">
-                    Select Plan
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- HISTORY -->
-
-        <div id="history" class="page">
-
-            <div class="page-title">
-
-                <button class="back" onclick="showPage('home')">
-                    ←
-                </button>
-
-                <div>
-                    <small>ACCOUNT ACTIVITY</small>
-                    <h2>Transaction History</h2>
-                </div>
-
-            </div>
-
-
-            <div class="transaction">
-
-                <div class="transaction-icon">🎁</div>
-
-                <div class="transaction-info">
-                    <strong>Welcome Bonus</strong>
-                    <small>Account created</small>
-                </div>
-
-                <span class="green">
-                    +₦250
-                </span>
-
-            </div>
-
-
-            <div class="transaction">
-
-                <div class="transaction-icon">💼</div>
-
-                <div class="transaction-info">
-                    <strong>Investment Account</strong>
-                    <small>Demo transaction</small>
-                </div>
-
-                <strong>₦5,000</strong>
-
-            </div>
-
-        </div>
-
-
-        <!-- PROFILE -->
-
-        <div id="profile" class="page">
-
-            <div class="page-title">
-
-                <button class="back" onclick="showPage('home')">
-                    ←
-                </button>
-
-                <div>
-                    <small>ACCOUNT</small>
-                    <h2>My Profile</h2>
-                </div>
-
-            </div>
-
-
-            <div class="profile">
-
-                <div class="avatar">
-                    👤
-                </div>
-
-                <h2>Chime Investor</h2>
+            <div>
+                <strong>Investment Plans</strong>
 
                 <p>
-                    Chime Investment Account
+                    Explore available investment plans.
                 </p>
+            </div>
+
+        </div>
+
+
+        <div class="welcome-feature">
+
+            <span>📈</span>
+
+            <div>
+                <strong>Track Your Growth</strong>
+
+                <p>
+                    Monitor your portfolio easily.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="welcome-feature">
+
+            <span>🔐</span>
+
+            <div>
+                <strong>Simple & Secure</strong>
+
+                <p>
+                    Manage your account in one place.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="welcome-button"
+        onclick="enterApp()">
+
+        Get Started →
+
+    </button>
+
+</div>
+
+</section><!-- ======================================
+     MAIN APPLICATION
+====================================== --><main id="app" class="hidden"><!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <p>
+            WELCOME BACK
+        </p>
+
+        <h1 id="userName">
+            Chime Investor
+        </h1>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="profile-button"
+        onclick="showPage('profilePage')">
+
+        👤
+
+    </button>
+
+</header>
+
+
+
+<!-- MAIN CONTAINER -->
+
+<div class="container">
+
+
+    <!-- ==================================
+         HOME PAGE
+    ================================== -->
+
+    <section
+        id="homePage"
+        class="app-page active-page">
+
+
+        <!-- BALANCE -->
+
+        <div class="balance-card">
+
+            <div class="balance-top">
+
+                <div>
+
+                    <p class="balance-label">
+                        AVAILABLE BALANCE
+                    </p>
+
+                    <h2>
+                        ₦5,000.00
+                    </h2>
+
+                </div>
+
+
+                <div class="balance-icon">
+                    💰
+                </div>
+
+            </div>
+
+
+            <div class="earnings-box">
+
+                <span>
+                    Total earnings
+                </span>
+
+                <strong>
+                    +₦250.00
+                </strong>
+
+            </div>
+
+
+            <div class="balance-buttons">
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="openDeposit()">
+
+                    ＋ Deposit
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="openWithdraw()">
+
+                    ↗ Withdraw
+
+                </button>
 
             </div>
 
         </div>
 
 
-    </div>
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="section-header">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+        </div>
 
 
-    <!-- NAVIGATION -->
+        <div class="quick-actions">
 
-    <nav class="nav">
 
-        <button class="active" onclick="showPage('home')">
-            <span>⌂</span>
-            <small>Home</small>
-        </button>
+            <button
+                type="button"
+                class="quick-action"
+                onclick="openDeposit()">
 
-        <button onclick="showPage('plans')">
-            <span>📈</span>
-            <small>Invest</small>
-        </button>
+                <span class="quick-icon">
+                    💰
+                </span>
 
-        <button onclick="showPage('history')">
-            <span>🧾</span>
-            <small>History</small>
-        </button>
+                <strong>
+                    Deposit
+                </strong>
 
-        <button onclick="showPage('profile')">
-            <span>👤</span>
-            <small>Profile</small>
-        </button>
+                <small>
+                    Add money
+                </small>
 
-    </nav>
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                onclick="openWithdraw()">
+
+                <span class="quick-icon">
+                    💸
+                </span>
+
+                <strong>
+                    Withdraw
+                </strong>
+
+                <small>
+                    Cash out
+                </small>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                onclick="showPage('plansPage')">
+
+                <span class="quick-icon">
+                    📈
+                </span>
+
+                <strong>
+                    Invest
+                </strong>
+
+                <small>
+                    View plans
+                </small>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                onclick="showPage('transactionsPage')">
+
+                <span class="quick-icon">
+                    🧾
+                </span>
+
+                <strong>
+                    History
+                </strong>
+
+                <small>
+                    Transactions
+                </small>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- FEATURED PLANS -->
+
+        <div class="section-header">
+
+            <h2>
+                Featured Plans
+            </h2>
+
+            <button
+                type="button"
+                class="view-all"
+                onclick="showPage('plansPage')">
+
+                View all
+
+            </button>
+
+        </div>
+
+
+        <div class="plans">
+
+
+            <!-- STARTER -->
+
+            <div class="plan-card">
+
+                <div class="plan-header">
+
+                    <div>
+
+                        <span class="plan-badge">
+                            STARTER
+                        </span>
+
+                        <h3>
+                            Starter Plan
+                        </h3>
+
+                    </div>
+
+
+                    <span class="plan-emoji">
+                        🌱
+                    </span>
+
+                </div>
+
+
+                <div class="plan-details">
+
+                    <div>
+
+                        <span>
+                            Minimum
+                        </span>
+
+                        <strong>
+                            ₦5,000
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Return
+                        </span>
+
+                        <strong>
+                            5%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            7 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="plan-button"
+                    onclick="invest('Starter Plan', 5000)">
+
+                    View Plan
+
+                </button>
+
+            </div>
+
+
+
+            <!-- GROWTH -->
+
+            <div class="plan-card">
+
+                <div class="plan-header">
+
+                    <div>
+
+                        <span class="plan-badge">
+                            POPULAR
+                        </span>
+
+                        <h3>
+                            Growth Plan
+                        </h3>
+
+                    </div>
+
+
+                    <span class="plan-emoji">
+                        📈
+                    </span>
+
+                </div>
+
+
+                <div class="plan-details">
+
+                    <div>
+
+                        <span>
+                            Minimum
+                        </span>
+
+                        <strong>
+                            ₦20,000
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Return
+                        </span>
+
+                        <strong>
+                            10%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            14 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="plan-button"
+                    onclick="invest('Growth Plan', 20000)">
+
+                    View Plan
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         PLANS PAGE
+    ================================== -->
+
+    <section
+        id="plansPage"
+        class="app-page">
+
+
+        <div class="page-heading">
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="showPage('homePage')">
+
+                ←
+
+            </button>
+
+
+            <div>
+
+                <p>
+                    EXPLORE
+                </p>
+
+                <h2>
+                    Investment Plans
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="all-plans">
+
+
+            <!-- STARTER PLAN -->
+
+            <div class="large-plan-card">
+
+                <div class="large-plan-icon">
+                    🌱
+                </div>
+
+
+                <div class="large-plan-content">
+
+                    <span class="plan-badge">
+                        STARTER
+                    </span>
+
+                    <h3>
+                        Starter Plan
+                    </h3>
+
+                    <p>
+                        Begin your investment journey.
+                    </p>
+
+
+                    <div class="large-plan-stats">
+
+                        <div>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦5,000
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                5%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                7 Days
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="plan-button"
+                        onclick="invest('Starter Plan', 5000)">
+
+                        Select Plan
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GROWTH PLAN -->
+
+            <div class="large-plan-card">
+
+                <div class="large-plan-icon">
+                    📈
+                </div>
+
+
+                <div class="large-plan-content">
+
+                    <span class="plan-badge">
+                        POPULAR
+                    </span>
+
+                    <h3>
+                        Growth Plan
+                    </h3>
+
+                    <p>
+                        For users seeking a larger plan.
+                    </p>
+
+
+                    <div class="large-plan-stats">
+
+                        <div>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦20,000
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                10%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                14 Days
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="plan-button"
+                        onclick="invest('Growth Plan', 20000)">
+
+                        Select Plan
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PREMIUM PLAN -->
+
+            <div class="large-plan-card">
+
+                <div class="large-plan-icon">
+                    💎
+                </div>
+
+
+                <div class="large-plan-content">
+
+                    <span class="plan-badge">
+                        PREMIUM
+                    </span>
+
+                    <h3>
+                        Premium Plan
+                    </h3>
+
+                    <p>
+                        Designed for larger investments.
+                    </p>
+
+
+                    <div class="large-plan-stats">
+
+                        <div>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦50,000
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                20%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                30 Days
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="plan-button"
+                        onclick="invest('Premium Plan', 50000)">
+
+                        Select Plan
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         INVESTMENTS PAGE
+    ================================== -->
+
+    <section
+        id="investmentsPage"
+        class="app-page">
+
+
+        <div class="page-heading">
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="showPage('homePage')">
+
+                ←
+
+            </button>
+
+
+            <div>
+
+                <p>
+                    PORTFOLIO
+                </p>
+
+                <h2>
+                    My Investments
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="investment-list">
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    📊
+                </div>
+
+                <h3>
+                    No active investments
+                </h3>
+
+                <p>
+                    You don't have any active investments yet.
+                    Choose an investment plan to get started.
+                </p>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="showPage('plansPage')">
+
+                    Explore Plans
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         TRANSACTIONS PAGE
+    ================================== -->
+
+    <section
+        id="transactionsPage"
+        class="app-page">
+
+
+        <div class="page-heading">
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="showPage('homePage')">
+
+                ←
+
+            </button>
+
+
+            <div>
+
+                <p>
+                    ACCOUNT ACTIVITY
+                </p>
+
+                <h2>
+                    Transactions
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="transactions">
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon">
+                    🎁
+                </div>
+
+
+                <div class="transaction-info">
+
+                    <strong>
+                        Welcome Bonus
+                    </strong>
+
+                    <span>
+                        Account created
+                    </span>
+
+                </div>
+
+
+                <strong class="positive">
+                    +₦250
+                </strong>
+
+            </div>
+
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon">
+                    💼
+                </div>
+
+
+                <div class="transaction-info">
+
+                    <strong>
+                        Investment Account
+                    </strong>
+
+                    <span>
+                        Demo transaction
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    ₦5,000
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         PROFILE PAGE
+    ================================== -->
+
+    <section
+        id="profilePage"
+        class="app-page">
+
+
+        <div class="page-heading">
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="showPage('homePage')">
+
+                ←
+
+            </button>
+
+
+            <div>
+
+                <p>
+                    ACCOUNT
+                </p>
+
+                <h2>
+                    My Profile
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+
+            <h2 id="profileName">
+                Chime Investor
+            </h2>
+
+
+            <p id="profileUsername">
+                Chime Investment Account
+            </p>
+
+
+            <div class="profile-stats">
+
+                <div>
+
+                    <span>
+                        Balance
+                    </span>
+
+                    <strong>
+                        ₦5,000
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Earnings
+                    </span>
+
+                    <strong>
+                        ₦250
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-card">
+
+            <button
+                type="button"
+                onclick="showPage('plansPage')">
+
+                <span>
+                    📈
+                </span>
+
+                <div>
+
+                    <strong>
+                        Investment Plans
+                    </strong>
+
+                    <small>
+                        Explore available plans
+                    </small>
+
+                </div>
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="showPage('transactionsPage')">
+
+                <span>
+                    🧾
+                </span>
+
+                <div>
+
+                    <strong>
+                        Transaction History
+                    </strong>
+
+                    <small>
+                        View account activity
+                    </small>
+
+                </div>
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
 
 </div>
 
 
-<!-- DEPOSIT -->
 
-<div id="depositModal" class="modal">
+<!-- ==================================
+     BOTTOM NAVIGATION
+================================== -->
 
-    <div class="modal-box">
+<nav class="bottom-nav">
 
-        <h2>💰 Deposit</h2>
 
-        <p>
-            Enter the amount you want to deposit.
-        </p>
+    <button
+        type="button"
+        class="nav-item active-nav"
+        onclick="showPage('homePage')">
+
+        <span>
+            ⌂
+        </span>
+
+        <small>
+            Home
+        </small>
+
+    </button>
+
+
+
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('plansPage')">
+
+        <span>
+            📈
+        </span>
+
+        <small>
+            Invest
+        </small>
+
+    </button>
+
+
+
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('investmentsPage')">
+
+        <span>
+            💼
+        </span>
+
+        <small>
+            Portfolio
+        </small>
+
+    </button>
+
+
+
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('transactionsPage')">
+
+        <span>
+            🧾
+        </span>
+
+        <small>
+            History
+        </small>
+
+    </button>
+
+
+
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('profilePage')">
+
+        <span>
+            👤
+        </span>
+
+        <small>
+            Profile
+        </small>
+
+    </button>
+
+</nav>
+
+</main><!-- ======================================
+     DEPOSIT MODAL
+====================================== --><div
+    id="depositModal"
+    class="modal"
+    onclick="if(event.target === this) closeModals()"><div class="modal-box">
+
+    <button
+        type="button"
+        class="close-button"
+        onclick="closeModals()">
+
+        ×
+
+    </button>
+
+
+    <div class="modal-icon">
+        💰
+    </div>
+
+
+    <h2>
+        Deposit
+    </h2>
+
+
+    <p>
+        Enter the amount you want to deposit.
+    </p>
+
+
+    <label for="depositAmount">
+        Amount
+    </label>
+
+
+    <div class="amount-input">
+
+        <span>
+            ₦
+        </span>
 
         <input
             id="depositAmount"
             type="number"
+            inputmode="numeric"
+            min="1"
             placeholder="Enter amount">
-
-        <button onclick="deposit()">
-            Continue
-        </button>
-
-        <button
-            class="cancel"
-            onclick="closeModal('depositModal')">
-
-            Cancel
-
-        </button>
 
     </div>
 
+
+    <button
+        type="button"
+        class="modal-button"
+        onclick="deposit()">
+
+        Continue
+
+    </button>
+
 </div>
 
+</div><!-- ======================================
+     WITHDRAW MODAL
+====================================== --><div
+    id="withdrawModal"
+    class="modal"
+    onclick="if(event.target === this) closeModals()"><div class="modal-box">
 
-<!-- WITHDRAW -->
+    <button
+        type="button"
+        class="close-button"
+        onclick="closeModals()">
 
-<div id="withdrawModal" class="modal">
+        ×
 
-    <div class="modal-box">
+    </button>
 
-        <h2>💸 Withdraw</h2>
 
-        <p>
-            Enter the amount you want to withdraw.
-        </p>
+    <div class="modal-icon">
+        💸
+    </div>
+
+
+    <h2>
+        Withdraw
+    </h2>
+
+
+    <p>
+        Enter the amount you want to withdraw.
+    </p>
+
+
+    <label for="withdrawAmount">
+        Amount
+    </label>
+
+
+    <div class="amount-input">
+
+        <span>
+            ₦
+        </span>
 
         <input
             id="withdrawAmount"
             type="number"
+            inputmode="numeric"
+            min="1"
             placeholder="Enter amount">
 
-        <button onclick="withdraw()">
-            Continue
-        </button>
-
-        <button
-            class="cancel"
-            onclick="closeModal('withdrawModal')">
-
-            Cancel
-
-        </button>
-
     </div>
+
+
+    <button
+        type="button"
+        class="modal-button"
+        onclick="withdraw()">
+
+        Continue
+
+    </button>
 
 </div>
 
-
-<!-- PLAN -->
-
-<div id="planModal" class="modal">
-
-    <div class="modal-box">
-
-        <h2 id="planName">
-            Investment Plan
-        </h2>
-
-        <p id="planText">
-            Plan details
-        </p>
-
-        <button onclick="closeModal('planModal')">
-            Continue
-        </button>
-
-        <button
-            class="cancel"
-            onclick="closeModal('planModal')">
-
-            Cancel
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<script>
-
-function startApp() {
-
-    document.getElementById("welcome").style.display = "none";
-
-    document.getElementById("app").style.display = "block";
-
-}
-
-
-function showPage(page) {
-
-    var pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(item) {
-        item.classList.remove("active");
-    });
-
-    document.getElementById(page).classList.add("active");
-
-
-    var navButtons = document.querySelectorAll(".nav button");
-
-    navButtons.forEach(function(item) {
-        item.classList.remove("active");
-    });
-
-
-    if (page === "home") {
-        navButtons[0].classList.add("active");
-    }
-
-    if (page === "plans") {
-        navButtons[1].classList.add("active");
-    }
-
-    if (page === "history") {
-        navButtons[2].classList.add("active");
-    }
-
-    if (page === "profile") {
-        navButtons[3].classList.add("active");
-    }
-
-    window.scrollTo(0, 0);
-
-}
-
-
-function openModal(id) {
-
-    document.getElementById(id).style.display = "flex";
-
-}
-
-
-function closeModal(id) {
-
-    document.getElementById(id).style.display = "none";
-
-}
-
-
-function deposit() {
-
-    var amount = document.getElementById("depositAmount").value;
-
-    if (amount === "" || Number(amount) <= 0) {
-
-        alert("Please enter a valid amount.");
-
-        return;
-    }
-
-    closeModal("depositModal");
-
-    alert(
-        "Deposit request received for ₦" +
-        Number(amount).toLocaleString()
-    );
-
-}
-
-
-function withdraw() {
-
-    var amount = document.getElementById("withdrawAmount").value;
-
-    if (amount === "" || Number(amount) <= 0) {
-
-        alert("Please enter a valid amount.");
-
-        return;
-    }
-
-    closeModal("withdrawModal");
-
-    alert(
-        "Withdrawal request received for ₦" +
-        Number(amount).toLocaleString()
-    );
-
-}
-
-
-function selectPlan(name) {
-
-    document.getElementById("planName").innerText = name;
-
-    document.getElementById("planText").innerText =
-        "You selected the " +
-        name +
-        ". This feature is currently in demo mode.";
-
-    openModal("planModal");
-
-}
-
-</script>
-
-</body>
+</div><!-- ======================================
+     JAVASCRIPT
+====================================== --><script src="./app.js"></script></body>
     </html>
