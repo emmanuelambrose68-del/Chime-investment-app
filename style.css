@@ -1,3 +1,7 @@
+/* =========================================================
+   CHIME INVESTMENT — MODERN PREMIUM DESIGN
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,15 +9,29 @@
 }
 
 :root {
-    --dark: #172033;
-    --dark-light: #25304a;
-    --green: #23865c;
-    --green-light: #e8f6ef;
-    --background: #f5f6fa;
+    --primary: #6c5ce7;
+    --primary-dark: #5141c9;
+    --secondary: #00b894;
+    --accent: #fdcb6e;
+
+    --dark: #101426;
+    --dark-2: #171d35;
+    --dark-3: #222a48;
+
+    --background: #f6f7fc;
     --white: #ffffff;
-    --text: #172033;
-    --muted: #7b8190;
-    --border: #e7e9ee;
+    --text: #171b2d;
+    --muted: #858ba3;
+    --border: #e8eaf2;
+
+    --success-bg: #e9faf4;
+    --success: #12a875;
+
+    --shadow: 0 12px 35px rgba(30, 35, 70, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -21,7 +39,8 @@ body {
     background: var(--background);
     color: var(--text);
     min-height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 85px;
+    -webkit-font-smoothing: antialiased;
 }
 
 button,
@@ -30,8 +49,17 @@ input {
 }
 
 button {
+    border: 0;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+button:active {
+    transform: scale(.96);
 }
 
 .hidden {
@@ -39,144 +67,269 @@ button {
 }
 
 
-/* ======================================
+/* =========================================================
    WELCOME PAGE
-====================================== */
+   ========================================================= */
 
 .welcome-page {
     min-height: 100vh;
-    background: var(--dark);
-    color: white;
+    padding: 30px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 22px;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(108,92,231,.38),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(0,184,148,.22),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #0c1021,
+            #171d35 55%,
+            #11162a
+        );
+
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-page::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.08);
+    top: -90px;
+    right: -80px;
+}
+
+.welcome-page::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.06);
+    bottom: -80px;
+    left: -70px;
 }
 
 .welcome-content {
     width: 100%;
     max-width: 500px;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .logo {
-    width: 82px;
-    height: 82px;
-    border-radius: 25px;
-    background: white;
-    color: var(--dark);
+    width: 88px;
+    height: 88px;
+    border-radius: 28px;
+
+    margin: 0 auto 24px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 25px;
-    font-size: 46px;
-    font-weight: 800;
+
+    font-size: 48px;
+    font-weight: 900;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8e7dff
+        );
+
+    box-shadow:
+        0 15px 35px rgba(108,92,231,.35),
+        inset 0 1px 0 rgba(255,255,255,.3);
 }
 
 .welcome-content h1 {
-    font-size: 45px;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -.8px;
     margin-bottom: 10px;
 }
 
 .welcome-subtitle {
-    color: #c9ced8;
-    font-size: 17px;
-    margin-bottom: 35px;
+    color: #bfc5d9;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 30px;
 }
+
+
+/* WELCOME FEATURES */
 
 .welcome-info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 11px;
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .welcome-feature {
     display: flex;
     align-items: center;
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.08);
-    padding: 17px;
-    border-radius: 17px;
+    gap: 14px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.075);
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(10px);
 }
 
 .welcome-feature > span {
-    width: 44px;
-    height: 44px;
-    border-radius: 13px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 22px;
+
+    background: rgba(255,255,255,.10);
 }
 
 .welcome-feature strong {
     display: block;
+    font-size: 14px;
     margin-bottom: 4px;
 }
 
 .welcome-feature p {
-    color: #aeb5c2;
-    font-size: 13px;
+    color: #aab1c5;
+    font-size: 11px;
+    line-height: 1.4;
 }
+
+
+/* GET STARTED */
 
 .welcome-button {
     width: 100%;
     height: 58px;
-    border: none;
-    border-radius: 16px;
-    background: white;
-    color: var(--dark);
-    font-size: 17px;
-    font-weight: 700;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #eeeaff
+        );
+
+    color: var(--primary-dark);
+
+    font-size: 16px;
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.18);
+}
+
+.welcome-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 16px 30px rgba(0,0,0,.25);
 }
 
 
-/* ======================================
+/* =========================================================
    HEADER
-====================================== */
+   ========================================================= */
 
 .header {
-    background: var(--dark);
+    background:
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(108,92,231,.32),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #101426,
+            #1a2040
+        );
+
     color: white;
-    padding: 28px 20px 34px;
-    border-radius: 0 0 30px 30px;
+
+    padding: 27px 20px 38px;
+
+    border-radius: 0 0 32px 32px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    box-shadow: 0 8px 25px rgba(15,20,40,.12);
 }
 
 .header-left p {
-    color: #b8bfcb;
-    font-size: 14px;
+    color: #9fa7bf;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
     margin-bottom: 7px;
 }
 
 .header h1 {
-    font-size: 28px;
+    font-size: 25px;
+    letter-spacing: -.4px;
 }
 
 .profile-button {
     width: 48px;
     height: 48px;
-    border: none;
+
     border-radius: 50%;
-    background: rgba(255,255,255,0.12);
+
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.12);
+
     color: white;
-    font-size: 21px;
+
+    font-size: 20px;
 }
 
 
-/* ======================================
+/* =========================================================
    MAIN CONTAINER
-====================================== */
+   ========================================================= */
 
 .container {
     width: calc(100% - 30px);
     max-width: 650px;
-    margin: 20px auto 30px;
+
+    margin: -14px auto 30px;
+
+    position: relative;
+    z-index: 5;
 }
 
 .app-page {
@@ -188,16 +341,51 @@ button {
 }
 
 
-/* ======================================
+/* =========================================================
    BALANCE CARD
-====================================== */
+   ========================================================= */
 
 .balance-card {
-    background: white;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(142,125,255,.32),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #1b2140,
+            #252d55
+        );
+
+    color: white;
+
     border-radius: 25px;
-    padding: 24px;
-    box-shadow: 0 6px 25px rgba(20, 30, 50, 0.07);
+
+    padding: 23px;
+
+    box-shadow:
+        0 16px 40px rgba(35,42,85,.20);
+
     margin-bottom: 25px;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.balance-card::after {
+    content: "";
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    right: -35px;
+    bottom: -45px;
 }
 
 .balance-top {
@@ -207,104 +395,131 @@ button {
 }
 
 .balance-label {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 7px;
+    color: #aeb5cc;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    margin-bottom: 8px;
 }
 
 .balance-card h2 {
-    font-size: 35px;
+    font-size: 34px;
+    letter-spacing: -.8px;
 }
 
 .balance-icon {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
+
     border-radius: 15px;
-    background: var(--green-light);
+
+    background: rgba(255,255,255,.10);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+
+    font-size: 21px;
 }
+
+
+/* EARNINGS */
 
 .earnings-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 22px 0;
-    padding: 13px 15px;
+
+    margin: 20px 0;
+
+    padding: 12px 14px;
+
     border-radius: 13px;
-    background: #f7f8fa;
+
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.06);
 }
 
 .earnings-box span {
-    color: var(--muted);
-    font-size: 13px;
+    color: #aeb5cc;
+    font-size: 11px;
 }
 
 .earnings-box strong {
-    color: var(--green);
-    font-size: 14px;
+    color: #58e0a9;
+    font-size: 13px;
 }
 
 
-/* ======================================
-   BUTTONS
-====================================== */
+/* =========================================================
+   BALANCE BUTTONS
+   ========================================================= */
 
 .balance-buttons {
     display: flex;
-    gap: 10px;
+    gap: 9px;
 }
 
 .primary-btn,
 .secondary-btn {
     flex: 1;
-    min-height: 52px;
+
+    min-height: 50px;
+
     border-radius: 14px;
-    border: none;
-    font-size: 15px;
-    font-weight: 700;
+
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .primary-btn {
-    background: var(--dark);
-    color: white;
+    background: white;
+    color: var(--dark);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.10);
 }
 
 .secondary-btn {
-    background: #e9edf3;
-    color: var(--dark);
+    background: rgba(255,255,255,.11);
+    color: white;
+
+    border: 1px solid rgba(255,255,255,.10);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-2px);
 }
 
 
-/* ======================================
+/* =========================================================
    SECTION HEADERS
-====================================== */
+   ========================================================= */
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 25px 2px 12px;
+
+    margin: 27px 2px 12px;
 }
 
 .section-header h2 {
-    font-size: 20px;
+    font-size: 19px;
+    letter-spacing: -.3px;
 }
 
 .view-all {
     background: none;
-    border: none;
-    color: var(--green);
-    font-size: 13px;
-    font-weight: 700;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
 }
 
 
-/* ======================================
+/* =========================================================
    QUICK ACTIONS
-====================================== */
+   ========================================================= */
 
 .quick-actions {
     display: grid;
@@ -314,22 +529,41 @@ button {
 
 .quick-action {
     border: 1px solid var(--border);
+
     background: white;
-    border-radius: 17px;
-    padding: 13px 5px;
+
+    border-radius: 18px;
+
+    padding: 12px 4px;
+
     text-align: center;
-    min-height: 105px;
+
+    min-height: 103px;
+
+    box-shadow: 0 6px 20px rgba(30,35,70,.04);
+}
+
+.quick-action:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
 }
 
 .quick-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    background: #f0f2f6;
+    width: 39px;
+    height: 39px;
+
+    border-radius: 13px;
+
+    background: #f0eeff;
+
+    color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin: 0 auto 8px;
+
     font-size: 17px;
 }
 
@@ -339,19 +573,19 @@ button {
 }
 
 .quick-action strong {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .quick-action small {
     color: var(--muted);
-    font-size: 9px;
+    font-size: 8px;
     margin-top: 4px;
 }
 
 
-/* ======================================
-   INVESTMENT PLANS
-====================================== */
+/* =========================================================
+   PLAN CARDS
+   ========================================================= */
 
 .plans {
     display: flex;
@@ -361,9 +595,14 @@ button {
 
 .plan-card {
     background: white;
+
     border: 1px solid var(--border);
-    border-radius: 19px;
+
+    border-radius: 20px;
+
     padding: 18px;
+
+    box-shadow: 0 6px 20px rgba(30,35,70,.035);
 }
 
 .plan-header {
@@ -374,17 +613,22 @@ button {
 
 .plan-badge {
     display: inline-block;
-    background: #eef1f5;
-    color: #5f6672;
+
+    background: #f0eeff;
+    color: var(--primary);
+
     padding: 5px 8px;
+
     border-radius: 7px;
-    font-size: 9px;
-    font-weight: 800;
+
+    font-size: 8px;
+    font-weight: 900;
+
     margin-bottom: 7px;
 }
 
 .plan-header h3 {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .plan-emoji {
@@ -394,46 +638,226 @@ button {
 .plan-details,
 .large-plan-stats {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin: 17px 0;
+
+    gap: 7px;
+
+    margin: 16px 0;
 }
 
 .plan-details div,
 .large-plan-stats div {
-    background: #f7f8fa;
-    padding: 10px 7px;
-    border-radius: 10px;
+    background: #f7f8fc;
+
+    padding: 10px 6px;
+
+    border-radius: 11px;
 }
 
 .plan-details span,
 .large-plan-stats span {
     display: block;
+
     color: var(--muted);
-    font-size: 9px;
+
+    font-size: 8px;
+
     margin-bottom: 4px;
 }
 
 .plan-details strong,
 .large-plan-stats strong {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .plan-button {
     width: 100%;
-    height: 47px;
-    border: none;
+    height: 46px;
+
     border-radius: 12px;
-    background: var(--dark);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8273ed
+        );
+
     color: white;
-    font-size: 14px;
-    font-weight: 700;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 7px 18px rgba(108,92,231,.20);
 }
 
 
-/* ======================================
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 19px;
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 10px;
+
+    margin-bottom: 4px;
+}
+
+.page-heading h2 {
+    font-size: 23px;
+}
+
+.back-button {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    background: white;
+    color: var(--dark);
+
+    font-size: 21px;
+
+    box-shadow: 0 5px 18px rgba(30,35,70,.06);
+}
+
+
+/* =========================================================
+   LARGE PLAN CARDS
+   ========================================================= */
+
+.all-plans {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.large-plan-card {
+    display: flex;
+    gap: 14px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--border);
+
+    padding: 18px;
+
+    box-shadow: 0 6px 20px rgba(30,35,70,.035);
+}
+
+.large-plan-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: #f0eeff;
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.large-plan-content {
+    flex: 1;
+}
+
+.large-plan-content h3 {
+    font-size: 18px;
+}
+
+.large-plan-content > p {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   INVESTMENT LIST
+   ========================================================= */
+
+.investment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.empty-state {
+    background: white;
+
+    border-radius: 21px;
+
+    padding: 38px 20px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+
+    background: #f0eeff;
+    color: var(--primary);
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    font-size: 27px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+.empty-state .primary-btn {
+    width: 100%;
+    color: white;
+    background: var(--primary);
+}
+
+
+/* =========================================================
    TRANSACTIONS
-====================================== */
+   ========================================================= */
 
 .transactions {
     display: flex;
@@ -445,18 +869,29 @@ button {
     display: flex;
     align-items: center;
     gap: 11px;
+
     background: white;
+
     border: 1px solid var(--border);
+
     padding: 14px;
-    border-radius: 15px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(30,35,70,.03);
 }
 
 .transaction-icon {
     width: 40px;
     height: 40px;
+
     flex-shrink: 0;
+
     border-radius: 12px;
-    background: #f0f2f5;
+
+    background: #f0eeff;
+    color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -473,161 +908,60 @@ button {
 
 .transaction-info span {
     display: block;
+
     color: var(--muted);
-    font-size: 10px;
+
+    font-size: 9px;
+
     margin-top: 4px;
 }
 
 .positive {
-    color: var(--green);
+    color: var(--success);
+    font-weight: 800;
 }
 
 
-/* ======================================
-   PAGE HEADING
-====================================== */
-
-.page-heading {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    margin-bottom: 20px;
-}
-
-.page-heading p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 4px;
-}
-
-.page-heading h2 {
-    font-size: 24px;
-}
-
-.back-button {
-    width: 43px;
-    height: 43px;
-    border: none;
-    border-radius: 13px;
-    background: white;
-    color: var(--dark);
-    font-size: 22px;
-}
-
-
-/* ======================================
-   LARGE PLAN CARDS
-====================================== */
-
-.all-plans {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.large-plan-card {
-    display: flex;
-    gap: 15px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    padding: 18px;
-}
-
-.large-plan-icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    background: #f0f2f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
-}
-
-.large-plan-content {
-    flex: 1;
-}
-
-.large-plan-content h3 {
-    font-size: 19px;
-}
-
-.large-plan-content > p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-
-/* ======================================
-   INVESTMENT LIST
-====================================== */
-
-.investment-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.empty-state {
-    background: white;
-    border-radius: 20px;
-    padding: 35px 20px;
-    text-align: center;
-}
-
-.empty-icon {
-    width: 65px;
-    height: 65px;
-    background: #f0f2f5;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-    font-size: 28px;
-}
-
-.empty-state h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.empty-state p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.empty-state .primary-btn {
-    width: 100%;
-}
-
-
-/* ======================================
+/* =========================================================
    PROFILE
-====================================== */
+   ========================================================= */
 
 .profile-card {
     background: white;
+
     border-radius: 22px;
+
     padding: 28px 20px;
+
     text-align: center;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
 }
 
 .profile-avatar {
     width: 75px;
     height: 75px;
+
     border-radius: 50%;
-    background: #eef1f5;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eeeaff,
+            #e1ddff
+        );
+
+    color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin: 0 auto 12px;
-    font-size: 31px;
+
+    font-size: 30px;
 }
 
 .profile-card h2 {
@@ -636,20 +970,27 @@ button {
 
 .profile-card > p {
     color: var(--muted);
-    font-size: 13px;
+
+    font-size: 12px;
+
     margin-top: 5px;
 }
 
 .profile-stats {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+
+    gap: 9px;
+
     margin-top: 22px;
 }
 
 .profile-stats div {
-    background: #f7f8fa;
+    background: #f7f8fc;
+
     padding: 13px;
+
     border-radius: 12px;
 }
 
@@ -660,35 +1001,49 @@ button {
 
 .profile-stats span {
     color: var(--muted);
-    font-size: 10px;
+
+    font-size: 9px;
+
     margin-bottom: 5px;
 }
 
 .profile-stats strong {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
-/* ======================================
+/* =========================================================
    SETTINGS
-====================================== */
+   ========================================================= */
 
 .settings-card {
     margin-top: 15px;
+
     background: white;
+
     border-radius: 20px;
+
     overflow: hidden;
+
+    border: 1px solid var(--border);
 }
 
 .settings-card button {
     width: 100%;
+
     border: none;
     border-bottom: 1px solid var(--border);
+
     background: white;
-    padding: 16px;
+
+    padding: 15px;
+
     display: flex;
+
     align-items: center;
-    gap: 13px;
+
+    gap: 12px;
+
     text-align: left;
 }
 
@@ -699,8 +1054,13 @@ button {
 .settings-card button > span:first-child {
     width: 38px;
     height: 38px;
+
     border-radius: 11px;
-    background: #f0f2f5;
+
+    background: #f0eeff;
+
+    color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -716,44 +1076,66 @@ button {
 }
 
 .settings-card strong {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .settings-card small {
     color: var(--muted);
-    font-size: 10px;
+
+    font-size: 9px;
+
     margin-top: 3px;
 }
 
 
-/* ======================================
+/* =========================================================
    BOTTOM NAVIGATION
-====================================== */
+   ========================================================= */
 
 .bottom-nav {
     position: fixed;
+
     bottom: 0;
     left: 0;
     right: 0;
-    height: 70px;
-    background: rgba(255,255,255,0.97);
+
+    height: 73px;
+
+    background: rgba(255,255,255,.96);
+
     border-top: 1px solid var(--border);
+
     display: flex;
+
     justify-content: space-around;
     align-items: center;
+
     z-index: 500;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 -8px 25px rgba(30,35,70,.06);
 }
 
 .nav-item {
     flex: 1;
+
     height: 100%;
+
     border: none;
+
     background: transparent;
-    color: #9298a4;
+
+    color: #a0a5b5;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
+
     gap: 4px;
 }
 
@@ -762,128 +1144,222 @@ button {
 }
 
 .nav-item small {
-    font-size: 9px;
-    font-weight: 600;
+    font-size: 8px;
+    font-weight: 700;
 }
 
 .nav-item.active-nav {
-    color: var(--dark);
+    color: var(--primary);
+}
+
+.nav-item.active-nav span {
+    transform: translateY(-1px);
 }
 
 
-/* ======================================
+/* =========================================================
    MODALS
-====================================== */
+   ========================================================= */
 
 .modal {
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     z-index: 1000;
-    background: rgba(0,0,0,0.55);
+
+    background: rgba(9,12,25,.65);
+
     align-items: flex-end;
     justify-content: center;
+
+    backdrop-filter: blur(4px);
 }
 
 .modal-box {
     width: 100%;
+
     max-width: 650px;
+
     background: white;
-    border-radius: 27px 27px 0 0;
+
+    border-radius: 28px 28px 0 0;
+
     padding: 28px 22px 30px;
+
     position: relative;
+
+    animation: modalUp .22s ease-out;
+}
+
+@keyframes modalUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .close-button {
     position: absolute;
+
     right: 18px;
     top: 18px;
+
     width: 36px;
     height: 36px;
+
     border: none;
+
     border-radius: 50%;
-    background: #eef0f4;
-    font-size: 23px;
+
+    background: #f0f1f5;
+
+    color: var(--dark);
+
+    font-size: 21px;
 }
 
 .modal-icon {
     width: 52px;
     height: 52px;
+
     border-radius: 15px;
-    background: #eef1f5;
+
+    background: #f0eeff;
+
+    color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+
+    font-size: 22px;
+
     margin-bottom: 15px;
 }
 
 .modal-box h2 {
-    font-size: 25px;
+    font-size: 23px;
     margin-bottom: 7px;
 }
 
 .modal-box > p {
     color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 22px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 21px;
 }
 
 .modal-box label {
     display: block;
-    font-size: 12px;
-    font-weight: 700;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
     margin-bottom: 7px;
 }
 
 .amount-input {
-    height: 57px;
+    height: 56px;
+
     border: 1px solid var(--border);
+
     border-radius: 13px;
+
     display: flex;
+
     align-items: center;
-    padding: 0 15px;
+
+    padding: 0 14px;
+
     gap: 7px;
+
+    transition: border .2s ease;
+}
+
+.amount-input:focus-within {
+    border-color: var(--primary);
 }
 
 .amount-input span {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 800;
 }
 
 .amount-input input {
     border: none;
     outline: none;
+
     width: 100%;
     height: 100%;
-    font-size: 18px;
+
+    font-size: 17px;
+
+    color: var(--text);
+
+    background: transparent;
 }
 
 .modal-button {
     width: 100%;
-    height: 55px;
+
+    height: 54px;
+
     margin-top: 15px;
+
     border: none;
+
     border-radius: 13px;
-    background: var(--dark);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8273ed
+        );
+
     color: white;
-    font-size: 15px;
-    font-weight: 700;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 20px rgba(108,92,231,.20);
 }
 
 
-/* ======================================
+/* =========================================================
    MOBILE
-====================================== */
+   ========================================================= */
 
 @media (max-width: 400px) {
 
+    .welcome-content h1 {
+        font-size: 29px;
+    }
+
+    .welcome-subtitle {
+        font-size: 14px;
+    }
+
     .header h1 {
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .balance-card h2 {
-        font-size: 31px;
+        font-size: 30px;
     }
 
     .quick-actions {
@@ -895,7 +1371,49 @@ button {
         padding-right: 2px;
     }
 
+    .quick-action strong {
+        font-size: 10px;
+    }
+
     .large-plan-card {
         padding: 14px;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .welcome-page {
+        padding: 25px 15px;
+    }
+
+    .welcome-content h1 {
+        font-size: 27px;
+    }
+
+    .logo {
+        width: 78px;
+        height: 78px;
+        font-size: 42px;
+    }
+
+    .balance-card {
+        padding: 19px;
+    }
+
+    .balance-card h2 {
+        font-size: 27px;
+    }
+
+    .quick-action small {
+        display: none;
     }
 }
