@@ -4166,3 +4166,335 @@ body.dark-mode .investment-timer {
     }
 
 }
+/* =========================================
+   CHIME PREMIUM INVESTMENT PLANS
+========================================= */
+
+#investments .page-content {
+    padding: 20px 16px 100px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#investments h1 {
+    margin-bottom: 6px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+#investments .page-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    opacity: 0.65;
+}
+
+
+/* INVESTMENT LIMIT */
+
+.investment-limit {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 17px 18px;
+    margin-bottom: 20px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg, #172033, #263653);
+
+    color: white;
+
+    box-shadow:
+        0 10px 25px rgba(23,32,51,0.18);
+}
+
+.investment-limit::after {
+    content: "C";
+
+    position: absolute;
+    right: 8px;
+    bottom: -35px;
+
+    font-size: 100px;
+    font-weight: 900;
+
+    opacity: 0.06;
+}
+
+.investment-limit span {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.investment-limit strong {
+    font-size: 17px;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* PLAN LIST */
+
+.investment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* PLAN CARD */
+
+.investment-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 20px;
+
+    border-radius: 22px;
+
+    background: var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,0.07);
+
+    border: 1px solid rgba(23,32,51,0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.investment-card:active {
+    transform: scale(0.98);
+}
+
+
+/* PLAN CARD DECORATION */
+
+.investment-card::after {
+    content: "C";
+
+    position: absolute;
+
+    right: -15px;
+    bottom: -40px;
+
+    font-size: 120px;
+
+    font-weight: 900;
+
+    opacity: 0.025;
+
+    pointer-events: none;
+}
+
+
+/* PLAN HEADER */
+
+.investment-header {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid rgba(23,32,51,0.07);
+}
+
+.investment-header h3 {
+    margin: 0 0 5px;
+
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+.investment-header span {
+    font-size: 12px;
+
+    opacity: 0.55;
+}
+
+.investment-header > strong {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 54px;
+    min-height: 38px;
+
+    padding: 6px 10px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(23,32,51,0.08);
+
+    font-size: 17px;
+}
+
+
+/* PLAN DETAILS */
+
+.investment-details {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin: 15px 0;
+}
+
+.investment-details p {
+    margin: 0;
+
+    padding: 11px 8px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(23,32,51,0.045);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    opacity: 0.65;
+}
+
+.investment-details strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    opacity: 1;
+}
+
+
+/* INVEST BUTTON */
+
+.investment-card .primary-btn {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease;
+}
+
+.investment-card .primary-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ELITE PLAN */
+
+.elite-card {
+    border: 1px solid rgba(23,32,51,0.12);
+
+    box-shadow:
+        0 10px 28px rgba(23,32,51,0.12);
+}
+
+.elite-card .investment-header > strong {
+    background: #172033;
+    color: white;
+}
+
+
+/* DARK MODE */
+
+body.dark-mode #investments .investment-card {
+    background: #182236;
+
+    border-color:
+        rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .investment-header {
+    border-bottom-color:
+        rgba(255,255,255,0.08);
+}
+
+body.dark-mode .investment-header > strong {
+    background:
+        rgba(255,255,255,0.08);
+}
+
+body.dark-mode .investment-details p {
+    background:
+        rgba(255,255,255,0.05);
+}
+
+body.dark-mode .elite-card {
+    border-color:
+        rgba(255,255,255,0.12);
+}
+
+body.dark-mode .elite-card .investment-header > strong {
+    background: white;
+    color: #172033;
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    #investments h1 {
+        font-size: 25px;
+    }
+
+    .investment-card {
+        padding: 16px;
+    }
+
+    .investment-details {
+        gap: 5px;
+    }
+
+    .investment-details p {
+        padding: 9px 5px;
+        font-size: 8px;
+    }
+
+    .investment-details strong {
+        font-size: 10px;
+    }
+
+   }
