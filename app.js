@@ -1099,3 +1099,31 @@ window.createChimeAccount = function () {
     }, 600);
 
 };
+/* =========================================
+   CHIME — FORCE CORRECT STARTING FLOW
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const registered =
+        localStorage.getItem("chimeHasEnteredApp");
+
+    const welcomePages =
+        document.querySelectorAll("#welcome");
+
+    if (registered === "true") {
+
+        const dashboard =
+            document.getElementById("dashboard");
+
+        if (dashboard) {
+            dashboard.classList.add("active");
+        }
+
+        welcomePages.forEach(function (page) {
+            page.classList.remove("active");
+        });
+
+    }
+
+});
