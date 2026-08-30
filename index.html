@@ -1,23 +1,22 @@
-
 <!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#172033">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#101827">
 <meta name="mobile-web-app-capable" content="yes">
 
 <title>Chime Investment</title>
 
-<link rel="stylesheet" href="./style.css">
-
+<!-- Telegram Mini App -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-</head><body><!-- ================================
-     WELCOME PAGE
-================================ --><section id="welcomePage" class="welcome-page"><div class="welcome-content">
+<!-- Chime CSS -->
+<link rel="stylesheet" href="./style.css">
 
-    <div class="logo">
-        C
-    </div>
+</head><body><!-- =================================
+     WELCOME
+================================= --><section id="welcomePage" class="welcome-page"><div class="welcome-content">
+
+    <div class="logo">C</div>
 
     <h1>Chime Investment</h1>
 
@@ -28,45 +27,27 @@
     <div class="welcome-info">
 
         <div class="welcome-feature">
-
             <span>💰</span>
-
             <div>
                 <strong>Investment Plans</strong>
-
-                <p>
-                    Explore available investment plans.
-                </p>
+                <p>Explore available investment plans.</p>
             </div>
-
         </div>
 
         <div class="welcome-feature">
-
             <span>📈</span>
-
             <div>
                 <strong>Track Your Growth</strong>
-
-                <p>
-                    Monitor your portfolio easily.
-                </p>
+                <p>Monitor your portfolio easily.</p>
             </div>
-
         </div>
 
         <div class="welcome-feature">
-
             <span>🔐</span>
-
             <div>
                 <strong>Simple & Secure</strong>
-
-                <p>
-                    Manage your account in one place.
-                </p>
+                <p>Manage your account in one place.</p>
             </div>
-
         </div>
 
     </div>
@@ -74,7 +55,7 @@
     <button
         type="button"
         class="welcome-button"
-        onclick="enterApp()">
+        onclick="showSignup()">
 
         Get Started →
 
@@ -82,11 +63,121 @@
 
 </div>
 
-</section><!-- ================================
-     MAIN APP
-================================ --><main id="app" class="hidden"><!-- HEADER -->
+</section><!-- =================================
+     SIGN UP
+================================= --><section id="signupPage" class="welcome-page hidden"><div class="welcome-content">
 
-<header class="header">
+    <div class="logo">C</div>
+
+    <h1>Create Account</h1>
+
+    <p class="welcome-subtitle">
+        Set up your Chime Investment account.
+    </p>
+
+
+    <div class="signup-form">
+
+        <div class="input-group">
+
+            <label for="signupName">
+                Full Name
+            </label>
+
+            <input
+                id="signupName"
+                type="text"
+                placeholder="Enter your full name"
+                autocomplete="name">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="signupUsername">
+                Telegram Username
+            </label>
+
+            <input
+                id="signupUsername"
+                type="text"
+                placeholder="@username"
+                readonly>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="signupEmail">
+                Email Address
+            </label>
+
+            <input
+                id="signupEmail"
+                type="email"
+                placeholder="Enter your email"
+                autocomplete="email">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="signupPhone">
+                Phone Number
+            </label>
+
+            <input
+                id="signupPhone"
+                type="tel"
+                placeholder="Enter your phone number"
+                autocomplete="tel">
+
+        </div>
+
+
+        <label class="terms">
+
+            <input
+                id="termsCheck"
+                type="checkbox">
+
+            <span>
+                I agree to the Chime Investment
+                Terms & Privacy Policy.
+            </span>
+
+        </label>
+
+
+        <button
+            type="button"
+            class="welcome-button"
+            onclick="createAccount()">
+
+            Create Account
+
+        </button>
+
+
+        <button
+            type="button"
+            class="signup-back"
+            onclick="showWelcome()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+</div>
+
+</section><!-- =================================
+     MAIN APP
+================================= --><main id="app" class="hidden"><header class="header">
 
     <div class="header-left">
 
@@ -113,9 +204,7 @@
 <div class="container">
 
 
-    <!-- ============================
-         HOME
-    ============================= -->
+    <!-- HOME -->
 
     <section
         id="homePage"
@@ -182,8 +271,6 @@
         </div>
 
 
-        <!-- QUICK ACTIONS -->
-
         <div class="section-header">
 
             <h2>
@@ -200,17 +287,11 @@
                 class="quick-action"
                 onclick="openDeposit()">
 
-                <span class="quick-icon">
-                    💰
-                </span>
+                <span class="quick-icon">💰</span>
 
-                <strong>
-                    Deposit
-                </strong>
+                <strong>Deposit</strong>
 
-                <small>
-                    Add money
-                </small>
+                <small>Add money</small>
 
             </button>
 
@@ -220,17 +301,11 @@
                 class="quick-action"
                 onclick="openWithdraw()">
 
-                <span class="quick-icon">
-                    💸
-                </span>
+                <span class="quick-icon">💸</span>
 
-                <strong>
-                    Withdraw
-                </strong>
+                <strong>Withdraw</strong>
 
-                <small>
-                    Cash out
-                </small>
+                <small>Cash out</small>
 
             </button>
 
@@ -240,17 +315,11 @@
                 class="quick-action"
                 onclick="showPage('plansPage')">
 
-                <span class="quick-icon">
-                    📈
-                </span>
+                <span class="quick-icon">📈</span>
 
-                <strong>
-                    Invest
-                </strong>
+                <strong>Invest</strong>
 
-                <small>
-                    View plans
-                </small>
+                <small>View plans</small>
 
             </button>
 
@@ -260,24 +329,16 @@
                 class="quick-action"
                 onclick="showPage('transactionsPage')">
 
-                <span class="quick-icon">
-                    🧾
-                </span>
+                <span class="quick-icon">🧾</span>
 
-                <strong>
-                    History
-                </strong>
+                <strong>History</strong>
 
-                <small>
-                    Transactions
-                </small>
+                <small>Transactions</small>
 
             </button>
 
         </div>
 
-
-        <!-- FEATURED PLANS -->
 
         <div class="section-header">
 
@@ -299,7 +360,6 @@
 
         <div class="plans">
 
-            <!-- STARTER -->
 
             <div class="plan-card">
 
@@ -332,7 +392,7 @@
                     </div>
 
                     <div>
-                        <span>Return</span>
+                        <span>Demo Return</span>
                         <strong>5%</strong>
                     </div>
 
@@ -355,8 +415,6 @@
 
             </div>
 
-
-            <!-- GROWTH -->
 
             <div class="plan-card">
 
@@ -389,7 +447,7 @@
                     </div>
 
                     <div>
-                        <span>Return</span>
+                        <span>Demo Return</span>
                         <strong>10%</strong>
                     </div>
 
@@ -417,9 +475,7 @@
     </section>
 
 
-    <!-- ============================
-         PLANS
-    ============================= -->
+    <!-- PLANS -->
 
     <section
         id="plansPage"
@@ -452,8 +508,6 @@
         <div class="all-plans">
 
 
-            <!-- STARTER -->
-
             <div class="large-plan-card">
 
                 <div class="large-plan-icon">
@@ -483,7 +537,7 @@
                         </div>
 
                         <div>
-                            <span>Return</span>
+                            <span>Demo Return</span>
                             <strong>5%</strong>
                         </div>
 
@@ -508,8 +562,6 @@
 
             </div>
 
-
-            <!-- GROWTH -->
 
             <div class="large-plan-card">
 
@@ -540,7 +592,7 @@
                         </div>
 
                         <div>
-                            <span>Return</span>
+                            <span>Demo Return</span>
                             <strong>10%</strong>
                         </div>
 
@@ -565,8 +617,6 @@
 
             </div>
 
-
-            <!-- PREMIUM -->
 
             <div class="large-plan-card">
 
@@ -597,7 +647,7 @@
                         </div>
 
                         <div>
-                            <span>Return</span>
+                            <span>Demo Return</span>
                             <strong>20%</strong>
                         </div>
 
@@ -627,9 +677,7 @@
     </section>
 
 
-    <!-- ============================
-         INVESTMENTS
-    ============================= -->
+    <!-- INVESTMENTS -->
 
     <section
         id="investmentsPage"
@@ -692,9 +740,7 @@
     </section>
 
 
-    <!-- ============================
-         TRANSACTIONS
-    ============================= -->
+    <!-- TRANSACTIONS -->
 
     <section
         id="transactionsPage"
@@ -780,9 +826,7 @@
     </section>
 
 
-    <!-- ============================
-         PROFILE
-    ============================= -->
+    <!-- PROFILE -->
 
     <section
         id="profilePage"
@@ -818,14 +862,12 @@
                 👤
             </div>
 
-
             <h2 id="profileName">
                 Chime Investor
             </h2>
 
-
             <p id="profileUsername">
-                Chime Investment Account
+                Telegram User
             </p>
 
 
@@ -915,9 +957,7 @@
 </div>
 
 
-<!-- ============================
-     BOTTOM NAVIGATION
-============================= -->
+<!-- BOTTOM NAVIGATION -->
 
 <nav class="bottom-nav">
 
@@ -927,10 +967,7 @@
         onclick="showPage('homePage')">
 
         <span>⌂</span>
-
-        <small>
-            Home
-        </small>
+        <small>Home</small>
 
     </button>
 
@@ -941,10 +978,7 @@
         onclick="showPage('plansPage')">
 
         <span>📈</span>
-
-        <small>
-            Invest
-        </small>
+        <small>Invest</small>
 
     </button>
 
@@ -955,10 +989,7 @@
         onclick="showPage('investmentsPage')">
 
         <span>💼</span>
-
-        <small>
-            Portfolio
-        </small>
+        <small>Portfolio</small>
 
     </button>
 
@@ -969,10 +1000,7 @@
         onclick="showPage('transactionsPage')">
 
         <span>🧾</span>
-
-        <small>
-            History
-        </small>
+        <small>History</small>
 
     </button>
 
@@ -983,18 +1011,15 @@
         onclick="showPage('profilePage')">
 
         <span>👤</span>
-
-        <small>
-            Profile
-        </small>
+        <small>Profile</small>
 
     </button>
 
 </nav>
 
-</main><!-- ================================
+</main><!-- =================================
      DEPOSIT MODAL
-================================ --><div
+================================= --><div
     id="depositModal"
     class="modal"
     onclick="if(event.target === this) closeModals()"><div class="modal-box">
@@ -1008,26 +1033,21 @@
 
     </button>
 
-
     <div class="modal-icon">
         💰
     </div>
-
 
     <h2>
         Deposit
     </h2>
 
-
     <p>
         Enter the amount you want to deposit.
     </p>
 
-
-    <label for="depositAmount">
+    <label>
         Amount
     </label>
-
 
     <div class="amount-input">
 
@@ -1042,7 +1062,6 @@
 
     </div>
 
-
     <button
         type="button"
         class="modal-button"
@@ -1054,9 +1073,9 @@
 
 </div>
 
-</div><!-- ================================
+</div><!-- =================================
      WITHDRAW MODAL
-================================ --><div
+================================= --><div
     id="withdrawModal"
     class="modal"
     onclick="if(event.target === this) closeModals()"><div class="modal-box">
@@ -1070,26 +1089,21 @@
 
     </button>
 
-
     <div class="modal-icon">
         💸
     </div>
-
 
     <h2>
         Withdraw
     </h2>
 
-
     <p>
         Enter the amount you want to withdraw.
     </p>
 
-
-    <label for="withdrawAmount">
+    <label>
         Amount
     </label>
-
 
     <div class="amount-input">
 
@@ -1104,7 +1118,6 @@
 
     </div>
 
-
     <button
         type="button"
         class="modal-button"
@@ -1116,5 +1129,5 @@
 
 </div>
 
-</div><!-- APP JAVASCRIPT --><script src="./app.js"></script></body>
-                </html>
+</div><!-- APP JS --><script src="./app.js"></script></body>
+    </html>
