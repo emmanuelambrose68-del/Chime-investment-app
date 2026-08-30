@@ -63,7 +63,278 @@
 <!-- =================================
      WELCOME
 ================================= -->
+<!-- =================================
+     WELCOME PAGE
+================================= -->
 
+<section
+    id="welcome"
+    class="page active">
+
+    <div class="welcome-container">
+
+        <!-- CHIME LOGO -->
+
+        <div class="welcome-logo">
+
+            <div class="big-logo">
+                C
+            </div>
+
+        </div>
+
+
+        <h1>
+            Welcome to
+            <span>Chime</span>
+        </h1>
+
+
+        <p class="welcome-subtitle">
+
+            A simple platform for exploring
+            structured investment opportunities.
+
+        </p>
+
+
+        <div class="welcome-info">
+
+            <div class="welcome-feature">
+
+                <span>💰</span>
+
+                <div>
+
+                    <strong>
+                        Flexible Investment
+                    </strong>
+
+                    <p>
+                        Choose an investment level
+                        that suits you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome-feature">
+
+                <span>📈</span>
+
+                <div>
+
+                    <strong>
+                        Track Your Growth
+                    </strong>
+
+                    <p>
+                        Monitor your capital,
+                        returns and investment cycle.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome-feature">
+
+                <span>🔒</span>
+
+                <div>
+
+                    <strong>
+                        Secure Account
+                    </strong>
+
+                    <p>
+                        Manage your Chime account
+                        in one convenient place.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CREATE ACCOUNT -->
+
+        <button
+            class="primary-btn"
+            onclick="showPage('signup')">
+
+            Create Account
+
+        </button>
+
+
+        <p class="welcome-login-text">
+
+            Already have an account?
+
+            <button
+                class="learn-welcome-btn"
+                onclick="showPage('signup')">
+
+                Continue
+
+            </button>
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     SIGN UP PAGE
+================================= -->
+
+<section
+    id="signup"
+    class="page">
+
+    <div class="page-content">
+
+
+        <button
+            class="back-btn"
+            onclick="showPage('welcome')">
+
+            ← Back
+
+        </button>
+
+
+        <!-- SIGN UP HEADER -->
+
+        <div class="signup-header">
+
+            <div class="signup-logo">
+                C
+            </div>
+
+            <h1>
+                Create Account
+            </h1>
+
+            <p class="page-description">
+
+                Create your Chime account
+                to continue.
+
+            </p>
+
+        </div>
+
+
+        <!-- SIGN UP FORM -->
+
+        <div class="form-card signup-card">
+
+
+            <label for="signupName">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Enter your full name"
+                autocomplete="name">
+
+
+            <label for="signupEmail">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+                autocomplete="email">
+
+
+            <label>
+                Telegram Username
+            </label>
+
+            <input
+                type="text"
+                id="signupTelegram"
+                placeholder="@username"
+                readonly>
+
+
+            <label for="signupPassword">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+                autocomplete="new-password">
+
+
+            <label for="signupConfirmPassword">
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                id="signupConfirmPassword"
+                placeholder="Confirm your password"
+                autocomplete="new-password">
+
+
+            <!-- TERMS -->
+
+            <label class="signup-terms">
+
+                <input
+                    type="checkbox"
+                    id="signupTerms">
+
+                <span>
+                    I agree to the applicable
+                    Chime account and investment terms.
+                </span>
+
+            </label>
+
+
+            <!-- CREATE ACCOUNT BUTTON -->
+
+            <button
+                class="primary-btn"
+                onclick="createChimeAccount()">
+
+                Create My Account
+
+            </button>
+
+
+            <p
+                id="signupMessage"
+                class="signup-message">
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+    </section>
 <!-- =================================
      PROFILE
 ================================= -->
