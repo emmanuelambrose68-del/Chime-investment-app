@@ -2851,3 +2851,260 @@ body.dark-mode .security-info-card {
 body.dark-mode .security-info-card strong {
     color: #f1f4f8;
    }
+/* =========================================
+   CHIME — ACCOUNT DETAILS POLISH
+========================================= */
+
+#accountDetails .page-content {
+    padding-bottom: 100px;
+}
+
+#accountDetails .page-description {
+    margin-bottom: 20px;
+}
+
+
+/* Main information card */
+
+#accountDetails .account-details-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 5px 18px;
+
+    margin-bottom: 16px;
+
+    border-radius: 22px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 28px rgba(25,45,80,0.07);
+}
+
+
+/* Individual rows */
+
+#accountDetails .account-detail-row {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 14px 0;
+
+    gap: 13px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+#accountDetails .account-detail-row:last-child {
+    border-bottom: none;
+}
+
+
+/* Icons */
+
+#accountDetails .account-detail-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #edf3fc;
+
+    font-size: 18px;
+}
+
+
+/* Text area */
+
+#accountDetails .account-detail-info {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+#accountDetails .account-detail-info span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.2;
+}
+
+#accountDetails .account-detail-info strong {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    word-break: break-word;
+}
+
+
+/* Security status */
+
+#accountDetails .security-active {
+    display: inline-flex !important;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    background: #e8f7ef;
+
+    color: #209563 !important;
+
+    font-size: 8px !important;
+
+    font-weight: 800;
+}
+
+
+/* Security information */
+
+#accountDetails .security-info-card {
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+
+    gap: 12px;
+
+    padding: 17px;
+
+    border-radius: 19px;
+
+    background: #edf5ff;
+
+    border: 1px solid #d8e7fa;
+}
+
+#accountDetails .security-info-card > div {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    font-size: 18px;
+}
+
+#accountDetails .security-info-card section {
+    flex: 1;
+}
+
+#accountDetails .security-info-card strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--text);
+
+    font-size: 11px;
+}
+
+#accountDetails .security-info-card p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode #accountDetails .account-details-card {
+    background: #151e2d;
+
+    border-color: #29374a;
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,0.18);
+}
+
+body.dark-mode #accountDetails .account-detail-icon {
+    background: #202d41;
+}
+
+body.dark-mode #accountDetails .security-active {
+    background: #18352b;
+
+    color: #6ed5a4 !important;
+}
+
+body.dark-mode #accountDetails .security-info-card {
+    background: #18283b;
+
+    border-color: #2c405a;
+}
+
+body.dark-mode #accountDetails .security-info-card > div {
+    background: #202d41;
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 390px) {
+
+    #accountDetails .account-details-card {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #accountDetails .account-detail-row {
+        min-height: 68px;
+
+        gap: 11px;
+    }
+
+    #accountDetails .account-detail-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 12px;
+    }
+
+   }
