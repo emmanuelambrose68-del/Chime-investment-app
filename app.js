@@ -1,59 +1,40 @@
-/* =========================================
-   CHIME INVESTMENT
-   PHASE 2 - DEMO ACCOUNT SYSTEM
-
-   Works on:
-   - GitHub Pages
-   - Telegram Mini App
-
-   NOTE:
-   This is FRONT-END DEMO STORAGE.
-   It is NOT a real financial backend.
-========================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================
-       ACCOUNT DATA
+       CHIME ACCOUNT
     ===================================== */
 
     let account = JSON.parse(
         localStorage.getItem("chimeAccount")
     ) || {
-
         balance: 0,
-
         invested: 0,
-
         profit: 0,
-
+        investments: [],
         transactions: []
-
     };
 
 
     /* =====================================
-       SAVE ACCOUNT
+       SAVE
     ===================================== */
 
     function saveAccount() {
-
         localStorage.setItem(
             "chimeAccount",
             JSON.stringify(account)
         );
-
     }
 
 
     /* =====================================
-       FORMAT MONEY
+       USD FORMAT
     ===================================== */
 
     function money(amount) {
 
-        return "₦" + Number(amount).toLocaleString(
-            "en-NG",
+        return "$" + Number(amount).toLocaleString(
+            "en-US",
             {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
@@ -64,58 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================
-       UPDATE DASHBOARD
-    ===================================== */
-
-    function updateDashboard() {
-
-        const balance =
-            document.getElementById(
-                "totalBalance"
-            );
-
-        const invested =
-            document.getElementById(
-                "investedAmount"
-            );
-
-        const profit =
-            document.getElementById(
-                "profitAmount"
-            );
-
-
-        if (balance) {
-
-            balance.textContent =
-                money(account.balance);
-
-        }
-
-
-        if (invested) {
-
-            invested.textContent =
-                money(account.invested);
-
-        }
-
-
-        if (profit) {
-
-            profit.textContent =
-                money(account.profit);
-
-        }
-
-
-        updateTransactions();
-
-    }
-
-
-    /* =====================================
-       TELEGRAM MINI APP
+       TELEGRAM
     ===================================== */
 
     if (
@@ -126,31 +56,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const tg =
             window.Telegram.WebApp;
 
-
         tg.ready();
-
         tg.expand();
-
 
         if (
             typeof tg.setHeaderColor ===
             "function"
         ) {
-
-            tg.setHeaderColor("#ffffff");
-
+            tg.setHeaderColor("#172033");
         }
-
 
         if (
             typeof tg.setBackgroundColor ===
             "function"
         ) {
-
-            tg.setBackgroundColor(
-                "#f5f8f6"
-            );
-
+            tg.setBackgroundColor("#f5f6fa");
         }
 
 
@@ -189,18 +109,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (profileName) {
-
                 profileName.textContent =
-                    name || "Chime Investor";
-
+                    name || "Chime User";
             }
 
 
             if (profileUsername) {
-
                 profileUsername.textContent =
                     username;
-
             }
 
         }
@@ -215,136 +131,164 @@ document.addEventListener("DOMContentLoaded", function () {
     window.showPage = function (pageId) {
 
         const pages =
-            document.querySelectorAll(
-                ".page"
-            );
+            document.querySelectorAll(".page");
 
 
         pages.forEach(function (page) {
 
-            page.classList.remove(
-                "active"
-            );
+            page.classList.remove("active");
 
         });
 
 
-        const selectedPage =
-            document.getElementById(
-                pageId
-            );
+        const page =
+            document.getElementById(pageId);
 
 
-        if (!selectedPage) {
-
-            console.warn(
-                "Page not found:",
-                pageId
-            );
-
+        if (!page) {
             return;
-
         }
 
 
-        selectedPage.classList.add(
-            "active"
-        );
+        page.classList.add("active");
 
 
         const navItems =
-            document.querySelectorAll(
-                ".nav-item"
-            );
+            document.querySelectorAll(".nav-item");
 
 
         navItems.forEach(function (item) {
 
-            item.classList.remove(
-                "active"
-            );
+            item.classList.remove("active");
 
         });
 
 
-        let navIndex = -1;
+        const navMap = {
 
+            dashboard: 0,
 
-        if (pageId === "dashboard") {
+            investments: 1,
 
-            navIndex = 0;
+            transactions: 2,
 
-        }
+            profile: 3
 
-        else if (
-            pageId === "investments"
-        ) {
-
-            navIndex = 1;
-
-        }
-
-        else if (
-            pageId === "transactions"
-        ) {
-
-            navIndex = 2;
-
-        }
-
-        else if (pageId === "profile") {
-
-            navIndex = 3;
-
-        }
+        };
 
 
         if (
-            navIndex >= 0 &&
-            navItems[navIndex]
+            navMap[pageId] !== undefined
         ) {
 
-            navItems[navIndex]
-                .classList.add(
-                    "active"
-                );
+            const item =
+                navItems[navMap[pageId]];
+
+
+            if (item) {
+                item.classList.add("active");
+            }
 
         }
 
 
-        window.scrollTo(
-            0,
-            0
-        );
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     };
 
 
     /* =====================================
-       DEPOSIT
+       DASHBOARD
     ===================================== */
 
-    window.makeDeposit = function () {
+    function updateDashboard() {
 
-        const input =
+        const balance =
             document.getElementById(
-                "depositAmount"
+                "totalBalance"
             );
 
 
-        if (!input) {
+        const invested =
+            document.getElementById(
+                "investedAmount"
+            );
 
+
+        const profit =
+            document.getElementById(
+                "profitAmount"
+            );
+
+
+        if (balance) {
+            balance.textContent =
+                money(account.balance);
+        }
+
+
+        if (invested) {
+            invested.textContent =
+                money(account.invested);
+        }
+
+
+        if (profit) {
+            profit.textContent =
+                money(account.profit);
+        }
+
+
+        updateTransactions();
+
+        updateActiveInvestment();
+
+    }
+
+
+    /* =====================================
+       INVESTMENT PLANS
+    ===================================== */
+
+    window.selectPlan = function (
+        plan,
+        minimum,
+        maximum,
+        percentage,
+        days
+    ) {
+
+        const entered =
+            prompt(
+                plan +
+                "\n\nInvestment range: " +
+                money(minimum) +
+                " - " +
+                money(maximum) +
+                "\n\nReturn: " +
+                percentage +
+                "%" +
+                "\n\nCycle: " +
+                days +
+                " days" +
+                "\n\nEnter investment amount:"
+            );
+
+
+        if (entered === null) {
             return;
-
         }
 
 
         const amount =
-            Number(input.value);
+            Number(entered);
 
 
         if (
-            !amount ||
+            !Number.isFinite(amount) ||
             amount <= 0
         ) {
 
@@ -357,119 +301,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        if (amount < 1000) {
+        if (
+            amount < minimum ||
+            amount > maximum
+        ) {
 
             alert(
-                "Minimum demo deposit is ₦1,000."
-            );
-
-            return;
-
-        }
-
-
-        account.balance += amount;
-
-
-        account.transactions.unshift({
-
-            type: "Deposit",
-
-            amount: amount,
-
-            date: new Date()
-                .toLocaleString()
-
-        });
-
-
-        saveAccount();
-
-        updateDashboard();
-
-
-        alert(
-            "Deposit successful!\n\n" +
-            "Amount: " +
-            money(amount) +
-            "\n\n" +
-            "This is demo mode. No real money was deposited."
-        );
-
-
-        input.value = "";
-
-
-        showPage(
-            "dashboard"
-        );
-
-    };
-
-
-    /* =====================================
-       INVESTMENT
-    ===================================== */
-
-    window.selectPlan = function (
-        plan,
-        minimum,
-        percentage,
-        duration
-    ) {
-
-        const amountText =
-            prompt(
-                plan +
-                "\n\n" +
-                "Minimum investment: " +
+                "This plan accepts " +
                 money(minimum) +
-                "\n" +
-                "Expected return: " +
-                percentage +
-                "%\n" +
-                "Duration: " +
-                duration +
-                " days\n\n" +
-                "Enter investment amount:"
-            );
-
-
-        if (
-            amountText === null
-        ) {
-
-            return;
-
-        }
-
-
-        const amount =
-            Number(amountText);
-
-
-        if (
-            !amount ||
-            amount <= 0
-        ) {
-
-            alert(
-                "Please enter a valid investment amount."
-            );
-
-            return;
-
-        }
-
-
-        if (
-            amount < minimum
-        ) {
-
-            alert(
-                "Minimum investment is " +
-                money(minimum) +
+                " to " +
+                money(maximum) +
                 "."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            amount > 2000
+        ) {
+
+            alert(
+                "Maximum capital is $2,000."
             );
 
             return;
@@ -482,10 +337,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
 
             alert(
-                "Insufficient balance.\n\n" +
-                "Your available balance is " +
-                money(account.balance) +
-                "."
+                "Insufficient available balance.\n\n" +
+                "Available: " +
+                money(account.balance)
             );
 
             return;
@@ -493,17 +347,58 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        const expectedProfit =
+        const targetReturn =
             amount *
-            (percentage / 100);
+            percentage /
+            100;
+
+
+        const startTime =
+            Date.now();
+
+
+        const endTime =
+            startTime +
+            days *
+            24 *
+            60 *
+            60 *
+            1000;
+
+
+        const investment = {
+
+            id: Date.now(),
+
+            plan: plan,
+
+            capital: amount,
+
+            targetReturn: targetReturn,
+
+            percentage: percentage,
+
+            duration: days,
+
+            startTime: startTime,
+
+            endTime: endTime,
+
+            status: "active"
+
+        };
 
 
         account.balance -= amount;
 
         account.invested += amount;
 
-        account.profit +=
-            expectedProfit;
+        account.profit += targetReturn;
+
+
+        account.investments.push(
+            investment
+        );
 
 
         account.transactions.unshift({
@@ -514,12 +409,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             amount: amount,
 
-            profit: expectedProfit,
+            profit: targetReturn,
 
-            duration: duration,
+            date:
+                new Date().toLocaleString(
+                    "en-US"
+                ),
 
-            date: new Date()
-                .toLocaleString()
+            status: "Active"
 
         });
 
@@ -530,30 +427,402 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         alert(
-            "Investment created!\n\n" +
-
-            "Plan: " +
-            plan +
-
-            "\nAmount: " +
+            "Investment created.\n\n" +
+            "Plan: " + plan +
+            "\nCapital: " +
             money(amount) +
-
-            "\nExpected profit: " +
-            money(expectedProfit) +
-
-            "\nDuration: " +
-            duration +
-            " days\n\n" +
-
-            "Demo mode: this investment is not real."
+            "\nTarget return: " +
+            money(targetReturn) +
+            "\nCycle: " +
+            days +
+            " days"
         );
 
 
-        showPage(
-            "dashboard"
-        );
+        showPage("dashboard");
 
     };
+
+
+    /* =====================================
+       ACTIVE INVESTMENT
+    ===================================== */
+
+    function updateActiveInvestment() {
+
+        const card =
+            document.getElementById(
+                "activeInvestmentCard"
+            );
+
+
+        if (!card) {
+            return;
+        }
+
+
+        const active =
+            account.investments.find(
+                function (investment) {
+
+                    return (
+                        investment.status ===
+                        "active"
+                    );
+
+                }
+            );
+
+
+        if (!active) {
+
+            card.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        card.style.display =
+            "block";
+
+
+        const plan =
+            document.getElementById(
+                "activePlanName"
+            );
+
+
+        const capital =
+            document.getElementById(
+                "activeCapital"
+            );
+
+
+        const target =
+            document.getElementById(
+                "activeReturn"
+            );
+
+
+        const end =
+            document.getElementById(
+                "investmentEndDate"
+            );
+
+
+        if (plan) {
+            plan.textContent =
+                active.plan;
+        }
+
+
+        if (capital) {
+            capital.textContent =
+                money(active.capital);
+        }
+
+
+        if (target) {
+            target.textContent =
+                money(active.targetReturn);
+        }
+
+
+        if (end) {
+
+            end.textContent =
+                "Cycle ends: " +
+                new Date(
+                    active.endTime
+                ).toLocaleString(
+                    "en-US"
+                );
+
+        }
+
+
+        updateTimer(active);
+
+    }
+
+
+    /* =====================================
+       TIMER
+    ===================================== */
+
+    function updateTimer(
+        investment
+    ) {
+
+        const timer =
+            document.getElementById(
+                "investmentTimer"
+            );
+
+
+        if (!timer) {
+            return;
+        }
+
+
+        const remaining =
+            investment.endTime -
+            Date.now();
+
+
+        if (remaining <= 0) {
+
+            timer.textContent =
+                "Cycle Completed";
+
+            completeInvestment(
+                investment
+            );
+
+            return;
+
+        }
+
+
+        const totalSeconds =
+            Math.floor(
+                remaining / 1000
+            );
+
+
+        const days =
+            Math.floor(
+                totalSeconds / 86400
+            );
+
+
+        const hours =
+            Math.floor(
+                (totalSeconds % 86400) /
+                3600
+            );
+
+
+        const minutes =
+            Math.floor(
+                (totalSeconds % 3600) /
+                60
+            );
+
+
+        const seconds =
+                totalSeconds % 60;
+
+
+        timer.textContent =
+
+            String(days).padStart(2, "0") +
+            "d " +
+
+            String(hours).padStart(2, "0") +
+            "h " +
+
+            String(minutes).padStart(2, "0") +
+            "m " +
+
+            String(seconds).padStart(2, "0") +
+            "s";
+
+    }
+
+
+    /* =====================================
+       COMPLETE CYCLE
+    ===================================== */
+
+    function completeInvestment(
+        investment
+    ) {
+
+        if (
+            investment.status !==
+            "active"
+        ) {
+            return;
+        }
+
+
+        investment.status =
+            "completed";
+
+
+        account.transactions.unshift({
+
+            type:
+                "Cycle Completed",
+
+            plan:
+                investment.plan,
+
+            amount:
+                investment.capital,
+
+            profit:
+                investment.targetReturn,
+
+            date:
+                new Date().toLocaleString(
+                    "en-US"
+                ),
+
+            status:
+                "Completed"
+
+        });
+
+
+        saveAccount();
+
+        updateTransactions();
+
+    }
+
+
+    /* =====================================
+       TIMER LOOP
+    ===================================== */
+
+    setInterval(
+        function () {
+
+            const active =
+                account.investments.find(
+                    function (investment) {
+
+                        return (
+                            investment.status ===
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            if (active) {
+
+                updateTimer(
+                    active
+                );
+
+            }
+
+        },
+        1000
+    );
+
+
+    /* =====================================
+       CRYPTO DEPOSIT
+    ===================================== */
+
+    window.makeDeposit =
+        function () {
+
+            const input =
+                document.getElementById(
+                    "depositAmount"
+                );
+
+
+            const currency =
+                document.getElementById(
+                    "cryptoCurrency"
+                );
+
+
+            const network =
+                document.getElementById(
+                    "cryptoNetwork"
+                );
+
+
+            if (!input) {
+                return;
+            }
+
+
+            const amount =
+                Number(input.value);
+
+
+            if (
+                !Number.isFinite(amount) ||
+                amount <= 0
+            ) {
+
+                alert(
+                    "Please enter a valid amount."
+                );
+
+                return;
+
+            }
+
+
+            const crypto =
+                currency
+                    ? currency.value
+                    : "USDT";
+
+
+            const selectedNetwork =
+                network
+                    ? network.value
+                    : "TRC20";
+
+
+            account.transactions.unshift({
+
+                type:
+                    "Crypto Deposit",
+
+                amount:
+                    amount,
+
+                crypto:
+                    crypto,
+
+                network:
+                    selectedNetwork,
+
+                date:
+                    new Date().toLocaleString(
+                        "en-US"
+                    ),
+
+                status:
+                    "Pending"
+
+            });
+
+
+            saveAccount();
+
+            updateTransactions();
+
+
+            alert(
+                "Deposit request created.\n\n" +
+                "Asset: " +
+                crypto +
+                "\nNetwork: " +
+                selectedNetwork +
+                "\nAmount: " +
+                money(amount) +
+                "\n\nDeposit is currently pending."
+            );
+
+
+            input.value = "";
+
+        };
 
 
     /* =====================================
@@ -569,10 +838,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+            const destination =
+                document.getElementById(
+                    "bankAccount"
+                );
+
+
             if (!input) {
-
                 return;
-
             }
 
 
@@ -581,7 +854,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (
-                !amount ||
+                !Number.isFinite(amount) ||
                 amount <= 0
             ) {
 
@@ -595,39 +868,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (
-                amount > account.balance
+                amount >
+                account.balance
             ) {
 
                 alert(
-                    "Insufficient balance.\n\n" +
-                    "Available: " +
-                    money(account.balance)
-                );
-
-                return;
-
-            }
-
-
-            const accountNumber =
-                document.getElementById(
-                    "bankAccount"
-                );
-
-
-            const bankName =
-                document.getElementById(
-                    "bankName"
-                );
-
-
-            if (
-                !accountNumber ||
-                !accountNumber.value.trim()
-            ) {
-
-                alert(
-                    "Please enter your bank account number."
+                    "Insufficient available balance."
                 );
 
                 return;
@@ -636,12 +882,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (
-                !bankName ||
-                !bankName.value.trim()
+                !destination ||
+                !destination.value.trim()
             ) {
 
                 alert(
-                    "Please enter your bank name."
+                    "Please enter your destination."
                 );
 
                 return;
@@ -654,17 +900,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
             account.transactions.unshift({
 
-                type: "Withdrawal",
+                type:
+                    "Capital Withdrawal Request",
 
-                amount: amount,
+                amount:
+                    amount,
 
-                bank: bankName.value,
+                destination:
+                    destination.value,
 
-                account:
-                    accountNumber.value,
+                date:
+                    new Date().toLocaleString(
+                        "en-US"
+                    ),
 
-                date: new Date()
-                    .toLocaleString()
+                status:
+                    "Pending"
 
             });
 
@@ -675,33 +926,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             alert(
-                "Withdrawal request recorded.\n\n" +
-
+                "Withdrawal request submitted.\n\n" +
                 "Amount: " +
                 money(amount) +
-
-                "\n\n" +
-
-                "Demo mode: no real money was transferred."
+                "\nStatus: Pending"
             );
 
 
             input.value = "";
 
-            accountNumber.value = "";
-
-            bankName.value = "";
-
-
-            showPage(
-                "dashboard"
-            );
+            destination.value = "";
 
         };
 
 
     /* =====================================
-       TRANSACTION HISTORY
+       TRANSACTIONS
     ===================================== */
 
     function updateTransactions() {
@@ -713,14 +953,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (!list) {
-
             return;
-
         }
 
 
         if (
-            account.transactions.length === 0
+            account.transactions.length ===
+            0
         ) {
 
             list.innerHTML = `
@@ -729,7 +968,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     <span>📋</span>
 
-                    <h3>No transactions yet</h3>
+                    <h3>
+                        No transactions yet
+                    </h3>
 
                     <p>
                         Your transactions will appear here.
@@ -747,10 +988,8 @@ document.addEventListener("DOMContentLoaded", function () {
         list.innerHTML = "";
 
 
-        account.transactions
-            .forEach(function (
-                transaction
-            ) {
+        account.transactions.forEach(
+            function (transaction) {
 
                 const item =
                     document.createElement(
@@ -762,38 +1001,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "investment-card";
 
 
-                let title =
-                    transaction.type;
-
-
-                if (
-                    transaction.plan
-                ) {
-
-                    title +=
-                        " - " +
-                        transaction.plan;
-
-                }
-
-
-                let extra = "";
-
-
-                if (
-                    transaction.profit
-                ) {
-
-                    extra =
-                        "<p>Expected profit: <strong>" +
-                        money(
-                            transaction.profit
-                        ) +
-                        "</strong></p>";
-
-                }
-
-
                 item.innerHTML = `
 
                     <div class="investment-header">
@@ -801,7 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div>
 
                             <h3>
-                                ${title}
+                                ${transaction.type}
                             </h3>
 
                             <span>
@@ -811,52 +1018,103 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
 
                         <strong>
-                            ${money(
-                                transaction.amount
-                            )}
+                            ${money(transaction.amount)}
                         </strong>
 
                     </div>
 
+
                     <div class="investment-details">
 
+                        ${
+                            transaction.plan
+                            ? `
+                            <p>
+                                Plan:
+                                <strong>
+                                    ${transaction.plan}
+                                </strong>
+                            </p>
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                            transaction.profit
+                            ? `
+                            <p>
+                                Target return:
+                                <strong>
+                                    ${money(
+                                        transaction.profit
+                                    )}
+                                </strong>
+                            </p>
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                            transaction.crypto
+                            ? `
+                            <p>
+                                Asset:
+                                <strong>
+                                    ${transaction.crypto}
+                                </strong>
+                            </p>
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                            transaction.network
+                            ? `
+                            <p>
+                                Network:
+                                <strong>
+                                    ${transaction.network}
+                                </strong>
+                            </p>
+                            `
+                            : ""
+                        }
+
+
                         <p>
-                            Type:
+                            Status:
                             <strong>
-                                ${transaction.type}
+                                ${transaction.status}
                             </strong>
                         </p>
-
-                        ${extra}
 
                     </div>
 
                 `;
 
 
-                list.appendChild(
-                    item
-                );
+                list.appendChild(item);
 
-            });
+            }
+        );
 
     }
 
 
     /* =====================================
-       START APP
+       START
     ===================================== */
 
     updateDashboard();
 
-
-    showPage(
-        "welcome"
-    );
+    showPage("welcome");
 
 
     console.log(
-        "Chime Investment Phase 2 loaded."
+        "Chime Investment loaded successfully."
     );
 
 });
