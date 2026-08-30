@@ -1127,3 +1127,95 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+/* =========================================
+   CHIME TELEGRAM USER AUTO-FILL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    try {
+
+        if (window.Telegram && Telegram.WebApp) {
+
+            Telegram.WebApp.ready();
+
+            const user =
+                Telegram.WebApp.initDataUnsafe?.user;
+
+            if (user) {
+
+                const telegramInput =
+                    document.getElementById("signupTelegram");
+
+                const profileUsername =
+                    document.getElementById("profileUsername");
+
+                const profileName =
+                    document.getElementById("profileName");
+
+                const accountTelegram =
+                    document.getElementById("accountTelegram");
+
+                /* TELEGRAM USERNAME */
+
+                if (telegramInput) {
+
+                    if (user.username) {
+
+                        telegramInput.value =
+                            "@" + user.username;
+
+                    } else {
+
+                        telegramInput.value =
+                            "@" + user.first_name;
+
+                    }
+
+                }
+
+
+                /* PROFILE */
+
+                if (profileUsername) {
+
+                    profileUsername.textContent =
+                        user.username
+                            ? "@" + user.username
+                            : "Telegram User";
+
+                }
+
+
+                if (profileName) {
+
+                    profileName.textContent =
+                        user.first_name || "Chime User";
+
+                }
+
+
+                /* ACCOUNT DETAILS */
+
+                if (accountTelegram) {
+
+                    accountTelegram.textContent =
+                        user.username
+                            ? "@" + user.username
+                            : "Telegram User";
+
+                }
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Telegram profile information unavailable."
+        );
+
+    }
+
+});
