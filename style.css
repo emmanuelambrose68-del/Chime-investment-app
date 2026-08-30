@@ -6754,4 +6754,203 @@ body.dark-mode .nav-item.active span {
         font-size: 8px;
     }
 
-       }
+       /* =========================================
+   CHIME PREMIUM SIGN UP
+========================================= */
+
+.signup-header {
+    text-align: center;
+    margin: 10px 0 24px;
+}
+
+.signup-logo {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        145deg,
+        #0d1526,
+        #1d2b45,
+        #344968
+    );
+
+    color: #fff;
+
+    font-size: 34px;
+    font-weight: 900;
+
+    box-shadow:
+        0 12px 25px rgba(13,21,38,0.22);
+}
+
+.signup-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.signup-card {
+    margin-top: 5px;
+}
+
+
+/* FORM LABELS */
+
+.signup-card label:not(.signup-terms) {
+    display: block;
+
+    margin: 17px 0 7px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    opacity: 0.75;
+}
+
+
+/* INPUTS */
+
+.signup-card input[type="text"],
+.signup-card input[type="email"],
+.signup-card input[type="password"] {
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(23,32,51,0.10);
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.75);
+
+    color: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.signup-card input:focus {
+    border-color: #344968;
+
+    box-shadow:
+        0 0 0 3px rgba(52,73,104,0.10);
+}
+
+
+/* TELEGRAM FIELD */
+
+#signupTelegram {
+    opacity: 0.75;
+
+    cursor: not-allowed;
+}
+
+
+/* TERMS */
+
+.signup-terms {
+    display: flex !important;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin: 20px 0 !important;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    opacity: 0.7;
+}
+
+.signup-terms input {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+}
+
+
+/* CREATE BUTTON */
+
+.signup-card .primary-btn {
+    width: 100%;
+
+    min-height: 52px;
+
+    margin-top: 5px;
+
+    border-radius: 15px;
+
+    font-size: 14px;
+
+    font-weight: 900;
+}
+
+
+/* MESSAGE */
+
+.signup-message {
+    min-height: 18px;
+
+    margin: 12px 0 0;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* DARK MODE */
+
+body.dark-mode .signup-card input[type="text"],
+body.dark-mode .signup-card input[type="email"],
+body.dark-mode .signup-card input[type="password"] {
+    background: #182236;
+
+    border-color:
+        rgba(255,255,255,0.08);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 380px) {
+
+    .signup-logo {
+        width: 58px;
+        height: 58px;
+
+        font-size: 30px;
+    }
+
+    .signup-header h1 {
+        font-size: 24px;
+    }
+
+    .signup-card input[type="text"],
+    .signup-card input[type="email"],
+    .signup-card input[type="password"] {
+        min-height: 48px;
+    }
+}
