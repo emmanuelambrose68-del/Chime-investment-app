@@ -5231,4 +5231,277 @@ body.dark-mode .form-card select:focus {
         min-height: 48px;
     }
 
-   }
+      /* =========================================
+   CHIME PREMIUM TRANSACTION HISTORY
+========================================= */
+
+#transactions .page-content {
+    padding: 20px 16px 100px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#transactions h1 {
+    margin-bottom: 6px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+#transactions .page-description {
+    margin-bottom: 22px;
+    line-height: 1.6;
+    opacity: 0.65;
+}
+
+
+/* TRANSACTION LIST */
+
+#transactionList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* TRANSACTION ITEM */
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.15s ease;
+}
+
+.transaction-item:active {
+    transform: scale(0.98);
+}
+
+
+/* TRANSACTION ICON */
+
+.transaction-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(23,32,51,0.07);
+
+    font-size: 19px;
+}
+
+
+/* TRANSACTION INFORMATION */
+
+.transaction-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 13px;
+}
+
+.transaction-info span {
+    display: block;
+
+    font-size: 10px;
+
+    opacity: 0.5;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* TRANSACTION AMOUNT */
+
+.transaction-amount {
+    text-align: right;
+}
+
+.transaction-amount strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+.transaction-amount span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    opacity: 0.55;
+}
+
+
+/* STATUS */
+
+.transaction-status {
+    display: inline-flex;
+
+    padding: 4px 8px;
+
+    margin-top: 4px;
+
+    border-radius: 20px;
+
+    font-size: 8px !important;
+
+    font-weight: 800;
+}
+
+
+/* SUCCESS */
+
+.transaction-success {
+    background:
+        rgba(0,180,100,0.11);
+
+    color: #008f55;
+}
+
+
+/* PENDING */
+
+.transaction-pending {
+    background:
+        rgba(220,160,0,0.12);
+
+    color: #a27600;
+}
+
+
+/* FAILED */
+
+.transaction-failed {
+    background:
+        rgba(220,50,50,0.10);
+
+    color: #b32626;
+}
+
+
+/* EMPTY STATE */
+
+#transactions .empty-state {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,0.06);
+}
+
+#transactions .empty-state > span {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(23,32,51,0.07);
+
+    font-size: 27px;
+}
+
+#transactions .empty-state h3 {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+#transactions .empty-state p {
+    margin: 0;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    opacity: 0.55;
+}
+
+
+/* DARK MODE */
+
+body.dark-mode .transaction-item,
+body.dark-mode #transactions .empty-state {
+    background: #182236;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .transaction-icon,
+body.dark-mode #transactions .empty-state > span {
+    background:
+        rgba(255,255,255,0.06);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 380px) {
+
+    #transactions h1 {
+        font-size: 25px;
+    }
+
+    .transaction-item {
+        padding: 13px;
+    }
+
+    .transaction-icon {
+        width: 41px;
+        height: 41px;
+    }
+
+    .transaction-info strong,
+    .transaction-amount strong {
+        font-size: 12px;
+    }
+
+}
