@@ -2307,3 +2307,424 @@ body.dark-mode #deposit .form-card input,
 body.dark-mode #deposit .form-card select,
 body.dark-mode #withdraw .form-card input,
 body.dark-mode #withdraw
+/* =========================================
+   CHIME — TRANSACTION HISTORY UPGRADE
+========================================= */
+
+/* Page heading */
+#transactions .page-content h1 {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+
+/* =========================================
+   TRANSACTION LIST
+========================================= */
+
+#transactionList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================================
+   TRANSACTION CARD
+========================================= */
+
+.transaction-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 7px 20px rgba(25,45,80,0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.transaction-item:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================
+   TRANSACTION ICON
+========================================= */
+
+.transaction-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #edf3fc;
+
+    color: var(--primary);
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+/* Deposit icon */
+.transaction-item.deposit .transaction-icon {
+    background: #e9f7ef;
+
+    color: #22a06b;
+}
+
+
+/* Withdrawal icon */
+.transaction-item.withdrawal .transaction-icon {
+    background: #fff0ef;
+
+    color: #d9534f;
+}
+
+
+/* Investment icon */
+.transaction-item.investment .transaction-icon {
+    background: #edf3fc;
+
+    color: #315b9b;
+}
+
+
+/* Return icon */
+.transaction-item.return .transaction-icon {
+    background: #f2edff;
+
+    color: #7656c7;
+}
+
+
+/* =========================================
+   TRANSACTION INFORMATION
+========================================= */
+
+.transaction-info {
+    min-width: 0;
+
+    flex: 1;
+}
+
+.transaction-info h3 {
+    margin-bottom: 4px;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: 750;
+}
+
+.transaction-info p {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   AMOUNT
+========================================= */
+
+.transaction-amount {
+    text-align: right;
+
+    flex-shrink: 0;
+}
+
+.transaction-amount strong {
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+.transaction-amount small {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* Positive amounts */
+.transaction-amount.positive strong {
+    color: #22a06b;
+}
+
+
+/* Negative amounts */
+.transaction-amount.negative strong {
+    color: #d9534f;
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.transaction-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 4px 7px;
+
+    margin-top: 3px;
+
+    border-radius: 7px;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.transaction-status.completed {
+    background: #e8f7ef;
+
+    color: #209563;
+}
+
+.transaction-status.pending {
+    background: #fff5df;
+
+    color: #a87519;
+}
+
+.transaction-status.processing {
+    background: #edf3fc;
+
+    color: #315b9b;
+}
+
+.transaction-status.failed {
+    background: #fff0ef;
+
+    color: #d9534f;
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+========================================= */
+
+#transactions .empty-state {
+    padding: 52px 20px;
+
+    border-radius: 22px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 28px rgba(25,45,80,0.07);
+}
+
+#transactions .empty-state > span {
+    width: 68px;
+    height: 68px;
+
+    margin-bottom: 15px;
+
+    border-radius: 21px;
+
+    background: #edf3fc;
+
+    font-size: 28px;
+}
+
+#transactions .empty-state h3 {
+    font-size: 16px;
+
+    margin-bottom: 6px;
+}
+
+#transactions .empty-state p {
+    max-width: 250px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   TRANSACTION DATE DIVIDER
+========================================= */
+
+.transaction-date {
+    padding: 8px 3px 4px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================
+   TRANSACTION DETAILS
+========================================= */
+
+.transaction-details {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 4px;
+}
+
+.transaction-details span {
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.transaction-details span + span::before {
+    content: "•";
+
+    margin-right: 7px;
+
+    color: #b3bbc7;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode .transaction-item {
+    background: #151e2d;
+
+    border-color: #29374a;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.18);
+}
+
+body.dark-mode .transaction-icon {
+    background: #202d41;
+}
+
+body.dark-mode .transaction-item.deposit .transaction-icon {
+    background: #18352b;
+}
+
+body.dark-mode .transaction-item.withdrawal .transaction-icon {
+    background: #382322;
+}
+
+body.dark-mode .transaction-item.investment .transaction-icon {
+    background: #202d41;
+}
+
+body.dark-mode .transaction-item.return .transaction-icon {
+    background: #2c2542;
+}
+
+body.dark-mode .transaction-status.completed {
+    background: #18352b;
+
+    color: #6ed5a4;
+}
+
+body.dark-mode .transaction-status.pending {
+    background: #3b301c;
+
+    color: #e5bc63;
+}
+
+body.dark-mode .transaction-status.processing {
+    background: #202d41;
+
+    color: #8eb5ef;
+}
+
+body.dark-mode .transaction-status.failed {
+    background: #382322;
+
+    color: #ef8985;
+}
+
+body.dark-mode #transactions .empty-state > span {
+    background: #202d41;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 390px) {
+
+    .transaction-item {
+        padding: 13px;
+
+        gap: 10px;
+
+        border-radius: 16px;
+    }
+
+    .transaction-icon {
+        width: 39px;
+        height: 39px;
+
+        border-radius: 12px;
+
+        font-size: 17px;
+    }
+
+    .transaction-info h3 {
+        font-size: 11px;
+    }
+
+    .transaction-amount strong {
+        font-size: 12px;
+    }
+}
