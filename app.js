@@ -790,3 +790,107 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+/* =========================================
+   CHIME — ACCOUNT DETAILS
+========================================= */
+
+(function () {
+
+    function loadAccountDetails() {
+
+        const email =
+            localStorage.getItem("chimeEmail");
+
+        const emailElement =
+            document.getElementById("accountEmail");
+
+        if (emailElement) {
+            emailElement.textContent =
+                email || "Not added";
+        }
+
+
+        const telegramElement =
+            document.getElementById("accountTelegram");
+
+        if (
+            window.Telegram &&
+            window.Telegram.WebApp
+        ) {
+
+            const tg =
+                window.Telegram.WebApp;
+
+            const user =
+                tg.initDataUnsafe &&
+                tg.initDataUnsafe.user;
+
+            if (telegramElement && user) {
+
+                telegramElement.textContent =
+                    user.username
+                        ? "@" + user.username
+                        : "Telegram User";
+
+            }
+        }
+
+
+        const securityElement =
+            document.getElementById("accountSecurity");
+
+        if (securityElement) {
+
+            securityElement.textContent =
+                "Active";
+
+        }
+
+
+        const createdElement =
+            document.getElementById("accountCreated");
+
+        if (createdElement) {
+
+            let created =
+                localStorage.getItem(
+                    "chimeAccountCreated"
+                );
+
+            if (!created) {
+
+                created =
+                    new Date().toLocaleDateString(
+                        "en-US",
+                        {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                        }
+                    );
+
+                localStorage.setItem(
+                    "chimeAccountCreated",
+                    created
+                );
+
+            }
+
+            createdElement.textContent =
+                created;
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadAccountDetails
+    );
+
+
+    window.loadAccountDetails =
+        loadAccountDetails;
+
+})();
