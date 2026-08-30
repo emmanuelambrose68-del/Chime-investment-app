@@ -6387,4 +6387,371 @@ body.dark-mode .signup-card input {
         height: 31px;
     }
 
-   }
+   /* =========================================
+   CHIME PREMIUM HEADER
+========================================= */
+
+.top-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 68px;
+
+    padding: 10px 16px;
+
+    box-sizing: border-box;
+
+    background: var(--app-bg, #f5f7fb);
+
+    border-bottom:
+        1px solid rgba(23,32,51,0.06);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* BRAND */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* SMALL CHIME LOGO */
+
+.brand-logo {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(135deg, #172033, #263653);
+
+    color: white;
+
+    font-size: 24px;
+    font-weight: 900;
+
+    box-shadow:
+        0 6px 15px rgba(23,32,51,0.18);
+}
+
+
+.brand h2 {
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+
+.brand span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    opacity: 0.5;
+}
+
+
+/* NOTIFICATION BUTTON */
+
+.notification-btn {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    color: inherit;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+.notification-btn:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================
+   PREMIUM BOTTOM NAVIGATION
+========================================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    z-index: 2000;
+
+    width: calc(100% - 24px);
+
+    max-width: 560px;
+
+    min-height: 70px;
+
+    padding: 7px;
+
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 5px;
+
+    border-radius: 23px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border:
+        1px solid rgba(23,32,51,0.07);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.14);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* NAV BUTTON */
+
+.nav-item {
+    position: relative;
+
+    min-height: 56px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.nav-item:active {
+    transform: scale(0.92);
+}
+
+
+/* NAV ICON */
+
+.nav-item span {
+    width: 32px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 19px;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* NAV LABEL */
+
+.nav-item small {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    opacity: 0.5;
+}
+
+
+/* ACTIVE NAV */
+
+.nav-item.active {
+    background:
+        rgba(23,32,51,0.08);
+}
+
+
+.nav-item.active span {
+    background:
+        #172033;
+
+    color: white;
+
+    opacity: 1;
+}
+
+
+.nav-item.active small {
+    opacity: 1;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   DARK MODE NAVIGATION
+========================================= */
+
+body.dark-mode .top-header {
+    background:
+        rgba(13,20,34,0.94);
+
+    border-bottom-color:
+        rgba(255,255,255,0.06);
+}
+
+
+body.dark-mode .notification-btn {
+    background: #182236;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.25);
+}
+
+
+body.dark-mode .bottom-nav {
+    background:
+        rgba(24,34,54,0.94);
+
+    border-color:
+        rgba(255,255,255,0.07);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.35);
+}
+
+
+body.dark-mode .nav-item.active {
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+body.dark-mode .nav-item.active span {
+    background: white;
+
+    color: #172033;
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .top-header {
+        min-height: 62px;
+
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+
+        font-size: 22px;
+    }
+
+    .brand h2 {
+        font-size: 16px;
+    }
+
+    .notification-btn {
+        width: 39px;
+        height: 39px;
+    }
+
+    .bottom-nav {
+        width: calc(100% - 16px);
+
+        bottom: 7px;
+
+        min-height: 66px;
+
+        border-radius: 20px;
+    }
+
+    .nav-item {
+        min-height: 52px;
+    }
+
+    .nav-item span {
+        font-size: 17px;
+    }
+
+    .nav-item small {
+        font-size: 8px;
+    }
+
+       }
