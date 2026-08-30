@@ -1,6 +1,7 @@
 /* =========================================
    CHIME INVESTMENT
    APP JAVASCRIPT
+   Works on GitHub Pages + Telegram
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,8 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (typeof tg.setBackgroundColor === "function") {
             tg.setBackgroundColor("#f5f8f6");
         }
-
-        /* Telegram User */
 
         const user =
             tg.initDataUnsafe &&
@@ -70,82 +69,66 @@ document.addEventListener("DOMContentLoaded", function () {
         const pages =
             document.querySelectorAll(".page");
 
-        /* Hide every page */
-
         pages.forEach(function (page) {
             page.classList.remove("active");
         });
-
-
-        /* Find selected page */
 
         const selectedPage =
             document.getElementById(pageId);
 
         if (!selectedPage) {
-
             console.warn(
                 "Chime: Page not found:",
                 pageId
             );
-
             return;
         }
-
-
-        /* Show selected page */
 
         selectedPage.classList.add("active");
 
 
-        /* =================================
-           BOTTOM NAVIGATION
-        ================================= */
+        /* Update bottom navigation */
 
         const navItems =
             document.querySelectorAll(".nav-item");
-
 
         navItems.forEach(function (item) {
             item.classList.remove("active");
         });
 
 
-        /* Match page to bottom navigation */
-
         let navIndex = -1;
 
-        if (pageId === "dashboard") {
-            navIndex = 0;
+        switch (pageId) {
+
+            case "dashboard":
+                navIndex = 0;
+                break;
+
+            case "investments":
+                navIndex = 1;
+                break;
+
+            case "transactions":
+                navIndex = 2;
+                break;
+
+            case "profile":
+                navIndex = 3;
+                break;
         }
 
-        else if (pageId === "investments") {
-            navIndex = 1;
-        }
 
-        else if (pageId === "transactions") {
-            navIndex = 2;
-        }
-
-        else if (pageId === "profile") {
-            navIndex = 3;
-        }
-
-
-        if (navIndex >= 0 && navItems[navIndex]) {
-
+        if (
+            navIndex !== -1 &&
+            navItems[navIndex]
+        ) {
             navItems[navIndex]
                 .classList.add("active");
-
         }
 
 
-        /* Scroll to top */
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        window.scrollTo(0, 0);
     };
 
 
@@ -163,20 +146,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const formattedAmount =
             Number(amount).toLocaleString();
 
-        const message =
-            "Investment Plan\n\n" +
-            plan + "\n\n" +
-            "Minimum: ₦" +
-            formattedAmount + "\n" +
-            "Return: " +
+        alert(
+            plan +
+            "\n\n" +
+            "Minimum investment: ₦" +
+            formattedAmount +
+            "\n" +
+            "Expected return: " +
             percentage +
             "%\n" +
             "Duration: " +
             duration +
             " Days\n\n" +
-            "This is currently a demo.";
-
-        alert(message);
+            "Demo mode: no real investment was made."
+        );
     };
 
 
@@ -207,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         alert(
             "Deposit request received.\n\n" +
             "Amount: ₦" +
@@ -215,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "\n\n" +
             "Demo mode: no real payment was made."
         );
-
 
         input.value = "";
     };
@@ -247,7 +228,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             return;
         }
-
 
         const account =
             document.getElementById(
@@ -305,39 +285,6 @@ document.addEventListener("DOMContentLoaded", function () {
             bank.value = "";
         }
     };
-
-
-    /* =====================================
-       TELEGRAM BACK BUTTON
-    ===================================== */
-
-    if (
-        window.Telegram &&
-        window.Telegram.WebApp
-    ) {
-
-        const tg =
-            window.Telegram.WebApp;
-
-        if (
-            tg.BackButton &&
-            typeof tg.BackButton.onClick === "function"
-        ) {
-
-            tg.BackButton.onClick(function () {
-
-                showPage("dashboard");
-
-                if (
-                    typeof tg.BackButton.hide ===
-                    "function"
-                ) {
-                    tg.BackButton.hide();
-                }
-
-            });
-        }
-    }
 
 
     /* =====================================
