@@ -1372,3 +1372,19 @@ function createChimeAccount() {
     }, 700);
 
 }
+/* =========================================
+   CHIME LOGOUT
+========================================= */
+
+function logoutChime() {
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if (!confirmLogout) {
+        return;
+    }
+
+    showPage("welcome");
+
+}
