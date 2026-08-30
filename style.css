@@ -1,30 +1,160 @@
-/* =====================================
-   CHIME LARGE C LOGO
-===================================== */
+/* =========================================
+   CHIME INVESTMENT
+   COMPLETE DESIGN + DARK MODE
+========================================= */
 
-.chime-logo {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.app {
+    min-height: 100vh;
+    padding-bottom: 85px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.top-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 72px;
+    padding: 10px 18px;
+
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #e8ebf2;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-logo {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px auto 30px;
+
+    background: linear-gradient(145deg, #172033, #31476d);
+    color: white;
+
+    border-radius: 14px;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    box-shadow: 0 7px 18px rgba(23, 32, 51, 0.20);
+}
+
+.brand h2 {
+    font-size: 19px;
+    line-height: 20px;
+}
+
+.brand span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-top: 3px;
+}
+
+.notification-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #f0f2f7;
+    font-size: 19px;
+}
+
+
+/* =========================================
+   PAGE SYSTEM
+========================================= */
+
+.page {
+    display: none;
+    min-height: calc(100vh - 72px);
+}
+
+.page.active {
+    display: block;
+}
+
+.page-content,
+.dashboard-content {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 24px 18px 35px;
+}
+
+
+/* =========================================
+   WELCOME PAGE
+========================================= */
+
+#welcome {
+    min-height: calc(100vh - 72px);
+}
+
+.welcome-container {
+    max-width: 620px;
+    margin: auto;
+    padding: 38px 20px 45px;
     text-align: center;
 }
 
-.logo-c {
-    width: 135px;
-    height: 135px;
+.welcome-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.big-logo {
+    width: 145px;
+    height: 145px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-family: Arial, sans-serif;
-    font-size: 110px;
-    font-weight: 900;
-    line-height: 1;
-
-    color: #ffffff;
 
     background: linear-gradient(
         145deg,
@@ -32,62 +162,472 @@
         #31476d
     );
 
-    border-radius: 38px;
+    color: white;
+
+    border-radius: 42px;
+
+    font-size: 115px;
+    line-height: 1;
+    font-weight: 900;
 
     box-shadow:
-        0 15px 35px rgba(23, 32, 51, 0.30),
+        0 20px 45px rgba(23, 32, 51, 0.25),
         inset 0 2px 5px rgba(255,255,255,0.15);
 }
 
-.logo-text {
+.welcome-container h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.welcome-container h1 span {
+    color: #315b9b;
+}
+
+.welcome-subtitle {
+    max-width: 480px;
+    margin: 0 auto 28px;
+
+    color: #697386;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   WELCOME FEATURES
+========================================= */
+
+.welcome-info {
+    display: grid;
+    gap: 12px;
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+.welcome-feature {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+
+    padding: 16px;
+
+    background: white;
+    border: 1px solid #e8ebf2;
+    border-radius: 18px;
+
+    box-shadow: 0 7px 20px rgba(20, 35, 60, 0.05);
+}
+
+.welcome-feature > span {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef3fb;
+    border-radius: 13px;
+
+    font-size: 21px;
+}
+
+.welcome-feature strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.welcome-feature p {
+    color: #737d90;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-btn {
+    width: 100%;
+    padding: 15px 18px;
+
+    background: linear-gradient(
+        135deg,
+        #172033,
+        #315b9b
+    );
+
+    color: white;
+
+    border-radius: 14px;
+
+    font-weight: 700;
+    font-size: 14px;
+
+    box-shadow: 0 10px 22px rgba(23, 32, 51, 0.18);
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.primary-btn:active {
+    transform: scale(0.97);
+}
+
+.primary-btn:hover {
+    opacity: 0.92;
+}
+
+.learn-welcome-btn {
+    margin-top: 15px;
+
+    background: transparent;
+    color: #315b9b;
+
+    font-weight: 700;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard-greeting {
+    margin-bottom: 20px;
+}
+
+.dashboard-greeting p {
+    color: #778196;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.dashboard-greeting h1 {
+    font-size: 27px;
+}
+
+
+/* =========================================
+   BALANCE CARD
+========================================= */
+
+.balance-card {
+    padding: 23px;
+    margin-bottom: 18px;
+
+    border-radius: 23px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172033,
+            #315b9b
+        );
+
+    box-shadow:
+        0 18px 35px rgba(23, 32, 51, 0.22);
+}
+
+.balance-top,
+.balance-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance-top {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.balance-card h2 {
+    font-size: 35px;
+    margin: 17px 0;
+}
+
+.balance-bottom {
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENT
+========================================= */
+
+.active-investment-card {
+    padding: 19px;
+    margin-bottom: 25px;
+
+    background: white;
+    border: 1px solid #e5e9f1;
+    border-radius: 20px;
+
+    box-shadow: 0 9px 25px rgba(20, 35, 60, 0.06);
+}
+
+.active-investment-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.active-investment-top span:first-child {
+    display: block;
+    font-size: 11px;
+    color: #7b8495;
+    margin-bottom: 5px;
+}
+
+.active-investment-top h3 {
+    font-size: 17px;
+}
+
+.active-badge {
+    background: #e7f7ed;
+    color: #168044;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.investment-timer {
+    margin: 18px 0;
+    padding: 17px;
+
+    background: #f2f5fa;
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+.investment-timer small {
+    display: block;
+    color: #7a8497;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.investment-timer strong {
+    font-size: 23px;
+    letter-spacing: 1px;
+}
+
+.timer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.timer-info div {
+    padding: 13px;
+    background: #f7f8fb;
+    border-radius: 13px;
+}
+
+.timer-info span {
+    display: block;
+    color: #7b8495;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.timer-info strong {
+    font-size: 14px;
+}
+
+.investment-end-date {
+    margin-top: 14px;
+    color: #7b8495;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.section-title {
+    margin: 24px 0 12px;
+}
+
+.section-title h3 {
+    font-size: 16px;
+}
+
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+}
+
+.quick-actions button {
+    min-height: 82px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
-}
+    justify-content: center;
+    gap: 7px;
 
-.logo-text strong {
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-.logo-text span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    opacity: 0.65;
-    margin-top: 4px;
-}
-
-/* DARK MODE */
-
-body.dark-mode .logo-c {
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #dfe5ef
-    );
+    background: white;
+    border: 1px solid #e7eaf0;
+    border-radius: 17px;
 
     color: #172033;
+
+    box-shadow: 0 6px 18px rgba(20, 35, 60, 0.04);
 }
 
-body.dark-mode .logo-text {
-    color: #ffffff;
+.quick-actions button span {
+    font-size: 21px;
 }
 
-/* MOBILE */
-
-@media (max-width: 480px) {
-
-    .logo-c {
-        width: 115px;
-        height: 115px;
-        font-size: 95px;
-        border-radius: 32px;
-    }
-
-    .logo-text strong {
-        font-size: 22px;
-    }
+.quick-actions button strong {
+    font-size: 10px;
 }
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summary-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    padding: 17px;
+    margin-bottom: 18px;
+
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e6eaf1;
+}
+
+.summary-card div {
+    padding: 4px;
+}
+
+.summary-card span {
+    display: block;
+    color: #7b8495;
+    font-size: 10px;
+    margin-bottom: 7px;
+}
+
+.summary-card strong {
+    font-size: 17px;
+}
+
+
+/* =========================================
+   HEADINGS / BACK
+========================================= */
+
+.page-content h1 {
+    font-size: 27px;
+    margin: 15px 0 8px;
+}
+
+.page-description {
+    color: #737d90;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background: #eef1f6;
+    color: #172033;
+
+    padding: 9px 13px;
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   INVESTMENT LIMIT
+========================================= */
+
+.investment-limit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 16px;
+    margin-bottom: 15px;
+
+    background: #eaf1fc;
+    color: #315b9b;
+
+    border-radius: 14px;
+
+    font-size: 11px;
+}
+
+.investment-limit strong {
+    font-size: 14px;
+}
+
+
+/* =========================================
+   INVESTMENT CARDS
+========================================= */
+
+.investment-list {
+    display: grid;
+    gap: 15px;
+}
+
+.investment-card {
+    padding: 19px;
+
+    background: white;
+    border: 1px solid #e5e9f1;
+    border-radius: 20px;
+
+    box-shadow: 0 8px 23px rgba(20, 35, 60, 0.05);
+}
+
+.elite-card {
+    border: 1px solid #8a6b25;
+}
+
+.investment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.investment-header h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.investment-header span {
+    color: #7b8495;
+    font-size: 11px;
+}
+
+.investment-header > strong {
+    font-size: 23px
