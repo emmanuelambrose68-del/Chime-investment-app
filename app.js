@@ -1116,5 +1116,67 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(
         "Chime Investment loaded successfully."
     );
+/* =====================================
+   WEEKEND DEPOSIT NOTICE
+===================================== */
 
+function updateWeekendDepositNotice() {
+
+    const title =
+        document.getElementById(
+            "depositNoticeTitle"
+        );
+
+    const text =
+        document.getElementById(
+            "depositNoticeText"
+        );
+
+    if (!title || !text) {
+        return;
+    }
+
+    const today =
+        new Date().getDay();
+
+    /*
+       Sunday = 0
+       Saturday = 6
+    */
+
+    if (
+        today === 0 ||
+        today === 6
+    ) {
+
+        title.textContent =
+            "🟢 Deposits are currently available";
+
+        text.textContent =
+            "Crypto deposits are available this weekend. You can submit your deposit during the weekend deposit period.";
+
+    } else {
+
+        title.textContent =
+            "🔴 Deposits are currently closed";
+
+        text.textContent =
+            "Crypto deposits are available only on weekends. Deposit services will reopen this weekend.";
+
+    }
+
+}
+
+
+/* Update when the app opens */
+
+updateWeekendDepositNotice();
+
+
+/* Check again every minute */
+
+setInterval(
+    updateWeekendDepositNotice,
+    60000
+);
 });
