@@ -1,22 +1,22 @@
 <!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#101827">
-<meta name="mobile-web-app-capable" content="yes">
-
-<title>Chime Investment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#172033"><title>Chime Investment</title>
 
 <!-- Telegram Mini App -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<!-- Chime CSS -->
+<!-- Your CSS -->
 <link rel="stylesheet" href="./style.css">
 
-</head><body><!-- =================================
-     WELCOME
-================================= --><section id="welcomePage" class="welcome-page"><div class="welcome-content">
+</head><body><!-- =========================================
+     WELCOME PAGE
+========================================= --><section id="welcomePage" class="welcome-page"><div class="welcome-content">
 
-    <div class="logo">C</div>
+    <div class="logo">
+        C
+    </div>
 
     <h1>Chime Investment</h1>
 
@@ -28,34 +28,46 @@
 
         <div class="welcome-feature">
             <span>💰</span>
+
             <div>
                 <strong>Investment Plans</strong>
-                <p>Explore available investment plans.</p>
+                <p>
+                    Explore available investment opportunities.
+                </p>
             </div>
         </div>
+
 
         <div class="welcome-feature">
             <span>📈</span>
+
             <div>
                 <strong>Track Your Growth</strong>
-                <p>Monitor your portfolio easily.</p>
+                <p>
+                    Monitor your investments and earnings.
+                </p>
             </div>
         </div>
 
+
         <div class="welcome-feature">
             <span>🔐</span>
+
             <div>
                 <strong>Simple & Secure</strong>
-                <p>Manage your account in one place.</p>
+                <p>
+                    Manage your investment account in one place.
+                </p>
             </div>
         </div>
 
     </div>
 
+
     <button
         type="button"
         class="welcome-button"
-        onclick="showSignup()">
+        onclick="enterApp()">
 
         Get Started →
 
@@ -63,121 +75,11 @@
 
 </div>
 
-</section><!-- =================================
-     SIGN UP
-================================= --><section id="signupPage" class="welcome-page hidden"><div class="welcome-content">
-
-    <div class="logo">C</div>
-
-    <h1>Create Account</h1>
-
-    <p class="welcome-subtitle">
-        Set up your Chime Investment account.
-    </p>
-
-
-    <div class="signup-form">
-
-        <div class="input-group">
-
-            <label for="signupName">
-                Full Name
-            </label>
-
-            <input
-                id="signupName"
-                type="text"
-                placeholder="Enter your full name"
-                autocomplete="name">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="signupUsername">
-                Telegram Username
-            </label>
-
-            <input
-                id="signupUsername"
-                type="text"
-                placeholder="@username"
-                readonly>
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="signupEmail">
-                Email Address
-            </label>
-
-            <input
-                id="signupEmail"
-                type="email"
-                placeholder="Enter your email"
-                autocomplete="email">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="signupPhone">
-                Phone Number
-            </label>
-
-            <input
-                id="signupPhone"
-                type="tel"
-                placeholder="Enter your phone number"
-                autocomplete="tel">
-
-        </div>
-
-
-        <label class="terms">
-
-            <input
-                id="termsCheck"
-                type="checkbox">
-
-            <span>
-                I agree to the Chime Investment
-                Terms & Privacy Policy.
-            </span>
-
-        </label>
-
-
-        <button
-            type="button"
-            class="welcome-button"
-            onclick="createAccount()">
-
-            Create Account
-
-        </button>
-
-
-        <button
-            type="button"
-            class="signup-back"
-            onclick="showWelcome()">
-
-            ← Back
-
-        </button>
-
-    </div>
-
-</div>
-
-</section><!-- =================================
+</section><!-- =========================================
      MAIN APP
-================================= --><main id="app" class="hidden"><header class="header">
+========================================= --><main id="app" class="hidden"><!-- HEADER -->
+
+<header class="header">
 
     <div class="header-left">
 
@@ -188,6 +90,7 @@
         </h1>
 
     </div>
+
 
     <button
         type="button"
@@ -201,14 +104,21 @@
 </header>
 
 
+<!-- MAIN CONTENT -->
+
 <div class="container">
 
 
-    <!-- HOME -->
+    <!-- =================================
+         HOME PAGE
+    ================================== -->
 
     <section
         id="homePage"
         class="app-page active-page">
+
+
+        <!-- BALANCE -->
 
         <div class="balance-card">
 
@@ -216,15 +126,16 @@
 
                 <div>
 
-                    <p class="balance-label">
+                    <div class="balance-label">
                         AVAILABLE BALANCE
-                    </p>
+                    </div>
 
                     <h2>
                         ₦5,000.00
                     </h2>
 
                 </div>
+
 
                 <div class="balance-icon">
                     💰
@@ -236,7 +147,7 @@
             <div class="earnings-box">
 
                 <span>
-                    Total earnings
+                    Total Earnings
                 </span>
 
                 <strong>
@@ -257,6 +168,7 @@
 
                 </button>
 
+
                 <button
                     type="button"
                     class="secondary-btn"
@@ -271,6 +183,8 @@
         </div>
 
 
+        <!-- QUICK ACTIONS -->
+
         <div class="section-header">
 
             <h2>
@@ -282,16 +196,23 @@
 
         <div class="quick-actions">
 
+
             <button
                 type="button"
                 class="quick-action"
                 onclick="openDeposit()">
 
-                <span class="quick-icon">💰</span>
+                <span class="quick-icon">
+                    💰
+                </span>
 
-                <strong>Deposit</strong>
+                <strong>
+                    Deposit
+                </strong>
 
-                <small>Add money</small>
+                <small>
+                    Add money
+                </small>
 
             </button>
 
@@ -301,11 +222,17 @@
                 class="quick-action"
                 onclick="openWithdraw()">
 
-                <span class="quick-icon">💸</span>
+                <span class="quick-icon">
+                    💸
+                </span>
 
-                <strong>Withdraw</strong>
+                <strong>
+                    Withdraw
+                </strong>
 
-                <small>Cash out</small>
+                <small>
+                    Take out
+                </small>
 
             </button>
 
@@ -315,11 +242,17 @@
                 class="quick-action"
                 onclick="showPage('plansPage')">
 
-                <span class="quick-icon">📈</span>
+                <span class="quick-icon">
+                    📈
+                </span>
 
-                <strong>Invest</strong>
+                <strong>
+                    Invest
+                </strong>
 
-                <small>View plans</small>
+                <small>
+                    Grow money
+                </small>
 
             </button>
 
@@ -329,16 +262,24 @@
                 class="quick-action"
                 onclick="showPage('transactionsPage')">
 
-                <span class="quick-icon">🧾</span>
+                <span class="quick-icon">
+                    🧾
+                </span>
 
-                <strong>History</strong>
+                <strong>
+                    History
+                </strong>
 
-                <small>Transactions</small>
+                <small>
+                    View activity
+                </small>
 
             </button>
 
         </div>
 
+
+        <!-- FEATURED PLANS -->
 
         <div class="section-header">
 
@@ -360,6 +301,8 @@
 
         <div class="plans">
 
+
+            <!-- STARTER -->
 
             <div class="plan-card">
 
@@ -387,18 +330,41 @@
                 <div class="plan-details">
 
                     <div>
-                        <span>Minimum</span>
-                        <strong>₦5,000</strong>
+
+                        <span>
+                            Minimum
+                        </span>
+
+                        <strong>
+                            ₦5,000
+                        </strong>
+
                     </div>
 
-                    <div>
-                        <span>Demo Return</span>
-                        <strong>5%</strong>
-                    </div>
 
                     <div>
-                        <span>Duration</span>
-                        <strong>7 Days</strong>
+
+                        <span>
+                            Return
+                        </span>
+
+                        <strong>
+                            5%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            7 Days
+                        </strong>
+
                     </div>
 
                 </div>
@@ -415,6 +381,8 @@
 
             </div>
 
+
+            <!-- GROWTH -->
 
             <div class="plan-card">
 
@@ -442,18 +410,41 @@
                 <div class="plan-details">
 
                     <div>
-                        <span>Minimum</span>
-                        <strong>₦20,000</strong>
+
+                        <span>
+                            Minimum
+                        </span>
+
+                        <strong>
+                            ₦20,000
+                        </strong>
+
                     </div>
 
-                    <div>
-                        <span>Demo Return</span>
-                        <strong>10%</strong>
-                    </div>
 
                     <div>
-                        <span>Duration</span>
-                        <strong>14 Days</strong>
+
+                        <span>
+                            Return
+                        </span>
+
+                        <strong>
+                            10%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            14 Days
+                        </strong>
+
                     </div>
 
                 </div>
@@ -475,11 +466,14 @@
     </section>
 
 
-    <!-- PLANS -->
+    <!-- =================================
+         INVESTMENT PLANS PAGE
+    ================================== -->
 
     <section
         id="plansPage"
         class="app-page">
+
 
         <div class="page-heading">
 
@@ -494,7 +488,9 @@
 
             <div>
 
-                <p>EXPLORE</p>
+                <p>
+                    EXPLORE
+                </p>
 
                 <h2>
                     Investment Plans
@@ -507,6 +503,8 @@
 
         <div class="all-plans">
 
+
+            <!-- STARTER -->
 
             <div class="large-plan-card">
 
@@ -525,25 +523,48 @@
                     </h3>
 
                     <p>
-                        Begin your investment journey.
+                        Start your investment journey.
                     </p>
 
 
                     <div class="large-plan-stats">
 
                         <div>
-                            <span>Minimum</span>
-                            <strong>₦5,000</strong>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦5,000
+                            </strong>
+
                         </div>
 
-                        <div>
-                            <span>Demo Return</span>
-                            <strong>5%</strong>
-                        </div>
 
                         <div>
-                            <span>Duration</span>
-                            <strong>7 Days</strong>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                5%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                7 Days
+                            </strong>
+
                         </div>
 
                     </div>
@@ -562,6 +583,8 @@
 
             </div>
 
+
+            <!-- GROWTH -->
 
             <div class="large-plan-card">
 
@@ -587,18 +610,41 @@
                     <div class="large-plan-stats">
 
                         <div>
-                            <span>Minimum</span>
-                            <strong>₦20,000</strong>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦20,000
+                            </strong>
+
                         </div>
 
-                        <div>
-                            <span>Demo Return</span>
-                            <strong>10%</strong>
-                        </div>
 
                         <div>
-                            <span>Duration</span>
-                            <strong>14 Days</strong>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                10%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                14 Days
+                            </strong>
+
                         </div>
 
                     </div>
@@ -618,6 +664,8 @@
             </div>
 
 
+            <!-- PREMIUM -->
+
             <div class="large-plan-card">
 
                 <div class="large-plan-icon">
@@ -635,25 +683,48 @@
                     </h3>
 
                     <p>
-                        Designed for larger investments.
+                        For larger investment goals.
                     </p>
 
 
                     <div class="large-plan-stats">
 
                         <div>
-                            <span>Minimum</span>
-                            <strong>₦50,000</strong>
+
+                            <span>
+                                Minimum
+                            </span>
+
+                            <strong>
+                                ₦50,000
+                            </strong>
+
                         </div>
 
-                        <div>
-                            <span>Demo Return</span>
-                            <strong>20%</strong>
-                        </div>
 
                         <div>
-                            <span>Duration</span>
-                            <strong>30 Days</strong>
+
+                            <span>
+                                Return
+                            </span>
+
+                            <strong>
+                                20%
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong>
+                                30 Days
+                            </strong>
+
                         </div>
 
                     </div>
@@ -677,11 +748,14 @@
     </section>
 
 
-    <!-- INVESTMENTS -->
+    <!-- =================================
+         INVESTMENTS PAGE
+    ================================== -->
 
     <section
         id="investmentsPage"
         class="app-page">
+
 
         <div class="page-heading">
 
@@ -696,7 +770,9 @@
 
             <div>
 
-                <p>PORTFOLIO</p>
+                <p>
+                    PORTFOLIO
+                </p>
 
                 <h2>
                     My Investments
@@ -716,7 +792,7 @@
                 </div>
 
                 <h3>
-                    No active investments
+                    No Active Investments
                 </h3>
 
                 <p>
@@ -740,11 +816,14 @@
     </section>
 
 
-    <!-- TRANSACTIONS -->
+    <!-- =================================
+         TRANSACTIONS PAGE
+    ================================== -->
 
     <section
         id="transactionsPage"
         class="app-page">
+
 
         <div class="page-heading">
 
@@ -759,7 +838,9 @@
 
             <div>
 
-                <p>ACCOUNT ACTIVITY</p>
+                <p>
+                    ACCOUNT ACTIVITY
+                </p>
 
                 <h2>
                     Transactions
@@ -771,6 +852,7 @@
 
 
         <div class="transactions">
+
 
             <div class="transaction">
 
@@ -821,16 +903,20 @@
 
             </div>
 
+
         </div>
 
     </section>
 
 
-    <!-- PROFILE -->
+    <!-- =================================
+         PROFILE PAGE
+    ================================== -->
 
     <section
         id="profilePage"
         class="app-page">
+
 
         <div class="page-heading">
 
@@ -845,7 +931,9 @@
 
             <div>
 
-                <p>ACCOUNT</p>
+                <p>
+                    ACCOUNT
+                </p>
 
                 <h2>
                     My Profile
@@ -892,7 +980,7 @@
                         Earnings
                     </span>
 
-                    <strong>
+                    <strong class="positive">
                         ₦250
                     </strong>
 
@@ -907,46 +995,54 @@
 
             <button
                 type="button"
-                onclick="showPage('plansPage')">
+                onclick="alert('Account settings coming soon.')">
 
-                <span>📈</span>
+                <span>
+                    ⚙️
+                </span>
 
                 <div>
 
                     <strong>
-                        Investment Plans
+                        Account Settings
                     </strong>
 
                     <small>
-                        Explore available plans
+                        Manage your account
                     </small>
 
                 </div>
 
-                <span>→</span>
+                <span>
+                    ›
+                </span>
 
             </button>
 
 
             <button
                 type="button"
-                onclick="showPage('transactionsPage')">
+                onclick="alert('Security settings coming soon.')">
 
-                <span>🧾</span>
+                <span>
+                    🔐
+                </span>
 
                 <div>
 
                     <strong>
-                        Transaction History
+                        Security
                     </strong>
 
                     <small>
-                        View account activity
+                        Protect your account
                     </small>
 
                 </div>
 
-                <span>→</span>
+                <span>
+                    ›
+                </span>
 
             </button>
 
@@ -954,20 +1050,29 @@
 
     </section>
 
+
 </div>
 
 
-<!-- BOTTOM NAVIGATION -->
+<!-- =========================================
+     BOTTOM NAVIGATION
+========================================= -->
 
 <nav class="bottom-nav">
+
 
     <button
         type="button"
         class="nav-item active-nav"
         onclick="showPage('homePage')">
 
-        <span>⌂</span>
-        <small>Home</small>
+        <span>
+            ⌂
+        </span>
+
+        <small>
+            Home
+        </small>
 
     </button>
 
@@ -977,8 +1082,13 @@
         class="nav-item"
         onclick="showPage('plansPage')">
 
-        <span>📈</span>
-        <small>Invest</small>
+        <span>
+            📈
+        </span>
+
+        <small>
+            Invest
+        </small>
 
     </button>
 
@@ -988,8 +1098,13 @@
         class="nav-item"
         onclick="showPage('investmentsPage')">
 
-        <span>💼</span>
-        <small>Portfolio</small>
+        <span>
+            💼
+        </span>
+
+        <small>
+            Portfolio
+        </small>
 
     </button>
 
@@ -999,8 +1114,13 @@
         class="nav-item"
         onclick="showPage('transactionsPage')">
 
-        <span>🧾</span>
-        <small>History</small>
+        <span>
+            🧾
+        </span>
+
+        <small>
+            History
+        </small>
 
     </button>
 
@@ -1010,19 +1130,24 @@
         class="nav-item"
         onclick="showPage('profilePage')">
 
-        <span>👤</span>
-        <small>Profile</small>
+        <span>
+            👤
+        </span>
+
+        <small>
+            Profile
+        </small>
 
     </button>
 
 </nav>
 
-</main><!-- =================================
+</main><!-- =========================================
      DEPOSIT MODAL
-================================= --><div
+========================================= --><div
     id="depositModal"
-    class="modal"
-    onclick="if(event.target === this) closeModals()"><div class="modal-box">
+    class="modal"><div class="modal-box">
+
 
     <button
         type="button"
@@ -1033,9 +1158,11 @@
 
     </button>
 
+
     <div class="modal-icon">
         💰
     </div>
+
 
     <h2>
         Deposit
@@ -1045,22 +1172,26 @@
         Enter the amount you want to deposit.
     </p>
 
+
     <label>
         Amount
     </label>
 
+
     <div class="amount-input">
 
-        <span>₦</span>
+        <span>
+            ₦
+        </span>
 
         <input
             id="depositAmount"
             type="number"
             inputmode="numeric"
-            min="1"
             placeholder="Enter amount">
 
     </div>
+
 
     <button
         type="button"
@@ -1073,12 +1204,12 @@
 
 </div>
 
-</div><!-- =================================
+</div><!-- =========================================
      WITHDRAW MODAL
-================================= --><div
+========================================= --><div
     id="withdrawModal"
-    class="modal"
-    onclick="if(event.target === this) closeModals()"><div class="modal-box">
+    class="modal"><div class="modal-box">
+
 
     <button
         type="button"
@@ -1089,9 +1220,11 @@
 
     </button>
 
+
     <div class="modal-icon">
         💸
     </div>
+
 
     <h2>
         Withdraw
@@ -1101,22 +1234,26 @@
         Enter the amount you want to withdraw.
     </p>
 
+
     <label>
         Amount
     </label>
 
+
     <div class="amount-input">
 
-        <span>₦</span>
+        <span>
+            ₦
+        </span>
 
         <input
             id="withdrawAmount"
             type="number"
             inputmode="numeric"
-            min="1"
             placeholder="Enter amount">
 
     </div>
+
 
     <button
         type="button"
@@ -1129,5 +1266,7 @@
 
 </div>
 
-</div><!-- APP JS --><script src="./app.js"></script></body>
-    </html>
+</div><!-- =========================================
+     APP JAVASCRIPT
+========================================= --><script src="./app.js"></script></body>
+</html>
