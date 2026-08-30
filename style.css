@@ -1502,3 +1502,460 @@ body.dark-mode .summary-card {
         bottom: 7px;
     }
    }
+/* =========================================
+   CHIME DASHBOARD PREMIUM UPGRADE
+========================================= */
+
+
+/* =========================================
+   DASHBOARD GREETING
+========================================= */
+
+.dashboard-greeting {
+    position: relative;
+
+    padding: 5px 2px 2px;
+}
+
+.dashboard-greeting p {
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+.dashboard-greeting h1 {
+    font-size: 28px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================================
+   PREMIUM BALANCE CARD
+========================================= */
+
+.balance-card {
+    min-height: 190px;
+
+    padding: 25px;
+
+    border-radius: 27px;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(111,158,232,0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #132746,
+            #315b9b 65%,
+            #4778bf
+        );
+
+    box-shadow:
+        0 20px 45px rgba(35,67,112,0.25);
+
+    transform: translateZ(0);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.balance-card:active {
+    transform: scale(0.985);
+}
+
+.balance-top {
+    position: relative;
+    z-index: 3;
+}
+
+.balance-top span:first-child {
+    font-size: 11px;
+
+    color: rgba(255,255,255,0.70);
+}
+
+.balance-top span:last-child {
+    padding: 6px 10px;
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.12);
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+.balance-card h2 {
+    position: relative;
+    z-index: 3;
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    letter-spacing: -1.4px;
+
+    margin: 18px 0 20px;
+}
+
+.balance-bottom {
+    position: relative;
+    z-index: 3;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.12);
+}
+
+.balance-bottom span {
+    font-size: 10px;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* Decorative C */
+
+.balance-card::after {
+    content: "C";
+
+    position: absolute;
+
+    right: -28px;
+    bottom: -68px;
+
+    font-size: 190px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    color: rgba(255,255,255,0.055);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.quick-actions {
+    gap: 10px;
+
+    margin-bottom: 5px;
+}
+
+.quick-actions button {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 91px;
+
+    border-radius: 19px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.quick-actions button::after {
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    right: -25px;
+    bottom: -25px;
+
+    border-radius: 50%;
+
+    background: rgba(49,91,155,0.06);
+}
+
+.quick-actions button:active {
+    transform: translateY(2px) scale(0.96);
+}
+
+.quick-actions button span {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #edf3fc;
+
+    font-size: 18px;
+}
+
+.quick-actions button strong {
+    font-size: 9px;
+
+    color: var(--text);
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENT CARD
+========================================= */
+
+.active-investment-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 23px;
+
+    padding: 21px;
+
+    border: 1px solid #dce6f4;
+
+    box-shadow:
+        0 12px 30px rgba(30,55,90,0.08);
+}
+
+.active-investment-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -45px;
+    top: -45px;
+
+    border-radius: 50%;
+
+    background: rgba(49,91,155,0.05);
+}
+
+.active-investment-top {
+    position: relative;
+    z-index: 2;
+}
+
+.active-badge {
+    box-shadow:
+        0 4px 10px rgba(34,160,107,0.12);
+}
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+.investment-timer {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 20px 14px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0f4fa,
+            #f8faff
+        );
+
+    border: 1px solid #e4eaf2;
+}
+
+.investment-timer::before {
+    content: "⏱";
+
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+.investment-timer strong {
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 23px;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* =========================================
+   INVESTMENT INFO
+========================================= */
+
+.timer-info {
+    gap: 9px;
+}
+
+.timer-info div {
+    border: 1px solid #edf0f5;
+
+    transition: 0.2s;
+}
+
+.timer-info div:hover {
+    border-color: #d6e1f0;
+}
+
+.timer-info strong {
+    color: var(--text);
+}
+
+
+/* =========================================
+   SUMMARY CARD
+========================================= */
+
+.summary-card {
+    padding: 18px;
+
+    border-radius: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.summary-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    right: -45px;
+    top: -45px;
+
+    border-radius: 50%;
+
+    background: rgba(49,91,155,0.04);
+}
+
+.summary-card strong {
+    color: var(--primary);
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   VIEW PLANS BUTTON
+========================================= */
+
+.dashboard-content > .primary-btn:last-child {
+    margin-top: 2px;
+
+    min-height: 54px;
+
+    border-radius: 17px;
+}
+
+
+/* =========================================
+   DARK MODE DASHBOARD
+========================================= */
+
+body.dark-mode .quick-actions button span {
+    background: #202d41;
+}
+
+body.dark-mode .quick-actions button::after {
+    background: rgba(111,158,232,0.04);
+}
+
+body.dark-mode .active-investment-card {
+    border-color: #2d3c52;
+}
+
+body.dark-mode .investment-timer {
+    background:
+        linear-gradient(
+            135deg,
+            #192536,
+            #1c293b
+        );
+
+    border-color: #2d3b4e;
+}
+
+body.dark-mode .investment-timer strong {
+    color: #8eb5ef;
+}
+
+body.dark-mode .timer-info div {
+    background: #1b2636;
+
+    border-color: #2b384b;
+}
+
+body.dark-mode .summary-card::after {
+    background: rgba(111,158,232,0.03);
+}
+
+
+/* =========================================
+   MOBILE DASHBOARD
+========================================= */
+
+@media (max-width: 390px) {
+
+    .balance-card {
+        padding: 21px;
+
+        min-height: 178px;
+
+        border-radius: 23px;
+    }
+
+    .balance-card h2 {
+        font-size: 33px;
+    }
+
+    .quick-actions {
+        gap: 6px;
+    }
+
+    .quick-actions button {
+        min-height: 82px;
+
+        border-radius: 16px;
+    }
+
+    .quick-actions button span {
+        width: 35px;
+        height: 35px;
+
+        font-size: 16px;
+    }
+
+    .investment-timer strong {
+        font-size: 20px;
+    }
+   }
