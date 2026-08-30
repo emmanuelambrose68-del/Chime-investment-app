@@ -1219,3 +1219,156 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+/* =========================================
+   CHIME ACCOUNT CREATION
+========================================= */
+
+function createChimeAccount() {
+
+    const name =
+        document.getElementById("signupName").value.trim();
+
+    const email =
+        document.getElementById("signupEmail").value.trim();
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+    const confirmPassword =
+        document.getElementById("signupConfirmPassword").value;
+
+    const terms =
+        document.getElementById("signupTerms").checked;
+
+    const message =
+        document.getElementById("signupMessage");
+
+
+    /* VALIDATION */
+
+    if (!name) {
+
+        message.textContent =
+            "Please enter your full name.";
+
+        return;
+    }
+
+
+    if (!email) {
+
+        message.textContent =
+            "Please enter your email address.";
+
+        return;
+    }
+
+
+    if (!password) {
+
+        message.textContent =
+            "Please create a password.";
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        message.textContent =
+            "Password must be at least 6 characters.";
+
+        return;
+    }
+
+
+    if (password !== confirmPassword) {
+
+        message.textContent =
+            "Passwords do not match.";
+
+        return;
+    }
+
+
+    if (!terms) {
+
+        message.textContent =
+            "Please accept the applicable terms.";
+
+        return;
+    }
+
+
+    /* SAVE BASIC ACCOUNT INFORMATION */
+
+    localStorage.setItem(
+        "chimeAccountCreated",
+        "true"
+    );
+
+    localStorage.setItem(
+        "chimeName",
+        name
+    );
+
+    localStorage.setItem(
+        "chimeEmail",
+        email
+    );
+
+    localStorage.setItem(
+        "chimeAccountDate",
+        new Date().toLocaleDateString()
+    );
+
+
+    /* UPDATE PROFILE */
+
+    const profileName =
+        document.getElementById("profileName");
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+    const accountCreated =
+        document.getElementById("accountCreated");
+
+
+    if (profileName) {
+
+        profileName.textContent = name;
+
+    }
+
+
+    if (accountEmail) {
+
+        accountEmail.textContent = email;
+
+    }
+
+
+    if (accountCreated) {
+
+        accountCreated.textContent =
+            new Date().toLocaleDateString();
+
+    }
+
+
+    /* SUCCESS MESSAGE */
+
+    message.textContent =
+        "Account created successfully.";
+
+
+    /* GO TO DASHBOARD */
+
+    setTimeout(function () {
+
+        showPage("dashboard");
+
+    }, 700);
+
+}
