@@ -1,787 +1,1775 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0,
-          maximum-scale=1.0, user-scalable=no">
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
 
     <title>Chime Investment</title>
 
+    <!-- Telegram Mini App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- APP -->
-    <div class="app">
+<div class="app">
 
-        <!-- HEADER -->
-        <header class="top-header">
 
-            <div class="brand">
-                <div class="brand-logo">C</div>
+    <!-- =================================
+         HEADER
+    ================================== -->
 
-                <div>
-                    <h2>Chime</h2>
-                    <span>Investment</span>
-                </div>
+    <header class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                C
             </div>
 
-            <button class="notification-btn" onclick="showPage('notifications')">
-                🔔
-            </button>
+            <div>
 
-        </header>
+                <h2>Chime</h2>
 
-
-        <!-- ================= WELCOME PAGE ================= -->
-
-        <section id="welcome" class="page active">
-
-            <div class="welcome-container">
-
-                <div class="welcome-logo">
-                    <div class="big-logo">C</div>
-                </div>
-
-                <h1>Welcome to <span>Chime</span></h1>
-
-                <p class="welcome-subtitle">
-                    Grow your money with simple and flexible
-                    investment opportunities.
-                </p>
-
-
-                <!-- FEATURES -->
-
-                <div class="welcome-info">
-
-                    <div class="welcome-feature">
-
-                        <span>💰</span>
-
-                        <div>
-                            <strong>Investment Plans</strong>
-
-                            <p>
-                                Explore available investment
-                                opportunities.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="welcome-feature">
-
-                        <span>📈</span>
-
-                        <div>
-                            <strong>Track Your Growth</strong>
-
-                            <p>
-                                Monitor your investments and earnings.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="welcome-feature">
-
-                        <span>🔒</span>
-
-                        <div>
-                            <strong>Secure Account</strong>
-
-                            <p>
-                                Your account information stays protected.
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('dashboard')">
-
-                    Get Started
-
-                </button>
+                <span>Investment</span>
 
             </div>
 
-        </section>
+        </div>
+
+
+        <button
+            class="notification-btn"
+            onclick="showPage('notifications')">
+
+            🔔
+
+        </button>
+
+    </header>
 
 
 
-        <!-- ================= DASHBOARD ================= -->
+    <!-- =================================
+         WELCOME
+    ================================== -->
 
-        <section id="dashboard" class="page">
+    <section
+        id="welcome"
+        class="page active">
 
-            <div class="dashboard-content">
+        <div class="welcome-container">
 
-                <div class="dashboard-greeting">
+            <div class="welcome-logo">
 
-                    <p>Welcome back 👋</p>
-
-                    <h1>My Dashboard</h1>
-
+                <div class="big-logo">
+                    C
                 </div>
 
-
-                <!-- BALANCE CARD -->
-
-                <div class="balance-card">
-
-                    <div class="balance-top">
-
-                        <span>Total Balance</span>
-
-                        <span>🇳🇬 NGN</span>
-
-                    </div>
-
-                    <h2 id="totalBalance">
-                        ₦0.00
-                    </h2>
-
-                    <div class="balance-bottom">
-
-                        <span>
-                            Available balance
-                        </span>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <!-- QUICK ACTIONS -->
-
-                <div class="section-title">
-
-                    <h3>Quick Actions</h3>
-
-                </div>
+            <h1>
+                Welcome to
+                <span>Chime</span>
+            </h1>
 
 
-                <div class="quick-actions">
+            <p class="welcome-subtitle">
 
-                    <button onclick="showPage('deposit')">
-                        <span>💳</span>
-                        <strong>Deposit</strong>
-                    </button>
+                A simple platform for exploring
+                structured investment opportunities.
 
-
-                    <button onclick="showPage('withdraw')">
-                        <span>💸</span>
-                        <strong>Withdraw</strong>
-                    </button>
+            </p>
 
 
-                    <button onclick="showPage('investments')">
-                        <span>📈</span>
-                        <strong>Invest</strong>
-                    </button>
+
+            <div class="welcome-info">
 
 
-                    <button onclick="showPage('transactions')">
-                        <span>📋</span>
-                        <strong>History</strong>
-                    </button>
+                <div class="welcome-feature">
 
-                </div>
-
-
-                <!-- INVESTMENT SUMMARY -->
-
-                <div class="section-title">
-
-                    <h3>Investment Summary</h3>
-
-                </div>
-
-
-                <div class="summary-card">
+                    <span>💰</span>
 
                     <div>
-                        <span>Invested</span>
-                        <strong id="investedAmount">
-                            ₦0.00
+
+                        <strong>
+                            Flexible Investment
                         </strong>
-                    </div>
-
-                    <div>
-                        <span>Profit</span>
-                        <strong id="profitAmount">
-                            ₦0.00
-                        </strong>
-                    </div>
-
-                </div>
-
-
-                <!-- DASHBOARD BUTTON -->
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('investments')">
-
-                    View Investment Plans
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= INVESTMENTS ================= -->
-
-        <section id="investments" class="page">
-
-            <div class="page-content">
-
-                <button
-                    class="back-btn"
-                    onclick="showPage('dashboard')">
-
-                    ← Back
-
-                </button>
-
-                <h1>Investment Plans</h1>
-
-                <p class="page-description">
-                    Choose an investment plan that suits you.
-                </p>
-
-
-                <div class="investment-list">
-
-
-                    <!-- PLAN 1 -->
-
-                    <div class="investment-card">
-
-                        <div class="investment-header">
-
-                            <div>
-                                <h3>Starter Plan</h3>
-
-                                <span>Beginner</span>
-                            </div>
-
-                            <strong>5%</strong>
-
-                        </div>
-
-
-                        <div class="investment-details">
-
-                            <p>
-                                Minimum: <strong>₦5,000</strong>
-                            </p>
-
-                            <p>
-                                Duration: <strong>7 Days</strong>
-                            </p>
-
-                            <p>
-                                Expected return: <strong>5%</strong>
-                            </p>
-
-                        </div>
-
-
-                        <button
-                            class="primary-btn"
-                            onclick="selectPlan('Starter Plan', 5000, 5, 7)">
-
-                            Invest Now
-
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- PLAN 2 -->
-
-                    <div class="investment-card">
-
-                        <div class="investment-header">
-
-                            <div>
-                                <h3>Growth Plan</h3>
-
-                                <span>Popular</span>
-                            </div>
-
-                            <strong>12%</strong>
-
-                        </div>
-
-
-                        <div class="investment-details">
-
-                            <p>
-                                Minimum: <strong>₦20,000</strong>
-                            </p>
-
-                            <p>
-                                Duration: <strong>14 Days</strong>
-                            </p>
-
-                            <p>
-                                Expected return: <strong>12%</strong>
-                            </p>
-
-                        </div>
-
-
-                        <button
-                            class="primary-btn"
-                            onclick="selectPlan('Growth Plan', 20000, 12, 14)">
-
-                            Invest Now
-
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- PLAN 3 -->
-
-                    <div class="investment-card">
-
-                        <div class="investment-header">
-
-                            <div>
-                                <h3>Premium Plan</h3>
-
-                                <span>Advanced</span>
-                            </div>
-
-                            <strong>25%</strong>
-
-                        </div>
-
-
-                        <div class="investment-details">
-
-                            <p>
-                                Minimum: <strong>₦50,000</strong>
-                            </p>
-
-                            <p>
-                                Duration: <strong>30 Days</strong>
-                            </p>
-
-                            <p>
-                                Expected return: <strong>25%</strong>
-                            </p>
-
-                        </div>
-
-
-                        <button
-                            class="primary-btn"
-                            onclick="selectPlan('Premium Plan', 50000, 25, 30)">
-
-                            Invest Now
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= DEPOSIT ================= -->
-
-        <section id="deposit" class="page">
-
-            <div class="page-content">
-
-                <button
-                    class="back-btn"
-                    onclick="showPage('dashboard')">
-
-                    ← Back
-
-                </button>
-
-                <h1>Deposit</h1>
-
-                <p class="page-description">
-                    Add money to your Chime account.
-                </p>
-
-
-                <div class="form-card">
-
-                    <label>
-                        Amount
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span>₦</span>
-
-                        <input
-                            type="number"
-                            id="depositAmount"
-                            placeholder="Enter amount">
-
-                    </div>
-
-
-                    <label>
-                        Payment Method
-                    </label>
-
-                    <select id="paymentMethod">
-
-                        <option value="bank">
-                            Bank Transfer
-                        </option>
-
-                        <option value="card">
-                            Debit Card
-                        </option>
-
-                    </select>
-
-
-                    <button
-                        class="primary-btn"
-                        onclick="makeDeposit()">
-
-                        Continue Deposit
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= WITHDRAW ================= -->
-
-        <section id="withdraw" class="page">
-
-            <div class="page-content">
-
-                <button
-                    class="back-btn"
-                    onclick="showPage('dashboard')">
-
-                    ← Back
-
-                </button>
-
-                <h1>Withdraw</h1>
-
-                <p class="page-description">
-                    Withdraw your available funds.
-                </p>
-
-
-                <div class="form-card">
-
-                    <label>
-                        Amount
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span>₦</span>
-
-                        <input
-                            type="number"
-                            id="withdrawAmount"
-                            placeholder="Enter amount">
-
-                    </div>
-
-
-                    <label>
-                        Bank Account
-                    </label>
-
-                    <input
-                        type="text"
-                        id="bankAccount"
-                        placeholder="Enter account number">
-
-
-                    <label>
-                        Bank Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="bankName"
-                        placeholder="Enter bank name">
-
-
-                    <button
-                        class="primary-btn"
-                        onclick="makeWithdrawal()">
-
-                        Request Withdrawal
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= TRANSACTIONS ================= -->
-
-        <section id="transactions" class="page">
-
-            <div class="page-content">
-
-                <h1>Transaction History</h1>
-
-                <p class="page-description">
-                    View your recent account activity.
-                </p>
-
-
-                <div id="transactionList">
-
-                    <div class="empty-state">
-
-                        <span>📋</span>
-
-                        <h3>No transactions yet</h3>
 
                         <p>
-                            Your transactions will appear here.
+                            Choose an investment
+                            level that suits you.
                         </p>
 
                     </div>
 
                 </div>
 
-            </div>
-
-        </section>
 
 
+                <div class="welcome-feature">
 
-        <!-- ================= PROFILE ================= -->
+                    <span>📈</span>
 
-        <section id="profile" class="page">
+                    <div>
 
-            <div class="page-content">
+                        <strong>
+                            Track Your Investment
+                        </strong>
 
-                <h1>My Profile</h1>
+                        <p>
+                            Monitor your capital,
+                            returns and investment cycle.
+                        </p>
 
-
-                <div class="profile-card">
-
-                    <div class="profile-avatar">
-                        👤
                     </div>
 
-                    <h2 id="profileName">
-                        Chime User
-                    </h2>
+                </div>
 
-                    <p id="profileUsername">
-                        @user
-                    </p>
+
+
+                <div class="welcome-feature">
+
+                    <span>⏱️</span>
+
+                    <div>
+
+                        <strong>
+                            7-Day Cycle
+                        </strong>
+
+                        <p>
+                            Track the remaining time
+                            on your active investment.
+                        </p>
+
+                    </div>
 
                 </div>
 
 
-                <div class="profile-menu">
 
-                    <button onclick="showPage('transactions')">
-                        📋
-                        <span>Transaction History</span>
-                        <b>›</b>
-                    </button>
+                <div class="welcome-feature">
+
+                    <span>🔒</span>
+
+                    <div>
+
+                        <strong>
+                            Account Security
+                        </strong>
+
+                        <p>
+                            Your account information
+                            is designed to remain protected.
+                        </p>
+
+                    </div>
+
+                </div>
 
 
-                    <button onclick="showPage('notifications')">
-                        🔔
-                        <span>Notifications</span>
-                        <b>›</b>
-                    </button>
+            </div>
 
 
-                    <button onclick="showPage('settings')">
-                        ⚙️
-                        <span>Settings</span>
-                        <b>›</b>
-                    </button>
+
+            <button
+                class="primary-btn"
+                onclick="showPage('dashboard')">
+
+                Get Started
+
+            </button>
+
+
+            <button
+                class="learn-welcome-btn"
+                onclick="showPage('learn')">
+
+                Learn About Chime →
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         DASHBOARD
+    ================================== -->
+
+    <section
+        id="dashboard"
+        class="page">
+
+        <div class="dashboard-content">
+
+
+            <div class="dashboard-greeting">
+
+                <p>
+                    Welcome back 👋
+                </p>
+
+                <h1>
+                    My Dashboard
+                </h1>
+
+            </div>
+
+
+
+            <!-- BALANCE -->
+
+            <div class="balance-card">
+
+                <div class="balance-top">
+
+                    <span>
+                        Total Balance
+                    </span>
+
+                    <span>
+                        🇺🇸 USD
+                    </span>
+
+                </div>
+
+
+                <h2 id="totalBalance">
+                    $0.00
+                </h2>
+
+
+                <div class="balance-bottom">
+
+                    <span>
+                        Available balance
+                    </span>
 
                 </div>
 
             </div>
 
-        </section>
+
+
+            <!-- ACTIVE INVESTMENT TIMER -->
+
+            <div
+                id="activeInvestmentCard"
+                class="active-investment-card"
+                style="display:none;">
+
+                <div class="active-investment-top">
+
+                    <div>
+
+                        <span>
+                            Active Investment
+                        </span>
+
+                        <h3 id="activePlanName">
+                            Growth Plan
+                        </h3>
+
+                    </div>
+
+                    <span
+                        class="active-badge">
+
+                        ACTIVE
+
+                    </span>
+
+                </div>
+
+
+                <div class="investment-timer">
+
+                    <small>
+                        Cycle completes in
+                    </small>
+
+                    <strong
+                        id="investmentTimer">
+
+                        7d 00h 00m 00s
+
+                    </strong>
+
+                </div>
+
+
+                <div class="timer-info">
+
+                    <div>
+
+                        <span>
+                            Capital
+                        </span>
+
+                        <strong id="activeCapital">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Target return
+                        </span>
+
+                        <strong id="activeReturn">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    id="investmentEndDate"
+                    class="investment-end-date">
+
+                    Cycle end date
+
+                </p>
+
+            </div>
 
 
 
-        <!-- ================= NOTIFICATIONS ================= -->
+            <!-- QUICK ACTIONS -->
 
-        <section id="notifications" class="page">
+            <div class="section-title">
 
-            <div class="page-content">
+                <h3>
+                    Quick Actions
+                </h3>
+
+            </div>
+
+
+            <div class="quick-actions">
+
 
                 <button
-                    class="back-btn"
-                    onclick="showPage('dashboard')">
+                    onclick="showPage('deposit')">
 
-                    ← Back
+                    <span>
+                        ₿
+                    </span>
+
+                    <strong>
+                        Deposit
+                    </strong>
 
                 </button>
 
-                <h1>Notifications</h1>
 
+
+                <button
+                    onclick="showPage('withdraw')">
+
+                    <span>
+                        💸
+                    </span>
+
+                    <strong>
+                        Withdraw
+                    </strong>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('investments')">
+
+                    <span>
+                        📈
+                    </span>
+
+                    <strong>
+                        Invest
+                    </strong>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('transactions')">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <strong>
+                        History
+                    </strong>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- SUMMARY -->
+
+            <div class="section-title">
+
+                <h3>
+                    Investment Summary
+                </h3>
+
+            </div>
+
+
+            <div class="summary-card">
+
+
+                <div>
+
+                    <span>
+                        Invested Capital
+                    </span>
+
+                    <strong id="investedAmount">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Target Returns
+                    </span>
+
+                    <strong id="profitAmount">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <button
+                class="primary-btn"
+                onclick="showPage('investments')">
+
+                View Investment Plans
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         INVESTMENT PLANS
+    ================================== -->
+
+    <section
+        id="investments"
+        class="page">
+
+        <div class="page-content">
+
+
+            <button
+                class="back-btn"
+                onclick="showPage('dashboard')">
+
+                ← Back
+
+            </button>
+
+
+            <h1>
+                Investment Plans
+            </h1>
+
+
+            <p class="page-description">
+
+                Choose a capital range that fits
+                your investment goals.
+
+            </p>
+
+
+
+            <div class="investment-limit">
+
+                <span>
+                    Maximum capital
+                </span>
+
+                <strong>
+                    $2,000
+                </strong>
+
+            </div>
+
+
+
+            <div class="investment-list">
+
+
+                <!-- STARTER -->
+
+                <div class="investment-card">
+
+                    <div class="investment-header">
+
+                        <div>
+
+                            <h3>
+                                Starter Plan
+                            </h3>
+
+                            <span>
+                                $20 – $99
+                            </span>
+
+                        </div>
+
+
+                        <strong>
+                            25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="investment-details">
+
+                        <p>
+                            Capital:
+                            <strong>
+                                $20 – $99
+                            </strong>
+                        </p>
+
+                        <p>
+                            Target return:
+                            <strong>
+                                25%
+                            </strong>
+                        </p>
+
+                        <p>
+                            Cycle:
+                            <strong>
+                                7 Days
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="selectPlan(
+                            'Starter Plan',
+                            20,
+                            25,
+                            7
+                        )">
+
+                        Invest Now
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- BASIC -->
+
+                <div class="investment-card">
+
+                    <div class="investment-header">
+
+                        <div>
+
+                            <h3>
+                                Basic Plan
+                            </h3>
+
+                            <span>
+                                $100 – $499
+                            </span>
+
+                        </div>
+
+
+                        <strong>
+                            25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="investment-details">
+
+                        <p>
+                            Capital:
+                            <strong>
+                                $100 – $499
+                            </strong>
+                        </p>
+
+                        <p>
+                            Target return:
+                            <strong>
+                                25%
+                            </strong>
+                        </p>
+
+                        <p>
+                            Cycle:
+                            <strong>
+                                7 Days
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="selectPlan(
+                            'Basic Plan',
+                            100,
+                            25,
+                            7
+                        )">
+
+                        Invest Now
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- GROWTH -->
+
+                <div class="investment-card">
+
+                    <div class="investment-header">
+
+                        <div>
+
+                            <h3>
+                                Growth Plan
+                            </h3>
+
+                            <span>
+                                $500 – $999
+                            </span>
+
+                        </div>
+
+
+                        <strong>
+                            25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="investment-details">
+
+                        <p>
+                            Capital:
+                            <strong>
+                                $500 – $999
+                            </strong>
+                        </p>
+
+                        <p>
+                            Target return:
+                            <strong>
+                                25%
+                            </strong>
+                        </p>
+
+                        <p>
+                            Cycle:
+                            <strong>
+                                7 Days
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="selectPlan(
+                            'Growth Plan',
+                            500,
+                            25,
+                            7
+                        )">
+
+                        Invest Now
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- PRO -->
+
+                <div class="investment-card">
+
+                    <div class="investment-header">
+
+                        <div>
+
+                            <h3>
+                                Pro Plan
+                            </h3>
+
+                            <span>
+                                $1,000 – $1,499
+                            </span>
+
+                        </div>
+
+
+                        <strong>
+                            25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="investment-details">
+
+                        <p>
+                            Capital:
+                            <strong>
+                                $1,000 – $1,499
+                            </strong>
+                        </p>
+
+                        <p>
+                            Target return:
+                            <strong>
+                                25%
+                            </strong>
+                        </p>
+
+                        <p>
+                            Cycle:
+                            <strong>
+                                7 Days
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="selectPlan(
+                            'Pro Plan',
+                            1000,
+                            25,
+                            7
+                        )">
+
+                        Invest Now
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- ELITE -->
+
+                <div class="investment-card elite-card">
+
+                    <div class="investment-header">
+
+                        <div>
+
+                            <h3>
+                                Elite Plan
+                            </h3>
+
+                            <span>
+                                $1,500 – $2,000
+                            </span>
+
+                        </div>
+
+
+                        <strong>
+                            25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="investment-details">
+
+                        <p>
+                            Capital:
+                            <strong>
+                                $1,500 – $2,000
+                            </strong>
+                        </p>
+
+                        <p>
+                            Target return:
+                            <strong>
+                                25%
+                            </strong>
+                        </p>
+
+                        <p>
+                            Cycle:
+                            <strong>
+                                7 Days
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="selectPlan(
+                            'Elite Plan',
+                            1500,
+                            25,
+                            7
+                        )">
+
+                        Invest Now
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="risk-notice">
+
+                <strong>
+                    Important
+                </strong>
+
+                <p>
+
+                    Investment involves risk.
+                    The 25% figure displayed above
+                    represents the stated target return
+                    for the investment model and should
+                    not be interpreted as a guarantee
+                    of investment performance.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         DEPOSIT
+    ================================== -->
+
+    <section
+        id="deposit"
+        class="page">
+
+        <div class="page-content">
+
+
+            <button
+                class="back-btn"
+                onclick="showPage('dashboard')">
+
+                ← Back
+
+            </button>
+
+
+            <h1>
+                Deposit Crypto
+            </h1>
+
+
+            <p class="page-description">
+
+                Fund your Chime account using
+                a supported cryptocurrency.
+
+            </p>
+
+
+
+            <div class="form-card">
+
+
+                <label>
+                    Cryptocurrency
+                </label>
+
+
+                <select
+                    id="cryptoCurrency">
+
+                    <option value="USDT">
+                        USDT
+                    </option>
+
+                    <option value="USDC">
+                        USDC
+                    </option>
+
+                    <option value="BTC">
+                        Bitcoin (BTC)
+                    </option>
+
+                </select>
+
+
+
+                <label>
+                    Network
+                </label>
+
+
+                <select
+                    id="cryptoNetwork">
+
+                    <option value="TRC20">
+                        TRON (TRC20)
+                    </option>
+
+                    <option value="ERC20">
+                        Ethereum (ERC20)
+                    </option>
+
+                    <option value="BEP20">
+                        BNB Smart Chain (BEP20)
+                    </option>
+
+                </select>
+
+
+
+                <label>
+                    Amount in USD
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span>
+                        $
+                    </span>
+
+                    <input
+                        type="number"
+                        id="depositAmount"
+                        placeholder="Enter amount"
+                        min="1">
+
+                </div>
+
+
+
+                <button
+                    class="primary-btn"
+                    onclick="makeDeposit()">
+
+                    Continue
+
+                </button>
+
+
+                <p class="demo-note">
+
+                    Demo mode: cryptocurrency
+                    transfers are not processed yet.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         WITHDRAW
+    ================================== -->
+
+    <section
+        id="withdraw"
+        class="page">
+
+        <div class="page-content">
+
+
+            <button
+                class="back-btn"
+                onclick="showPage('dashboard')">
+
+                ← Back
+
+            </button>
+
+
+            <h1>
+                Withdraw Capital
+            </h1>
+
+
+            <p class="page-description">
+
+                Submit a separate request if you
+                want to withdraw your investment capital.
+
+            </p>
+
+
+
+            <div class="form-card">
+
+
+                <label>
+                    Withdrawal Amount (USD)
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span>
+                        $
+                    </span>
+
+                    <input
+                        type="number"
+                        id="withdrawAmount"
+                        placeholder="Enter amount">
+
+                </div>
+
+
+
+                <label>
+                    Bank / Wallet Details
+                </label>
+
+
+                <input
+                    type="text"
+                    id="bankAccount"
+                    placeholder="Enter account or wallet address">
+
+
+
+                <label>
+                    Withdrawal Method
+                </label>
+
+
+                <select
+                    id="withdrawMethod">
+
+                    <option value="crypto">
+                        Cryptocurrency
+                    </option>
+
+                    <option value="bank">
+                        Bank Transfer
+                    </option>
+
+                </select>
+
+
+
+                <button
+                    class="primary-btn"
+                    onclick="makeWithdrawal()">
+
+                    Request Withdrawal
+
+                </button>
+
+
+                <p class="demo-note">
+
+                    Demo mode: withdrawals are
+                    not processed yet.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         TRANSACTIONS
+    ================================== -->
+
+    <section
+        id="transactions"
+        class="page">
+
+        <div class="page-content">
+
+
+            <h1>
+                Transaction History
+            </h1>
+
+
+            <p class="page-description">
+
+                Track deposits, investments,
+                returns and withdrawals.
+
+            </p>
+
+
+
+            <div id="transactionList">
 
                 <div class="empty-state">
 
-                    <span>🔔</span>
+                    <span>
+                        📋
+                    </span>
 
-                    <h3>No notifications</h3>
+                    <h3>
+                        No transactions yet
+                    </h3>
 
                     <p>
-                        You're all caught up.
+                        Your transactions will appear here.
                     </p>
 
                 </div>
 
             </div>
 
-        </section>
+
+        </div>
+
+    </section>
 
 
 
-        <!-- ================= SETTINGS ================= -->
+    <!-- =================================
+         LEARN ABOUT CHIME
+    ================================== -->
 
-        <section id="settings" class="page">
+    <section
+        id="learn"
+        class="page">
 
-            <div class="page-content">
-
-                <button
-                    class="back-btn"
-                    onclick="showPage('profile')">
-
-                    ← Back
-
-                </button>
-
-                <h1>Settings</h1>
+        <div class="page-content">
 
 
-                <div class="settings-list">
+            <button
+                class="back-btn"
+                onclick="showPage('dashboard')">
 
-                    <button>
-                        🔐
-                        <span>Security</span>
-                        <b>›</b>
-                    </button>
+                ← Back
 
-
-                    <button>
-                        🔔
-                        <span>Notifications</span>
-                        <b>›</b>
-                    </button>
+            </button>
 
 
-                    <button>
-                        ℹ️
-                        <span>About Chime</span>
-                        <b>›</b>
-                    </button>
+            <h1>
+                About Chime
+            </h1>
 
+
+            <p class="page-description">
+
+                Learn how the Chime investment model
+                is designed to work.
+
+            </p>
+
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    💡
                 </div>
+
+                <h2>
+                    What is Chime?
+                </h2>
+
+                <p>
+
+                    Chime Investment is a platform
+                    designed to give users access to
+                    structured investment opportunities
+                    while allowing them to monitor their
+                    capital, investment cycles and
+                    account activity.
+
+                </p>
 
             </div>
 
-        </section>
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    📈
+                </div>
+
+                <h2>
+                    How the 7-Day Cycle Works
+                </h2>
+
+                <p>
+
+                    Each investment operates on a
+                    7-day cycle. After an investment
+                    is created, the platform displays
+                    a countdown showing the remaining
+                    time until the cycle reaches its
+                    scheduled completion.
+
+                </p>
+
+            </div>
 
 
 
-        <!-- ================= BOTTOM NAVIGATION ================= -->
+            <div class="learn-card">
 
-        <nav class="bottom-nav">
+                <div class="learn-icon">
+                    💵
+                </div>
+
+                <h2>
+                    Return Structure
+                </h2>
+
+                <p>
+
+                    The Chime investment model uses a
+                    stated target return of 25% of the
+                    investment capital per 7-day cycle.
+
+                    Returns and investment capital are
+                    tracked separately within the
+                    investment record.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    🔄
+                </div>
+
+                <h2>
+                    Reinvestment
+                </h2>
+
+                <p>
+
+                    At the end of an investment cycle,
+                    capital may continue into another
+                    investment cycle according to the
+                    applicable investment terms.
+
+                    Users who want their capital returned
+                    should submit a separate withdrawal
+                    request.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    🧠
+                </div>
+
+                <h2>
+                    Invest Wisely
+                </h2>
+
+                <ul class="learn-list">
+
+                    <li>
+                        Understand an investment before
+                        committing funds.
+                    </li>
+
+                    <li>
+                        Never invest money you cannot
+                        afford to lose.
+                    </li>
+
+                    <li>
+                        Consider your financial goals
+                        and risk tolerance.
+                    </li>
+
+                    <li>
+                        Avoid making investment decisions
+                        because of pressure from others.
+                    </li>
+
+                    <li>
+                        Keep records of your investments
+                        and transactions.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div class="risk-notice">
+
+                <strong>
+                    Risk Disclosure
+                </strong>
+
+                <p>
+
+                    Investments involve risk.
+                    The stated 25% target return is
+                    presented as part of the Chime
+                    investment model. Actual investment
+                    performance can depend on the
+                    underlying business and applicable
+                    terms.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         PROFILE
+    ================================== -->
+
+    <section
+        id="profile"
+        class="page">
+
+        <div class="page-content">
+
+
+            <h1>
+                My Profile
+            </h1>
+
+
+
+            <div class="profile-card">
+
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+
+                <h2 id="profileName">
+                    Chime User
+                </h2>
+
+
+                <p id="profileUsername">
+                    @user
+                </p>
+
+
+            </div>
+
+
+
+            <div class="profile-menu">
+
+
+                <button
+                    onclick="showPage('transactions')">
+
+                    📋
+
+                    <span>
+                        Transaction History
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('learn')">
+
+                    📚
+
+                    <span>
+                        About Chime
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('notifications')">
+
+                    🔔
+
+                    <span>
+                        Notifications
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('settings')">
+
+                    ⚙️
+
+                    <span>
+                        Settings
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         NOTIFICATIONS
+    ================================== -->
+
+    <section
+        id="notifications"
+        class="page">
+
+        <div class="page-content">
+
 
             <button
-                class="nav-item active"
+                class="back-btn"
                 onclick="showPage('dashboard')">
 
-                <span>⌂</span>
-                <small>Home</small>
+                ← Back
 
             </button>
 
 
+            <h1>
+                Notifications
+            </h1>
+
+
+
+            <div class="empty-state">
+
+                <span>
+                    🔔
+                </span>
+
+                <h3>
+                    No notifications
+                </h3>
+
+                <p>
+                    You're all caught up.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         SETTINGS
+    ================================== -->
+
+    <section
+        id="settings"
+        class="page">
+
+        <div class="page-content">
+
+
             <button
-                class="nav-item"
-                onclick="showPage('investments')">
-
-                <span>📈</span>
-                <small>Invest</small>
-
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="showPage('transactions')">
-
-                <span>📋</span>
-                <small>History</small>
-
-            </button>
-
-
-            <button
-                class="nav-item"
+                class="back-btn"
                 onclick="showPage('profile')">
 
-                <span>👤</span>
-                <small>Profile</small>
+                ← Back
 
             </button>
 
-        </nav>
 
-    </div>
+            <h1>
+                Settings
+            </h1>
 
 
-    <!-- JAVASCRIPT -->
 
-    <script src="app.js"></script>
+            <div class="settings-list">
+
+
+                <button>
+
+                    💵
+
+                    <span>
+                        Currency
+                    </span>
+
+                    <b>
+                        USD
+                    </b>
+
+                </button>
+
+
+
+                <button>
+
+                    🔐
+
+                    <span>
+                        Security
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+
+                <button>
+
+                    🔔
+
+                    <span>
+                        Notifications
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+
+                <button
+                    onclick="showPage('learn')">
+
+                    ℹ️
+
+                    <span>
+                        About Chime
+                    </span>
+
+                    <b>
+                        ›
+                    </b>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         BOTTOM NAVIGATION
+    ================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <button
+            class="nav-item active"
+            onclick="showPage('dashboard')">
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-item"
+            onclick="showPage('investments')">
+
+            <span>
+                📈
+            </span>
+
+            <small>
+                Invest
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-item"
+            onclick="showPage('transactions')">
+
+            <span>
+                📋
+            </span>
+
+            <small>
+                History
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-item"
+            onclick="showPage('profile')">
+
+            <span>
+                👤
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+<script src="app.js"></script>
 
 </body>
-                    </html>
+    </html>
