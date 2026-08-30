@@ -4497,4 +4497,408 @@ body.dark-mode .elite-card .investment-header > strong {
         font-size: 10px;
     }
 
+   /* =========================================
+   CHIME PREMIUM PROFILE
+========================================= */
+
+#profile .page-content,
+#accountDetails .page-content {
+    padding: 20px 16px 100px;
+    max-width: 600px;
+    margin: auto;
+}
+
+
+/* PROFILE TITLE */
+
+#profile h1,
+#accountDetails h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+
+/* PROFILE CARD */
+
+.profile-card {
+    position: relative;
+    overflow: hidden;
+
+    text-align: center;
+
+    margin: 20px 0;
+
+    padding: 28px 20px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(135deg, #172033, #263653);
+
+    color: white;
+
+    box-shadow:
+        0 12px 30px rgba(23,32,51,0.22);
+}
+
+
+/* BIG C BACKGROUND */
+
+.profile-card::after {
+    content: "C";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -55px;
+
+    font-size: 170px;
+
+    font-weight: 900;
+
+    opacity: 0.055;
+
+    pointer-events: none;
+}
+
+
+/* PROFILE AVATAR */
+
+.profile-avatar {
+    position: relative;
+    z-index: 1;
+
+    width: 78px;
+    height: 78px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.13);
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    font-size: 34px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+.profile-card h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 5px;
+
+    font-size: 21px;
+}
+
+
+.profile-card p {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    font-size: 13px;
+
+    opacity: 0.65;
+}
+
+
+/* PROFILE MENU */
+
+.profile-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.profile-menu button {
+    width: 100%;
+
+    min-height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 12px 15px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    color: inherit;
+
+    text-align: left;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+.profile-menu button:active {
+    transform: scale(0.98);
+}
+
+
+.profile-menu button span {
+    flex: 1;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.profile-menu button b {
+    font-size: 21px;
+
+    font-weight: 400;
+
+    opacity: 0.4;
+}
+
+
+/* =========================================
+   ACCOUNT DETAILS
+========================================= */
+
+.account-details-card {
+    margin-top: 22px;
+
+    padding: 5px 18px;
+
+    border-radius: 22px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,0.06);
+}
+
+
+.account-detail-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 0;
+
+    border-bottom:
+        1px solid rgba(23,32,51,0.07);
+}
+
+
+.account-detail-row:last-child {
+    border-bottom: none;
+}
+
+
+.account-detail-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(23,32,51,0.07);
+
+    font-size: 18px;
+}
+
+
+.account-detail-info {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.account-detail-info span {
+    font-size: 10px;
+
+    opacity: 0.55;
+}
+
+
+.account-detail-info strong {
+    font-size: 13px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* SECURITY STATUS */
+
+.security-active {
+    display: inline-flex;
+
+    width: fit-content;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(0,180,100,0.11);
+
+    color: #008f55;
+
+    font-size: 11px !important;
+}
+
+
+/* SECURITY INFORMATION */
+
+.security-info-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-top: 15px;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(23,32,51,0.055);
+}
+
+
+.security-info-card > div {
+    font-size: 22px;
+}
+
+
+.security-info-card section {
+    flex: 1;
+}
+
+
+.security-info-card strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 13px;
+}
+
+
+.security-info-card p {
+    margin: 0;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode .profile-menu button,
+body.dark-mode .account-details-card {
+    background: #182236;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.25);
+}
+
+
+body.dark-mode .account-detail-row {
+    border-bottom-color:
+        rgba(255,255,255,0.07);
+}
+
+
+body.dark-mode .account-detail-icon {
+    background:
+        rgba(255,255,255,0.06);
+}
+
+
+body.dark-mode .security-info-card {
+    background:
+        rgba(255,255,255,0.05);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    #profile h1,
+    #accountDetails h1 {
+        font-size: 25px;
+    }
+
+    .profile-card {
+        padding: 24px 16px;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+    }
+
+    .profile-menu button {
+        min-height: 58px;
+    }
+
    }
