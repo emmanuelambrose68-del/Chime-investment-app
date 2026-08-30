@@ -4902,3 +4902,333 @@ body.dark-mode .security-info-card {
     }
 
    }
+/* =========================================
+   CHIME PREMIUM DEPOSIT & WITHDRAWAL
+========================================= */
+
+#deposit .page-content,
+#withdraw .page-content {
+    padding: 20px 16px 100px;
+    max-width: 600px;
+    margin: auto;
+}
+
+
+/* PAGE HEADERS */
+
+#deposit h1,
+#withdraw h1 {
+    margin-bottom: 6px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+#deposit .page-description,
+#withdraw .page-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   NOTICE CARD
+========================================= */
+
+.notice-card {
+    position: relative;
+    overflow: hidden;
+
+    margin-bottom: 16px;
+    padding: 17px 18px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg, #172033, #263653);
+
+    color: white;
+
+    box-shadow:
+        0 9px 24px rgba(23,32,51,0.18);
+}
+
+.notice-card::after {
+    content: "C";
+
+    position: absolute;
+    right: -10px;
+    bottom: -35px;
+
+    font-size: 100px;
+    font-weight: 900;
+
+    opacity: 0.06;
+
+    pointer-events: none;
+}
+
+.notice-card strong,
+.notice-card p {
+    position: relative;
+    z-index: 1;
+}
+
+.notice-card strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 13px;
+}
+
+.notice-card p {
+    margin: 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    opacity: 0.68;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+    padding: 21px;
+
+    border-radius: 22px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,0.07);
+}
+
+
+/* LABELS */
+
+.form-card label {
+    display: block;
+
+    margin: 0 0 7px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    opacity: 0.65;
+}
+
+
+/* INPUTS + SELECTS */
+
+.form-card input,
+.form-card select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    min-height: 50px;
+
+    margin-bottom: 17px;
+
+    padding: 0 14px;
+
+    border: 1px solid rgba(23,32,51,0.10);
+
+    border-radius: 14px;
+
+    background:
+        rgba(23,32,51,0.035);
+
+    color: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-card input:focus,
+.form-card select:focus {
+    border-color: rgba(23,32,51,0.35);
+
+    box-shadow:
+        0 0 0 3px rgba(23,32,51,0.06);
+}
+
+
+/* INPUT PLACEHOLDER */
+
+.form-card input::placeholder {
+    opacity: 0.4;
+}
+
+
+/* =========================================
+   MONEY INPUT
+========================================= */
+
+.input-wrapper {
+    position: relative;
+
+    margin-bottom: 17px;
+}
+
+
+.input-wrapper span {
+    position: absolute;
+
+    left: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    opacity: 0.55;
+
+    z-index: 1;
+}
+
+
+.input-wrapper input {
+    margin-bottom: 0;
+
+    padding-left: 34px;
+}
+
+
+/* =========================================
+   FORM BUTTON
+========================================= */
+
+.form-card .primary-btn {
+    width: 100%;
+
+    min-height: 52px;
+
+    margin-top: 3px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.10);
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+.form-card .primary-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   DEMO / INFORMATION NOTE
+========================================= */
+
+.demo-note {
+    margin: 15px 2px 0;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+#deposit .back-btn,
+#withdraw .back-btn {
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   WITHDRAWAL DESTINATION
+========================================= */
+
+#bankAccount {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode #deposit .form-card,
+body.dark-mode #withdraw .form-card {
+    background: #182236;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .form-card input,
+body.dark-mode .form-card select {
+    background:
+        rgba(255,255,255,0.05);
+
+    border-color:
+        rgba(255,255,255,0.08);
+}
+
+body.dark-mode .form-card input:focus,
+body.dark-mode .form-card select:focus {
+    border-color:
+        rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,0.04);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    #deposit h1,
+    #withdraw h1 {
+        font-size: 25px;
+    }
+
+    .form-card {
+        padding: 17px;
+    }
+
+    .form-card input,
+    .form-card select {
+        min-height: 48px;
+    }
+
+   }
