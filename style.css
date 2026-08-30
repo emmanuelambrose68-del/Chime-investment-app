@@ -631,3 +631,391 @@ button {
 
 .investment-header > strong {
     font-size: 23px
+/* =========================================
+   DEPOSIT + WITHDRAWAL PREMIUM UI
+========================================= */
+
+#deposit .page-content,
+#withdraw .page-content {
+    max-width: 650px;
+}
+
+
+/* =========================================
+   PAGE ICON HEADER
+========================================= */
+
+#deposit .page-content::before,
+#withdraw .page-content::before {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    margin: 5px 0 18px;
+
+    border-radius: 17px;
+
+    font-size: 27px;
+
+    background: #edf3fc;
+}
+
+#deposit .page-content::before {
+    content: "₿";
+}
+
+#withdraw .page-content::before {
+    content: "↗";
+}
+
+
+/* =========================================
+   FORM CARDS
+========================================= */
+
+#deposit .form-card,
+#withdraw .form-card {
+    position: relative;
+
+    padding: 23px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e7ef;
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 30px rgba(20, 35, 60, 0.07);
+}
+
+
+/* =========================================
+   FORM LABELS
+========================================= */
+
+#deposit .form-card label,
+#withdraw .form-card label {
+    display: block;
+
+    color: #344055;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    margin: 18px 0 8px;
+}
+
+#deposit .form-card label:first-child,
+#withdraw .form-card label:first-child {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   INPUTS + SELECTS
+========================================= */
+
+#deposit .form-card input,
+#deposit .form-card select,
+#withdraw .form-card input,
+#withdraw .form-card select {
+    width: 100%;
+    height: 50px;
+
+    padding: 0 14px;
+
+    background: #f7f9fc;
+
+    border: 1px solid #dfe5ee;
+    border-radius: 13px;
+
+    outline: none;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+#deposit .form-card input:focus,
+#deposit .form-card select:focus,
+#withdraw .form-card input:focus,
+#withdraw .form-card select:focus {
+
+    border-color: #315b9b;
+
+    box-shadow:
+        0 0 0 3px rgba(49, 91, 155, 0.10);
+}
+
+
+/* =========================================
+   MONEY INPUT
+========================================= */
+
+#deposit .input-wrapper,
+#withdraw .input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#deposit .input-wrapper > span,
+#withdraw .input-wrapper > span {
+
+    position: absolute;
+
+    left: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #315b9b;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    z-index: 2;
+}
+
+#deposit .input-wrapper input,
+#withdraw .input-wrapper input {
+    padding-left: 34px;
+
+    height: 54px;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   DEPOSIT NOTICE
+========================================= */
+
+#deposit .notice-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 19px 19px 19px 22px;
+
+    margin-bottom: 17px;
+
+    background: linear-gradient(
+        135deg,
+        #eef6ff,
+        #f8fbff
+    );
+
+    border: 1px solid #d8e7fa;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 22px rgba(30, 70, 120, 0.06);
+}
+
+#deposit .notice-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background: #315b9b;
+}
+
+#deposit .notice-card strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+#deposit .notice-card p {
+    color: #68758a;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+#deposit .primary-btn,
+#withdraw .primary-btn {
+
+    min-height: 52px;
+
+    margin-top: 5px;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SMALL INFORMATION TEXT
+========================================= */
+
+#deposit .demo-note,
+#withdraw .demo-note {
+
+    color: #8a93a3;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    text-align: center;
+
+    margin-top: 14px;
+}
+
+
+/* =========================================
+   WITHDRAWAL SPECIAL DESIGN
+========================================= */
+
+#withdraw .page-description {
+    margin-bottom: 21px;
+}
+
+#withdraw .form-card::after {
+
+    content:
+        "Capital withdrawals are submitted separately from your investment cycle.";
+
+    display: block;
+
+    margin-top: 17px;
+    padding-top: 14px;
+
+    border-top: 1px solid #edf0f4;
+
+    color: #7c8697;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode #deposit .form-card,
+body.dark-mode #withdraw .form-card {
+
+    background: #151e2d;
+
+    border-color: #2a3548;
+}
+
+body.dark-mode #deposit .form-card label,
+body.dark-mode #withdraw .form-card label {
+
+    color: #dce2eb;
+}
+
+body.dark-mode #deposit .form-card input,
+body.dark-mode #deposit .form-card select,
+body.dark-mode #withdraw .form-card input,
+body.dark-mode #withdraw .form-card select {
+
+    background: #1d2737;
+
+    border-color: #303d52;
+
+    color: #f1f4f8;
+}
+
+body.dark-mode #deposit .input-wrapper > span,
+body.dark-mode #withdraw .input-wrapper > span {
+
+    color: #7fa8e8;
+}
+
+body.dark-mode #deposit .notice-card {
+
+    background: linear-gradient(
+        135deg,
+        #18283b,
+        #172231
+    );
+
+    border-color: #2b405d;
+}
+
+body.dark-mode #deposit .notice-card strong {
+
+    color: #f1f4f8;
+}
+
+body.dark-mode #deposit .notice-card p {
+
+    color: #a7b2c3;
+}
+
+body.dark-mode #withdraw .form-card::after {
+
+    border-color: #2b3547;
+
+    color: #8996aa;
+}
+
+body.dark-mode #deposit .page-content::before,
+body.dark-mode #withdraw .page-content::before {
+
+    background: #202c40;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    #deposit .form-card,
+    #withdraw .form-card {
+
+        padding: 19px;
+
+        border-radius: 19px;
+    }
+
+    #deposit .notice-card {
+
+        padding: 17px 17px 17px 20px;
+    }
+
+       }
