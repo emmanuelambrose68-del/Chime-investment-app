@@ -894,3 +894,90 @@ document.addEventListener("DOMContentLoaded", function () {
         loadAccountDetails;
 
 })();
+/* =========================================
+   CHIME ACCOUNT DETAILS
+========================================= */
+
+function updateAccountDetails() {
+
+    /* Telegram username */
+
+    const telegramElement =
+        document.getElementById("accountTelegram");
+
+    if (
+        window.Telegram &&
+        window.Telegram.WebApp
+    ) {
+
+        const user =
+            window.Telegram.WebApp
+                .initDataUnsafe
+                .user;
+
+        if (telegramElement && user) {
+
+            telegramElement.textContent =
+                user.username
+                    ? "@" + user.username
+                    : "Telegram User";
+
+        }
+    }
+
+
+    /* Account creation date */
+
+    const createdElement =
+        document.getElementById("accountCreated");
+
+    if (createdElement) {
+
+        let created =
+            localStorage.getItem(
+                "chimeAccountCreated"
+            );
+
+        if (!created) {
+
+            created =
+                new Date().toLocaleDateString(
+                    "en-US",
+                    {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
+                );
+
+            localStorage.setItem(
+                "chimeAccountCreated",
+                created
+            );
+        }
+
+        createdElement.textContent =
+            created;
+    }
+
+
+    /* Security status */
+
+    const securityElement =
+        document.getElementById("accountSecurity");
+
+    if (securityElement) {
+
+        securityElement.textContent =
+            "Active";
+
+    }
+}
+
+
+/* Run when app loads */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateAccountDetails
+);
