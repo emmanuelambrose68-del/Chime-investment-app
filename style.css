@@ -3719,3 +3719,450 @@ button {
 a {
     -webkit-tap-highlight-color: transparent;
 }
+/* =========================================
+   CHIME PREMIUM DASHBOARD
+========================================= */
+
+.dashboard-content {
+    padding: 20px 16px 100px;
+    max-width: 600px;
+    margin: auto;
+}
+
+
+/* GREETING */
+
+.dashboard-greeting {
+    margin: 10px 2px 20px;
+}
+
+.dashboard-greeting p {
+    margin: 0 0 5px;
+    font-size: 14px;
+    opacity: 0.65;
+}
+
+.dashboard-greeting h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+
+/* BALANCE CARD */
+
+.balance-card {
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+    border-radius: 24px;
+    margin-bottom: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172033,
+            #263653
+        );
+
+    color: white;
+
+    box-shadow:
+        0 14px 35px rgba(23, 32, 51, 0.25);
+}
+
+
+/* Decorative C */
+
+.balance-card::after {
+    content: "C";
+    position: absolute;
+    right: -15px;
+    bottom: -45px;
+
+    font-size: 150px;
+    font-weight: 900;
+
+    opacity: 0.06;
+
+    pointer-events: none;
+}
+
+
+.balance-top,
+.balance-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.balance-top span:first-child {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+
+.balance-top span:last-child {
+    padding: 5px 9px;
+    border-radius: 8px;
+
+    background: rgba(255,255,255,0.12);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.balance-card h2 {
+    margin: 14px 0 18px;
+
+    font-size: 38px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+
+.balance-bottom span {
+    font-size: 12px;
+    opacity: 0.65;
+}
+
+
+/* SECTION TITLE */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 24px 2px 12px;
+}
+
+
+.section-title h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+/* QUICK ACTIONS */
+
+.quick-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+.quick-actions button {
+    border: none;
+
+    padding: 15px 7px;
+
+    min-height: 90px;
+
+    border-radius: 18px;
+
+    background: var(--card-bg, #ffffff);
+
+    color: inherit;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.quick-actions button:active {
+    transform: scale(0.94);
+}
+
+
+.quick-actions button span {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(23,32,51,0.08);
+
+    font-size: 20px;
+}
+
+
+.quick-actions button strong {
+    font-size: 11px;
+}
+
+
+/* SUMMARY */
+
+.summary-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.summary-card > div {
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background: var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.06);
+}
+
+
+.summary-card span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+
+    opacity: 0.6;
+}
+
+
+.summary-card strong {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* ACTIVE INVESTMENT */
+
+.active-investment-card {
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    border-radius: 22px;
+
+    background: var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.07);
+}
+
+
+.active-investment-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.active-investment-top span {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+
+.active-investment-top h3 {
+    margin: 5px 0 0;
+
+    font-size: 18px;
+}
+
+
+.active-badge {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px !important;
+
+    font-weight: 800;
+
+    background: rgba(0,180,100,0.12);
+
+    color: #008f55;
+
+    opacity: 1 !important;
+}
+
+
+/* TIMER */
+
+.investment-timer {
+    margin: 18px 0;
+
+    padding: 18px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(23,32,51,0.06);
+}
+
+
+.investment-timer small {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+
+    opacity: 0.6;
+}
+
+
+.investment-timer strong {
+    font-size: 24px;
+
+    letter-spacing: 1px;
+}
+
+
+/* TIMER INFO */
+
+.timer-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+
+.timer-info div {
+    padding: 12px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(23,32,51,0.04);
+}
+
+
+.timer-info span {
+    display: block;
+
+    font-size: 10px;
+
+    opacity: 0.55;
+
+    margin-bottom: 5px;
+}
+
+
+.timer-info strong {
+    font-size: 15px;
+}
+
+
+.investment-end-date {
+    margin: 14px 0 0;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    opacity: 0.55;
+}
+
+
+/* PRIMARY BUTTON */
+
+.dashboard-content > .primary-btn {
+    width: 100%;
+
+    min-height: 54px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.12);
+}
+
+
+/* DARK MODE */
+
+body.dark-mode .quick-actions button,
+body.dark-mode .summary-card > div,
+body.dark-mode .active-investment-card {
+    background: #182236;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.25);
+}
+
+
+body.dark-mode .quick-actions button span {
+    background: rgba(255,255,255,0.07);
+}
+
+
+body.dark-mode .timer-info div,
+body.dark-mode .investment-timer {
+    background: rgba(255,255,255,0.05);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 380px) {
+
+    .quick-actions {
+        gap: 7px;
+    }
+
+    .quick-actions button {
+        padding: 12px 4px;
+    }
+
+    .balance-card h2 {
+        font-size: 32px;
+    }
+
+    .investment-timer strong {
+        font-size: 20px;
+    }
+
+}
