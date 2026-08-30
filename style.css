@@ -2728,3 +2728,126 @@ body.dark-mode #transactions .empty-state > span {
         font-size: 12px;
     }
 }
+/* =========================================
+   CHIME — ACCOUNT DETAILS
+========================================= */
+
+.account-details-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 8px 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+}
+
+.account-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-detail-row:last-child {
+    border-bottom: none;
+}
+
+.account-detail-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+    background: #edf3fc;
+
+    font-size: 19px;
+}
+
+.account-detail-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.account-detail-info span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+    margin-bottom: 5px;
+}
+
+.account-detail-info strong {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    word-break: break-word;
+}
+
+.security-active {
+    color: #22a06b !important;
+}
+
+.security-info-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background: #edf5ff;
+
+    border: 1px solid #d8e7fa;
+}
+
+.security-info-card > div {
+    font-size: 21px;
+}
+
+.security-info-card strong {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+.security-info-card p {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode .account-detail-icon {
+    background: #202d41;
+}
+
+body.dark-mode .security-info-card {
+    background: #18283b;
+
+    border-color: #2c405a;
+}
+
+body.dark-mode .security-info-card strong {
+    color: #f1f4f8;
+   }
