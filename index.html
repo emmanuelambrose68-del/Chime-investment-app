@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
 <title>Chime Investment</title>
 
@@ -10,1418 +11,473 @@
 
 <style>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f6fa;
-    color: #172033;
+body{
+font-family:Arial,sans-serif;
+background:#080d18;
+color:#172033;
 }
 
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
+button{
+font-family:inherit;
+border:0;
+cursor:pointer;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+display:none!important;
 }
 
 
-/* WELCOME */
+/* ================= WELCOME ================= */
 
-#welcomePage {
-    min-height: 100vh;
-    background: #111827;
-    color: white;
-    padding: 45px 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#welcomePage{
+min-height:100vh;
+background:
+radial-gradient(circle at 80% 10%,#253b70 0,transparent 35%),
+linear-gradient(145deg,#080d18,#121d35);
+color:white;
+padding:35px 22px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.welcome {
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
+.welcome{
+width:100%;
+max-width:500px;
+text-align:center;
 }
 
-.logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 28px;
-    background: white;
-    color: #111827;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    font-weight: bold;
-    margin: auto;
+.logo{
+width:92px;
+height:92px;
+margin:auto;
+border-radius:28px;
+background:linear-gradient(145deg,#ffffff,#dce3ef);
+color:#101a2d;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:55px;
+font-weight:900;
+box-shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
-.welcome h1 {
-    font-size: 34px;
-    margin-top: 25px;
+.brand{
+margin-top:25px;
+font-size:36px;
+font-weight:900;
+letter-spacing:-1px;
 }
 
-.subtitle {
-    color: #b9c0cd;
-    margin-top: 10px;
-    font-size: 16px;
+.tagline{
+color:#9da9bd;
+margin-top:9px;
+font-size:15px;
 }
 
-.features {
-    margin-top: 35px;
-    display: grid;
-    gap: 13px;
+.welcome-card{
+margin-top:35px;
+background:rgba(255,255,255,.07);
+border:1px solid rgba(255,255,255,.08);
+border-radius:26px;
+padding:18px;
+backdrop-filter:blur(15px);
 }
 
-.feature {
-    background: #293348;
-    border-radius: 20px;
-    padding: 18px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-align: left;
+.feature{
+display:flex;
+align-items:center;
+text-align:left;
+gap:15px;
+padding:17px 8px;
 }
 
-.feature-icon {
-    width: 48px;
-    height: 48px;
-    background: #3b465d;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
+.feature-icon{
+width:50px;
+height:50px;
+border-radius:17px;
+background:#202c44;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
 }
 
-.feature strong {
-    font-size: 16px;
+.feature strong{
+font-size:15px;
 }
 
-.feature p {
-    color: #aeb6c5;
-    font-size: 13px;
-    margin-top: 5px;
+.feature p{
+margin-top:5px;
+font-size:12px;
+color:#9da9bd;
 }
 
-.start-btn {
-    width: 100%;
-    height: 58px;
-    margin-top: 30px;
-    border-radius: 18px;
-    background: white;
-    color: #111827;
-    font-size: 17px;
-    font-weight: bold;
+.start-btn{
+width:100%;
+height:59px;
+margin-top:25px;
+border-radius:18px;
+background:white;
+color:#101a2d;
+font-size:17px;
+font-weight:800;
+box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
 
-/* APP */
+/* ================= APP ================= */
 
-#app {
-    min-height: 100vh;
-    padding-bottom: 85px;
+#app{
+min-height:100vh;
+background:#f4f6fa;
+padding-bottom:90px;
 }
 
-.header {
-    background: #111827;
-    color: white;
-    padding: 25px 20px 30px;
-    border-radius: 0 0 30px 30px;
-}
-
-.header p {
-    color: #aeb6c5;
-    font-size: 13px;
-}
-
-.header h1 {
-    margin-top: 5px;
-    font-size: 28px;
-}
-
-.container {
-    width: calc(100% - 30px);
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-
-/* PAGES */
-
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-
-/* BALANCE */
-
-.balance {
-    background: white;
-    border-radius: 25px;
-    padding: 24px;
-    box-shadow: 0 7px 25px rgba(0,0,0,.06);
-}
-
-.balance small {
-    color: #858b98;
-}
-
-.balance h2 {
-    font-size: 36px;
-    margin-top: 8px;
-}
 
-.earning {
-    margin-top: 15px;
-    color: #21865b;
-    font-weight: bold;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 22px;
-}
-
-.actions button {
-    flex: 1;
-    height: 52px;
-    border-radius: 14px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.deposit {
-    background: #111827;
-    color: white;
-}
-
-.withdraw {
-    background: #e8ecf3;
-    color: #111827;
-}
-
-
-/* SECTION */
+/* HEADER */
 
-.section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 25px 2px 12px;
+.header{
+background:
+radial-gradient(circle at 90% 0,#263b6d 0,transparent 38%),
+#111a2d;
+color:white;
+padding:25px 20px 34px;
+border-radius:0 0 30px 30px;
 }
 
-.section-title h2 {
-    font-size: 20px;
+.header-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.view {
-    color: #21865b;
-    background: none;
-    font-weight: bold;
+.header small{
+color:#929fb5;
+font-size:12px;
 }
 
-
-/* QUICK */
-
-.quick {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 8px;
-}
-
-.quick button {
-    background: white;
-    border-radius: 17px;
-    padding: 13px 4px;
-    min-height: 100px;
-}
-
-.quick-icon {
-    font-size: 22px;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.quick strong {
-    display: block;
-    font-size: 12px;
+.header h1{
+font-size:25px;
+margin-top:5px;
 }
 
-.quick small {
-    color: #888;
-    font-size: 9px;
+.header-badge{
+width:43px;
+height:43px;
+border-radius:14px;
+background:#25324a;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
 }
 
 
-/* PLANS */
+/* CONTENT */
 
-.plans {
-    display: grid;
-    gap: 12px;
+.container{
+width:calc(100% - 30px);
+max-width:600px;
+margin:-15px auto 0;
 }
 
-.plan {
-    background: white;
-    padding: 18px;
-    border-radius: 20px;
-    border: 1px solid #e5e7eb;
-}
-
-.plan-top {
-    display: flex;
-    justify-content: space-between;
-}
 
-.plan h3 {
-    margin-top: 5px;
-}
+/* ================= PAGES ================= */
 
-.badge {
-    display: inline-block;
-    background: #edf1f5;
-    padding: 5px 8px;
-    border-radius: 7px;
-    font-size: 9px;
-    font-weight: bold;
+.page{
+display:none;
 }
 
-.plan-icon {
-    font-size: 27px;
+.page.active{
+display:block;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 7px;
-    margin: 16px 0;
-}
 
-.stats div {
-    background: #f7f8fa;
-    padding: 10px 5px;
-    border-radius: 10px;
-}
+/* ================= BALANCE ================= */
 
-.stats small {
-    display: block;
-    color: #888;
-    font-size: 9px;
+.balance-card{
+background:
+linear-gradient(135deg,#18243a,#243555);
+color:white;
+border-radius:26px;
+padding:23px;
+box-shadow:0 15px 35px rgba(16,25,45,.2);
+position:relative;
+overflow:hidden;
 }
 
-.stats strong {
-    font-size: 12px;
+.balance-card:after{
+content:"";
+position:absolute;
+width:130px;
+height:130px;
+border-radius:50%;
+background:rgba(255,255,255,.05);
+right:-40px;
+top:-40px;
 }
 
-.invest-btn {
-    width: 100%;
-    height: 47px;
-    border-radius: 13px;
-    background: #111827;
-    color: white;
-    font-weight: bold;
+.balance-label{
+color:#aab6c9;
+font-size:12px;
 }
-
-
-/* TRANSACTIONS */
 
-.transaction {
-    background: white;
-    border-radius: 16px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 9px;
+.balance-amount{
+font-size:37px;
+font-weight:900;
+margin-top:7px;
+letter-spacing:-1px;
 }
 
-.transaction-icon {
-    width: 42px;
-    height: 42px;
-    background: #eef1f5;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.balance-bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:17px;
 }
 
-.transaction-info {
-    flex: 1;
+.earnings{
+color:#68d39b;
+font-size:13px;
+font-weight:bold;
 }
 
-.transaction-info strong,
-.transaction-info small {
-    display: block;
+.account-label{
+font-size:10px;
+color:#8f9db3;
 }
 
-.transaction-info small {
-    color: #888;
-    margin-top: 4px;
+.account-value{
+font-size:11px;
+font-weight:bold;
+margin-top:3px;
 }
 
-.green {
-    color: #21865b;
+.actions{
+display:flex;
+gap:10px;
+margin-top:21px;
 }
 
-
-/* PAGE TITLE */
-
-.page-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+.actions button{
+flex:1;
+height:48px;
+border-radius:14px;
+font-weight:800;
 }
 
-.back {
-    width: 42px;
-    height: 42px;
-    border-radius: 13px;
-    background: white;
-    font-size: 22px;
+.deposit{
+background:white;
+color:#121c30;
 }
 
-
-/* EMPTY */
-
-.empty {
-    background: white;
-    padding: 35px 20px;
-    border-radius: 20px;
-    text-align: center;
+.withdraw{
+background:#2e3d58;
+color:white;
 }
 
-.empty-icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-}
 
-.empty p {
-    color: #888;
-    font-size: 13px;
-    margin: 8px 0 20px;
-}
+/* ================= QUICK ACTIONS ================= */
 
-.empty button {
-    background: #111827;
-    color: white;
-    padding: 14px 25px;
-    border-radius: 12px;
-    font-weight: bold;
+.section{
+margin-top:25px;
 }
-
 
-/* PROFILE */
-
-.profile {
-    background: white;
-    border-radius: 22px;
-    padding: 30px;
-    text-align: center;
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
 }
 
-.avatar {
-    width: 75px;
-    height: 75px;
-    background: #edf1f5;
-    border-radius: 50%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
+.section-head h2{
+font-size:19px;
 }
 
-.profile h2 {
-    margin-top: 12px;
+.view{
+background:none;
+color:#237b59;
+font-size:12px;
+font-weight:bold;
 }
 
-.profile p {
-    color: #888;
-    margin-top: 5px;
+.quick{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
 }
 
-.profile-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 22px;
+.quick button{
+background:white;
+border-radius:18px;
+padding:13px 4px;
+min-height:91px;
+box-shadow:0 5px 18px rgba(20,30,50,.04);
 }
 
-.profile-stats div {
-    background: #f6f7f9;
-    padding: 15px;
-    border-radius: 12px;
+.quick-icon{
+display:block;
+font-size:21px;
+margin-bottom:8px;
 }
 
-.profile-stats small {
-    display: block;
-    color: #888;
+.quick strong{
+font-size:11px;
+display:block;
 }
-
-
-/* BOTTOM NAV */
 
-.bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background: white;
-    border-top: 1px solid #e5e7eb;
-    display: flex;
-    z-index: 100;
+.quick small{
+font-size:9px;
+color:#9298a3;
+display:block;
+margin-top:3px;
 }
 
-.bottom button {
-    flex: 1;
-    background: white;
-    color: #9298a4;
-}
 
-.bottom button.active {
-    color: #111827;
-    font-weight: bold;
-}
+/* ================= PLANS ================= */
 
-.bottom span {
-    display: block;
-    font-size: 19px;
+.plans{
+display:grid;
+gap:12px;
 }
 
-.bottom small {
-    font-size: 9px;
+.plan{
+background:white;
+border-radius:22px;
+padding:18px;
+box-shadow:0 5px 20px rgba(20,30,50,.05);
 }
-
 
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.55);
-    z-index: 500;
-    align-items: flex-end;
+.plan-header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
 }
 
-.modal-box {
-    background: white;
-    width: 100%;
-    padding: 25px;
-    border-radius: 25px 25px 0 0;
+.plan-name{
+font-size:16px;
+font-weight:800;
+margin-top:6px;
 }
 
-.modal-box h2 {
-    margin-bottom: 7px;
+.plan-icon{
+width:43px;
+height:43px;
+border-radius:14px;
+background:#eef2f7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
 }
 
-.modal-box p {
-    color: #888;
-    font-size: 13px;
-    margin-bottom: 20px;
+.badge{
+display:inline-block;
+background:#edf4f0;
+color:#237b59;
+font-size:9px;
+font-weight:bold;
+padding:5px 8px;
+border-radius:7px;
 }
 
-.modal-box input {
-    width: 100%;
-    height: 55px;
-    border: 1px solid #ddd;
-    border-radius: 13px;
-    padding: 15px;
-    font-size: 17px;
+.plan-description{
+font-size:11px;
+color:#8b929e;
+margin-top:5px;
 }
 
-.modal-box button {
-    width: 100%;
-    height: 53px;
-    margin-top: 13px;
-    border-radius: 13px;
-    background: #111827;
-    color: white;
-    font-weight: bold;
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:7px;
+margin:16px 0;
 }
 
-.close {
-    background: #eee !important;
-    color: #111827 !important;
+.stats div{
+background:#f6f7f9;
+padding:10px 6px;
+border-radius:11px;
 }
-
-
-/* MOBILE */
 
-@media(max-width:400px) {
-
-    .welcome h1 {
-        font-size: 29px;
-    }
-
-    .quick {
-        gap: 5px;
-    }
-
+.stats small{
+display:block;
+font-size:9px;
+color:#8b929e;
 }
-
-</style>
-</head>
-
-
-<body>
-
-
-<!-- =========================
-WELCOME
-========================= -->
-
-<section id="welcomePage">
-
-<div class="welcome">
-
-<div class="logo">C</div>
-
-<h1>Chime Investment</h1>
-
-<p class="subtitle">
-Your simple investment dashboard
-</p>
-
-<div class="features">
-
-<div class="feature">
-<div class="feature-icon">💰</div>
-<div>
-<strong>Investment Plans</strong>
-<p>Choose an investment plan.</p>
-</div>
-</div>
-
-<div class="feature">
-<div class="feature-icon">📈</div>
-<div>
-<strong>Track Your Growth</strong>
-<p>Monitor your investment activity.</p>
-</div>
-</div>
-
-<div class="feature">
-<div class="feature-icon">🔐</div>
-<div>
-<strong>Account Dashboard</strong>
-<p>Manage your account in one place.</p>
-</div>
-</div>
-
-</div>
-
-<button class="start-btn" onclick="startApp()">
-Get Started
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-MAIN APP
-========================= -->
-
-<div id="app" class="hidden">
-
-<header class="header">
-
-<p>Welcome back</p>
-
-<h1 id="username">
-Investor
-</h1>
-
-</header>
-
-
-<div class="container">
-
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-<div class="balance">
-
-<small>Available Balance</small>
-
-<h2 id="balance">
-₦5,000.00
-</h2>
-
-<div class="earning">
-+₦250.00 earnings
-</div>
-
-<div class="actions">
-
-<button class="deposit" onclick="openDeposit()">
-💰 Deposit
-</button>
-
-<button class="withdraw" onclick="openWithdraw()">
-💸 Withdraw
-</button>
-
-</div>
-
-</div>
-
-
-<div class="section-title">
-<h2>Quick Actions</h2>
-</div>
-
-
-<div class="quick">
-
-<button onclick="openDeposit()">
-<span class="quick-icon">💰</span>
-<strong>Deposit</strong>
-<small>Add money</small>
-</button>
-
-<button onclick="openWithdraw()">
-<span class="quick-icon">💸</span>
-<strong>Withdraw</strong>
-<small>Cash out</small>
-</button>
-
-<button onclick="showPage('plans')">
-<span class="quick-icon">📈</span>
-<strong>Invest</strong>
-<small>Grow money</small>
-</button>
-
-<button onclick="showPage('transactions')">
-<span class="quick-icon">🧾</span>
-<strong>History</strong>
-<small>Activity</small>
-</button>
-
-</div>
-
-
-<div class="section-title">
-<h2>Investment Plans</h2>
-
-<button class="view" onclick="showPage('plans')">
-View All
-</button>
-
-</div>
-
-
-<div class="plans">
-
-<div class="plan">
-
-<div class="plan-top">
-
-<div>
-<span class="badge">STARTER</span>
-<h3>Starter Plan</h3>
-</div>
-
-<span class="plan-icon">🌱</span>
-
-</div>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦5,000</strong>
-</div>
-
-<div>
-<small>Return</small>
-<strong>5%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>7 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Starter Plan',5000)">
-Invest Now
-</button>
-
-</div>
-
-
-<div class="plan">
-
-<div class="plan-top">
-
-<div>
-<span class="badge">POPULAR</span>
-<h3>Growth Plan</h3>
-</div>
-
-<span class="plan-icon">📈</span>
-
-</div>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦20,000</strong>
-</div>
-
-<div>
-<small>Return</small>
-<strong>10%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>14 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Growth Plan',20000)">
-Invest Now
-</button>
-
-</div>
-
-
-<div class="plan">
-
-<div class="plan-top">
-
-<div>
-<span class="badge">PREMIUM</span>
-<h3>Premium Plan</h3>
-</div>
-
-<span class="plan-icon">💎</span>
-
-</div>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦50,000</strong>
-</div>
-
-<div>
-<small>Return</small>
-<strong>20%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>30 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Premium Plan',50000)">
-Invest Now
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PLANS PAGE -->
-
-<section id="plans" class="page">
-
-<div class="page-title">
-
-<button class="back" onclick="showPage('home')">
-←
-</button>
-
-<div>
-<small>Choose your plan</small>
-<h2>Investment Plans</h2>
-</div>
-
-</div>
-
-<div class="plans">
-
-<div class="plan">
-
-<span class="badge">STARTER</span>
-<h3>🌱 Starter Plan</h3>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦5,000</strong>
-</div>
 
-<div>
-<small>Return</small>
-<strong>5%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>7 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Starter Plan',5000)">
-Invest Now
-</button>
-
-</div>
-
-
-<div class="plan">
-
-<span class="badge">POPULAR</span>
-<h3>📈 Growth Plan</h3>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦20,000</strong>
-</div>
-
-<div>
-<small>Return</small>
-<strong>10%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>14 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Growth Plan',20000)">
-Invest Now
-</button>
-
-</div>
-
-
-<div class="plan">
-
-<span class="badge">PREMIUM</span>
-<h3>💎 Premium Plan</h3>
-
-<div class="stats">
-
-<div>
-<small>Minimum</small>
-<strong>₦50,000</strong>
-</div>
-
-<div>
-<small>Return</small>
-<strong>20%</strong>
-</div>
-
-<div>
-<small>Duration</small>
-<strong>30 Days</strong>
-</div>
-
-</div>
-
-<button class="invest-btn"
-onclick="invest('Premium Plan',50000)">
-Invest Now
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PORTFOLIO -->
-
-<section id="portfolio" class="page">
-
-<div class="page-title">
-
-<button class="back" onclick="showPage('home')">
-←
-</button>
-
-<div>
-<small>Your portfolio</small>
-<h2>My Investments</h2>
-</div>
-
-</div>
-
-<div class="empty">
-
-<div class="empty-icon">
-📊
-</div>
-
-<h3>No Active Investments</h3>
-
-<p>
-Your active investments will appear here.
-</p>
-
-<button onclick="showPage('plans')">
-Explore Plans
-</button>
-
-</div>
-
-</section>
-
-
-<!-- TRANSACTIONS -->
-
-<section id="transactions" class="page">
-
-<div class="page-title">
-
-<button class="back" onclick="showPage('home')">
-←
-</button>
-
-<div>
-<small>Account activity</small>
-<h2>Transactions</h2>
-</div>
-
-</div>
-
-<div class="transaction">
-
-<div class="transaction-icon">
-🎁
-</div>
-
-<div class="transaction-info">
-
-<strong>
-Welcome Bonus
-</strong>
-
-<small>
-Account created
-</small>
-
-</div>
-
-<strong class="green">
-+₦250
-</strong>
-
-</div>
-
-</section>
-
-
-<!-- PROFILE -->
-
-<section id="profile" class="page">
-
-<div class="page-title">
-
-<button class="back" onclick="showPage('home')">
-←
-</button>
-
-<div>
-<small>Your account</small>
-<h2>Profile</h2>
-</div>
-
-</div>
-
-<div class="profile">
-
-<div class="avatar">
-👤
-</div>
-
-<h2 id="profileName">
-Investor
-</h2>
-
-<p id="profileUsername">
-Telegram User
-</p>
-
-<div class="profile-stats">
-
-<div>
-<small>Balance</small>
-<strong id="profileBalance">
-₦5,000
-</strong>
-</div>
-
-<div>
-<small>Investments</small>
-<strong>0</strong>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-
-<!-- NAVIGATION -->
-
-<nav class="bottom">
-
-<button class="active"
-onclick="showPage('home')">
-<span>⌂</span>
-<small>Home</small>
-</button>
-
-<button
-onclick="showPage('plans')">
-<span>📈</span>
-<small>Invest</small>
-</button>
-
-<button
-onclick="showPage('portfolio')">
-<span>📊</span>
-<small>Portfolio</small>
-</button>
-
-<button
-onclick="showPage('transactions')">
-<span>🧾</span>
-<small>History</small>
-</button>
-
-<button
-onclick="showPage('profile')">
-<span>👤</span>
-<small>Profile</small>
-</button>
-
-</nav>
-
-</div>
-
-
-<!-- DEPOSIT -->
-
-<div id="depositModal" class="modal">
-
-<div class="modal-box">
-
-<h2>💰 Deposit</h2>
-
-<p>
-Enter the amount you want to deposit.
-</p>
-
-<input
-id="depositAmount"
-type="number"
-placeholder="Amount in ₦"
->
-
-<button onclick="deposit()">
-Continue
-</button>
-
-<button class="close"
-onclick="closeModal('depositModal')">
-Cancel
-</button>
-
-</div>
-
-</div>
-
-
-<!-- WITHDRAW -->
-
-<div id="withdrawModal" class="modal">
-
-<div class="modal-box">
-
-<h2>💸 Withdraw</h2>
-
-<p>
-Enter the amount you want to withdraw.
-</p>
-
-<input
-id="withdrawAmount"
-type="number"
-placeholder="Amount in ₦"
->
-
-<button onclick="withdraw()">
-Continue
-</button>
-
-<button class="close"
-onclick="closeModal('withdrawModal')">
-Cancel
-</button>
-
-</div>
-
-</div>
-
-
-<script>
-
-
-// TELEGRAM
-
-if (window.Telegram && Telegram.WebApp) {
-
-    Telegram.WebApp.ready();
-
-    Telegram.WebApp.expand();
-
-    const user =
-        Telegram.WebApp.initDataUnsafe?.user;
-
-    if (user) {
-
-        const name =
-            [user.first_name, user.last_name]
-            .filter(Boolean)
-            .join(" ");
-
-        document.getElementById("username")
-            .textContent = name || "Investor";
-
-        document.getElementById("profileName")
-            .textContent = name || "Investor";
-
-        document.getElementById("profileUsername")
-            .textContent =
-            user.username
-            ? "@" + user.username
-            : "Telegram User";
-    }
+.stats strong{
+font-size:12px;
+display:block;
+margin-top:3px;
 }
-
-
-// START APP
-
-function startApp() {
-
-    document
-        .getElementById("welcomePage")
-        .classList.add("hidden");
 
-    document
-        .getElementById("app")
-        .classList.remove("hidden");
-
+.invest-btn{
+width:100%;
+height:46px;
+border-radius:13px;
+background:#121c30;
+color:white;
+font-weight:800;
 }
-
-
-// NAVIGATION
-
-function showPage(page) {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(function(p) {
-
-            p.classList.remove("active");
 
-        });
 
+/* ================= PAGE TITLE ================= */
 
-    const selected =
-        document.getElementById(page);
-
-    if (selected) {
-
-        selected.classList.add("active");
-
-    }
-
-
-    document
-        .querySelectorAll(".bottom button")
-        .forEach(function(button) {
-
-            button.classList.remove("active");
-
-        });
-
-
-    const pages = [
-        "home",
-        "plans",
-        "portfolio",
-        "transactions",
-        "profile"
-    ];
-
-    const index = pages.indexOf(page);
-
-    if (index >= 0) {
-
-        const buttons =
-            document.querySelectorAll(".bottom button");
-
-        if (buttons[index]) {
-
-            buttons[index]
-                .classList.add("active");
-
-        }
-    }
-
-
-    window.scrollTo(0,0);
+.page-title{
+display:flex;
+align-items:center;
+gap:12px;
+padding-top:25px;
+margin-bottom:18px;
 }
-
-
-// DEPOSIT
 
-function openDeposit() {
-
-    document
-        .getElementById("depositModal")
-        .style.display = "flex";
+.back{
+width:42px;
+height:42px;
+border-radius:13px;
+background:white;
+font-size:20px;
 }
-
-
-// WITHDRAW
 
-function openWithdraw() {
-
-    document
-        .getElementById("withdrawModal")
-        .style.display = "flex";
+.page-title small{
+font-size:10px;
+color:#8d95a1;
 }
-
 
-// CLOSE
-
-function closeModal(id) {
-
-    document
-        .getElementById(id)
-        .style.display = "none";
+.page-title h2{
+font-size:21px;
+margin-top:3px;
 }
-
 
-// DEPOSIT DEMO
 
-function deposit() {
+/* ================= PORTFOLIO ================= */
 
-    const amount =
-        Number(
-            document
-            .getElementById("depositAmount")
-            .value
-        );
-
-    if (!amount || amount <= 0) {
-
-        alert("Please enter a valid amount.");
-
-        return;
-    }
-
-    closeModal("depositModal");
-
-    alert(
-        "Deposit request received.\n\n₦" +
-        amount.toLocaleString()
-    );
+.portfolio-card{
+background:white;
+border-radius:22px;
+padding:22px;
 }
-
 
-// WITHDRAW DEMO
-
-function withdraw() {
-
-    const amount =
-        Number(
-            document
-            .getElementById("withdrawAmount")
-            .value
-        );
-
-    if (!amount || amount <= 0) {
-
-        alert("Please enter a valid amount.");
-
-        return;
-    }
-
-    closeModal("withdrawModal");
-
-    alert(
-        "Withdrawal request received.\n\n₦" +
-        amount.toLocaleString()
-    );
+.portfolio-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
-
 
-// INVEST
-
-function invest(plan, amount) {
-
-    alert(
-        plan +
-        "\n\nMinimum investment: ₦" +
-        amount.toLocaleString()
-    );
+.portfolio-value{
+font-size:30px;
+font-weight:900;
+margin-top:7px;
 }
-
-</script>
 
-</body>
-    </html>
+.profit{
+color:#237b59
