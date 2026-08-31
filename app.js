@@ -498,49 +498,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================
-       WEEKEND DEPOSIT NOTICE
-    ===================================== */
-
-    function updateWeekendDepositNotice() {
-
-        const title =
-            document.getElementById(
-                "depositNoticeTitle"
-            );
-
-        const text =
-            document.getElementById(
-                "depositNoticeText"
-            );
-
-        if (!title || !text) {
-            return;
-        }
-
-        const today =
-            new Date().getDay();
-
-        if (
-            today === 0 ||
-            today === 6
-        ) {
-
-            title.textContent =
-                "🟢 Deposits are currently available";
-
-            text.textContent =
-                "Crypto deposits are available this weekend. You can submit your deposit during the weekend deposit period.";
-
-        } else {
-
-            title.textContent =
-                "🔴 Deposits are currently closed";
-
-            text.textContent =
-                "Crypto deposits are available only on weekends. Deposit services will reopen this weekend.";
-        }
-    }
+   
 
 
     /* =====================================
@@ -559,7 +517,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert(
                 "Crypto deposits are currently closed. Deposits are available only on weekends."
-            );
+ /* =========================================
+   DEPOSIT AVAILABILITY
+   DEPOSITS AVAILABLE EVERY DAY
+========================================= */
+
+function updateWeekendDepositNotice() {
+
+    const title =
+        document.getElementById("depositNoticeTitle");
+
+    const text =
+        document.getElementById("depositNoticeText");
+
+    if (!title || !text) {
+        return;
+    }
+
+    title.textContent =
+        "🟢 Deposits are currently available";
+
+    text.textContent =
+        "Crypto deposits are available. You can submit your deposit at any time.";
+   }           );
 
             return;
         }
