@@ -7477,3 +7477,12 @@ body {
 .page.active {
     display: block !important;
 }
+/* CHIME PAGE FIX — SHOW ONLY ONE PAGE */
+
+.page {
+    display: none !important;
+}
+
+.page.active {
+    display: block !important;
+   }
