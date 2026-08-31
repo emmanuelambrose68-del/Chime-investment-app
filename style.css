@@ -7466,3 +7466,14 @@ body {
     max-width: 100%;
     overflow-x: hidden;
        }
+/* =========================================
+   CHIME — ONE PAGE AT A TIME
+========================================= */
+
+.page {
+    display: none !important;
+}
+
+.page.active {
+    display: block !important;
+}
