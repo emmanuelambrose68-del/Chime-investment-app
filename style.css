@@ -7419,3 +7419,50 @@ body.dark-mode .security-info-card > div {
     font-size: 20px;
     opacity: 0.4;
    }
+/* =========================================
+   CHIME - ONE PAGE AT A TIME
+========================================= */
+
+.page {
+    display: none !important;
+    width: 100%;
+    min-height: calc(100vh - 75px);
+    box-sizing: border-box;
+}
+
+.page.active {
+    display: block !important;
+}
+
+
+/* Keep the bottom navigation visible */
+
+.bottom-nav {
+    position: fixed !important;
+    left: 50%;
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    width: calc(100% - 24px);
+
+    z-index: 9999;
+}
+
+
+/* Give pages enough room above navigation */
+
+.page-content,
+.dashboard-content {
+    padding-bottom: 100px;
+}
+
+
+/* Prevent accidental horizontal scrolling */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+       }
