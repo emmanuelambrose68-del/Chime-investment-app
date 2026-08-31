@@ -1,34 +1,108 @@
 /* =========================================
    CHIME INVESTMENT
-   COMPLETE APP JAVASCRIPT
+   CLEAN COMPLETE APP JAVASCRIPT
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================
-       TELEGRAM MINI APP
-    ===================================== */
+/* =========================================
+   PAGE NAVIGATION
+========================================= */
 
-    if (window.Telegram && window.Telegram.WebApp) {
+window.showPage = function (pageId) {
 
-        const tg = window.Telegram.WebApp;
+    const pages = document.querySelectorAll(".page");
 
-        tg.ready();
-        tg.expand();
+    pages.forEach(function (page) {
+        page.classList.remove("active");
+    });
 
-        if (typeof tg.setHeaderColor === "function") {
-            tg.setHeaderColor("#172033");
+    const selectedPage =
+        document.getElementById(pageId);
+
+    if (!selectedPage) {
+        console.warn("Page not found:", pageId);
+        return;
+    }
+
+    selectedPage.classList.add("active");
+
+    /* Bottom navigation */
+
+    const navItems =
+        document.querySelectorAll(".nav-item");
+
+    navItems.forEach(function (item) {
+        item.classList.remove("active");
+    });
+
+    const navigation = {
+        dashboard: 0,
+        investments: 1,
+        transactions: 2,
+        profile: 3
+    };
+
+    if (navigation[pageId] !== undefined) {
+
+        const navItem =
+            navItems[navigation[pageId]];
+
+        if (navItem) {
+            navItem.classList.add("active");
         }
+    }
 
-        if (typeof tg.setBackgroundColor === "function") {
-            tg.setBackgroundColor("#f5f7fb");
-        }
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+};
 
-        const user =
-            tg.initDataUnsafe &&
-            tg.initDataUnsafe.user;
 
-        if (user) {
+/* =========================================
+   TELEGRAM MINI APP
+========================================= */
+
+function loadTelegramUser() {
+
+    try {
+
+        if (
+            window.Telegram &&
+            window.Telegram.WebApp
+        ) {
+
+            const tg =
+                window.Telegram.WebApp;
+
+            tg.ready();
+            tg.expand();
+
+            if (
+                typeof tg.setHeaderColor ===
+                "function"
+            ) {
+
+                tg.setHeaderColor("#172033");
+
+            }
+
+            if (
+                typeof tg.setBackgroundColor ===
+                "function"
+            ) {
+
+                tg.setBackgroundColor("#f5f7fb");
+
+            }
+
+            const user =
+                tg.initDataUnsafe &&
+                tg.initDataUnsafe.user;
+
+            if (!user) {
+                return;
+            }
 
             const name =
                 [user.first_name, user.last_name]
@@ -40,92 +114,87 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? "@" + user.username
                     : "Telegram User";
 
+
             const profileName =
-                document.getElementById("profileName");
+                document.getElementById(
+                    "profileName"
+                );
 
             const profileUsername =
-                document.getElementById("profileUsername");
+                document.getElementById(
+                    "profileUsername"
+                );
+
+            const telegramInput =
+                document.getElementById(
+                    "signupTelegram"
+                );
+
+            const accountTelegram =
+                document.getElementById(
+                    "accountTelegram"
+                );
+
 
             if (profileName) {
+
                 profileName.textContent =
-                    name || "Chime User";
+                    localStorage.getItem(
+                        "chimeName"
+                    ) || name || "Chime User";
+
             }
+
 
             if (profileUsername) {
+
                 profileUsername.textContent =
                     username;
+
             }
+
+
+            if (telegramInput) {
+
+                telegramInput.value =
+                    username;
+
+            }
+
+
+            if (accountTelegram) {
+
+                accountTelegram.textContent =
+                    username;
+
+            }
+
         }
+
+    } catch (error) {
+
+        console.log(
+            "Telegram information unavailable."
+        );
+
     }
+}
 
 
-    /* =====================================
-       PAGE NAVIGATION
-    ===================================== */
+/* =========================================
+   INVESTMENT PLAN
+========================================= */
 
-    window.showPage = function (pageId) {
+window.selectPlan = function (
+    plan,
+    minimum,
+    maximum,
+    percentage,
+    days
+) {
 
-        const pages =
-            document.querySelectorAll(".page");
-
-        pages.forEach(function (page) {
-            page.classList.remove("active");
-        });
-
-        const selectedPage =
-            document.getElementById(pageId);
-
-        if (!selectedPage) {
-            console.warn("Page not found:", pageId);
-            return;
-        }
-
-        selectedPage.classList.add("active");
-
-        const navItems =
-            document.querySelectorAll(".nav-item");
-
-        navItems.forEach(function (item) {
-            item.classList.remove("active");
-        });
-
-        const navigation = {
-            dashboard: 0,
-            investments: 1,
-            transactions: 2,
-            profile: 3
-        };
-
-        if (navigation[pageId] !== undefined) {
-
-            const navItem =
-                navItems[navigation[pageId]];
-
-            if (navItem) {
-                navItem.classList.add("active");
-            }
-        }
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
-
-
-    /* =====================================
-       INVESTMENT PLAN
-    ===================================== */
-
-    window.selectPlan = function (
-        plan,
-        minimum,
-        maximum,
-        percentage,
-        days
-    ) {
-
-        const amount = prompt(
+    const amount =
+        prompt(
             plan +
             "\n\nInvestment range: $" +
             minimum.toLocaleString() +
@@ -139,784 +208,720 @@ document.addEventListener("DOMContentLoaded", function () {
             "\n\nEnter your investment amount:"
         );
 
-        if (amount === null) {
-            return;
-        }
+    if (amount === null) {
+        return;
+    }
 
-        const investment = Number(amount);
+    const investment =
+        Number(amount);
 
-        if (
-            !Number.isFinite(investment) ||
-            investment < minimum ||
-            investment > maximum
-        ) {
+    if (
+        !Number.isFinite(investment) ||
+        investment < minimum ||
+        investment > maximum
+    ) {
 
-            alert(
-                "Please enter an amount between $" +
-                minimum.toLocaleString() +
-                " and $" +
-                maximum.toLocaleString() +
-                "."
-            );
-
-            return;
-        }
-
-        const existingCapital =
-            Number(
-                localStorage.getItem(
-                    "chimeInvestedCapital"
-                ) || 0
-            );
-
-        if (existingCapital + investment > 2000) {
-
-            alert(
-                "Your maximum total investment capital is $2,000."
-            );
-
-            return;
-        }
-
-        const returnAmount =
-            investment *
-            percentage /
-            100;
-
-        const startTime =
-            Date.now();
-
-        const endTime =
-            startTime +
-            days *
-            24 *
-            60 *
-            60 *
-            1000;
-
-        const investmentData = {
-            plan: plan,
-            capital: investment,
-            percentage: percentage,
-            returnAmount: returnAmount,
-            startTime: startTime,
-            endTime: endTime
-        };
-
-        localStorage.setItem(
-            "chimeInvestment",
-            JSON.stringify(investmentData)
+        alert(
+            "Please enter an amount between $" +
+            minimum.toLocaleString() +
+            " and $" +
+            maximum.toLocaleString() +
+            "."
         );
 
-        localStorage.setItem(
-            "chimeInvestedCapital",
-            String(
-                existingCapital + investment
+        return;
+    }
+
+
+    const existingCapital =
+        Number(
+            localStorage.getItem(
+                "chimeInvestedCapital"
+            ) || 0
+        );
+
+
+    if (
+        existingCapital +
+        investment >
+        2000
+    ) {
+
+        alert(
+            "Your maximum total investment capital is $2,000."
+        );
+
+        return;
+    }
+
+
+    const returnAmount =
+        investment *
+        percentage /
+        100;
+
+
+    const startTime =
+        Date.now();
+
+
+    const endTime =
+        startTime +
+        days *
+        24 *
+        60 *
+        60 *
+        1000;
+
+
+    const investmentData = {
+
+        plan: plan,
+
+        capital: investment,
+
+        percentage: percentage,
+
+        returnAmount: returnAmount,
+
+        startTime: startTime,
+
+        endTime: endTime
+
+    };
+
+
+    localStorage.setItem(
+        "chimeInvestment",
+        JSON.stringify(
+            investmentData
+        )
+    );
+
+
+    localStorage.setItem(
+        "chimeInvestedCapital",
+        String(
+            existingCapital +
+            investment
+        )
+    );
+
+
+    updateDashboard();
+
+
+    alert(
+        "Investment created successfully.\n\n" +
+        "Plan: " +
+        plan +
+        "\n" +
+        "Capital: $" +
+        investment.toLocaleString(
+            undefined,
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        ) +
+        "\n" +
+        "Cycle: " +
+        days +
+        " days."
+    );
+
+
+    showPage("dashboard");
+
+};
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function updateDashboard() {
+
+    const investment =
+        JSON.parse(
+            localStorage.getItem(
+                "chimeInvestment"
             )
         );
 
-        updateDashboard();
 
-        alert(
-            "Investment created successfully.\n\n" +
-            "Plan: " +
-            plan +
-            "\n" +
-            "Capital: $" +
-            investment.toLocaleString(
+    const investedCapital =
+        Number(
+            localStorage.getItem(
+                "chimeInvestedCapital"
+            ) || 0
+        );
+
+
+    const totalBalance =
+        document.getElementById(
+            "totalBalance"
+        );
+
+
+    const investedAmount =
+        document.getElementById(
+            "investedAmount"
+        );
+
+
+    const profitAmount =
+        document.getElementById(
+            "profitAmount"
+        );
+
+
+    if (totalBalance) {
+
+        totalBalance.textContent =
+            "$" +
+            investedCapital.toLocaleString(
                 undefined,
                 {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 }
-            ) +
-            "\n" +
-            "Target return: " +
-            percentage +
-            "%\n" +
-            "Cycle: " +
-            days +
-            " days."
+            );
+
+    }
+
+
+    if (investedAmount) {
+
+        investedAmount.textContent =
+            "$" +
+            investedCapital.toLocaleString(
+                undefined,
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            );
+
+    }
+
+
+    if (profitAmount) {
+
+        const profit =
+            investment
+                ? investment.returnAmount
+                : 0;
+
+        profitAmount.textContent =
+            "$" +
+            profit.toLocaleString(
+                undefined,
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            );
+
+    }
+
+
+    updateActiveInvestment();
+
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENT
+========================================= */
+
+function updateActiveInvestment() {
+
+    const card =
+        document.getElementById(
+            "activeInvestmentCard"
         );
 
-        showPage("dashboard");
-    };
+
+    const investment =
+        JSON.parse(
+            localStorage.getItem(
+                "chimeInvestment"
+            )
+        );
 
 
-    /* =====================================
-       DASHBOARD
-    ===================================== */
+    if (!card || !investment) {
 
-    function updateDashboard() {
-
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
-            );
-
-        const investedCapital =
-            Number(
-                localStorage.getItem(
-                    "chimeInvestedCapital"
-                ) || 0
-            );
-
-        const totalBalance =
-            document.getElementById(
-                "totalBalance"
-            );
-
-        const investedAmount =
-            document.getElementById(
-                "investedAmount"
-            );
-
-        const profitAmount =
-            document.getElementById(
-                "profitAmount"
-            );
-
-        if (totalBalance) {
-
-            totalBalance.textContent =
-                "$" +
-                investedCapital.toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
+        if (card) {
+            card.style.display = "none";
         }
 
-        if (investedAmount) {
-
-            investedAmount.textContent =
-                "$" +
-                investedCapital.toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
-        }
-
-        if (profitAmount) {
-
-            const profit =
-                investment
-                    ? investment.returnAmount
-                    : 0;
-
-            profitAmount.textContent =
-                "$" +
-                profit.toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
-        }
-
-        updateActiveInvestment();
+        return;
     }
 
 
-    /* =====================================
-       ACTIVE INVESTMENT
-    ===================================== */
+    card.style.display = "block";
 
-    function updateActiveInvestment() {
 
-        const card =
-            document.getElementById(
-                "activeInvestmentCard"
-            );
+    const planName =
+        document.getElementById(
+            "activePlanName"
+        );
 
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
-            );
 
-        if (!card || !investment) {
+    const capital =
+        document.getElementById(
+            "activeCapital"
+        );
 
-            if (card) {
-                card.style.display = "none";
-            }
 
-            return;
-        }
+    const returnValue =
+        document.getElementById(
+            "activeReturn"
+        );
 
-        card.style.display = "block";
 
-        const planName =
-            document.getElementById(
-                "activePlanName"
-            );
+    const endDate =
+        document.getElementById(
+            "investmentEndDate"
+        );
 
-        const capital =
-            document.getElementById(
-                "activeCapital"
-            );
 
-        const returnValue =
-            document.getElementById(
-                "activeReturn"
-            );
+    if (planName) {
 
-        const endDate =
-            document.getElementById(
-                "investmentEndDate"
-            );
+        planName.textContent =
+            investment.plan;
 
-        if (planName) {
-            planName.textContent =
-                investment.plan;
-        }
-
-        if (capital) {
-
-            capital.textContent =
-                "$" +
-                investment.capital.toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
-        }
-
-        if (returnValue) {
-
-            returnValue.textContent =
-                "$" +
-                investment.returnAmount.toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
-        }
-
-        if (endDate) {
-
-            endDate.textContent =
-                "Cycle ends: " +
-                new Date(
-                    investment.endTime
-                ).toLocaleString();
-        }
-
-        updateInvestmentTimer();
     }
 
 
-    /* =====================================
-       7-DAY TIMER
-    ===================================== */
+    if (capital) {
 
-    function updateInvestmentTimer() {
-
-        const timer =
-            document.getElementById(
-                "investmentTimer"
+        capital.textContent =
+            "$" +
+            investment.capital.toLocaleString(
+                undefined,
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
             );
 
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
+    }
+
+
+    if (returnValue) {
+
+        returnValue.textContent =
+            "$" +
+            investment.returnAmount.toLocaleString(
+                undefined,
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
             );
 
-        if (!timer || !investment) {
-            return;
-        }
+    }
 
-        const remaining =
-            investment.endTime -
-            Date.now();
 
-        if (remaining <= 0) {
+    if (endDate) {
 
-            timer.textContent =
-                "00d 00h 00m 00s";
+        endDate.textContent =
+            "Cycle ends: " +
+            new Date(
+                investment.endTime
+            ).toLocaleString();
 
-            return;
-        }
+    }
 
-        const days =
-            Math.floor(
-                remaining /
-                (1000 * 60 * 60 * 24)
-            );
 
-        const hours =
-            Math.floor(
-                (
-                    remaining %
-                    (1000 * 60 * 60 * 24)
-                ) /
-                (1000 * 60 * 60)
-            );
+    updateInvestmentTimer();
 
-        const minutes =
-            Math.floor(
-                (
-                    remaining %
-                    (1000 * 60 * 60)
-                ) /
-                (1000 * 60)
-            );
+}
 
-        const seconds =
-            Math.floor(
-                (
-                    remaining %
-                    (1000 * 60)
-                ) /
-                1000
-            );
+
+/* =========================================
+   7-DAY TIMER
+========================================= */
+
+function updateInvestmentTimer() {
+
+    const timer =
+        document.getElementById(
+            "investmentTimer"
+        );
+
+
+    const investment =
+        JSON.parse(
+            localStorage.getItem(
+                "chimeInvestment"
+            )
+        );
+
+
+    if (!timer || !investment) {
+        return;
+    }
+
+
+    const remaining =
+        investment.endTime -
+        Date.now();
+
+
+    if (remaining <= 0) {
 
         timer.textContent =
-            String(days).padStart(2, "0") +
-            "d " +
-            String(hours).padStart(2, "0") +
-            "h " +
-            String(minutes).padStart(2, "0") +
-            "m " +
-            String(seconds).padStart(2, "0") +
-            "s";
+            "00d 00h 00m 00s";
+
+        return;
     }
 
 
-   
+    const days =
+        Math.floor(
+            remaining /
+            (1000 * 60 * 60 * 24)
+        );
 
 
-    /* =====================================
-       CRYPTO DEPOSIT
-    ===================================== */
+    const hours =
+        Math.floor(
+            (
+                remaining %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
 
-    window.makeDeposit = function () {
 
-        const today =
-            new Date().getDay();
+    const minutes =
+        Math.floor(
+            (
+                remaining %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
 
-        if (
-            today !== 0 &&
-            today !== 6
-        ) {
 
-            alert(
-                "Crypto deposits are currently closed. Deposits are available only on weekends."
- /* =========================================
-   DEPOSIT AVAILABILITY
-   DEPOSITS AVAILABLE EVERY DAY
+    const seconds =
+        Math.floor(
+            (
+                remaining %
+                (1000 * 60)
+            ) /
+            1000
+        );
+
+
+    timer.textContent =
+        String(days).padStart(2, "0") +
+        "d " +
+        String(hours).padStart(2, "0") +
+        "h " +
+        String(minutes).padStart(2, "0") +
+        "m " +
+        String(seconds).padStart(2, "0") +
+        "s";
+
+}
+
+
+/* =========================================
+   CRYPTO DEPOSIT
+   AVAILABLE EVERY DAY
+========================================= */
+
+window.makeDeposit = function () {
+
+    const amountInput =
+        document.getElementById(
+            "depositAmount"
+        );
+
+
+    const currency =
+        document.getElementById(
+            "cryptoCurrency"
+        );
+
+
+    const network =
+        document.getElementById(
+            "cryptoNetwork"
+        );
+
+
+    if (!amountInput) {
+        return;
+    }
+
+
+    const amount =
+        Number(
+            amountInput.value
+        );
+
+
+    if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Please enter a valid deposit amount."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Deposit request received.\n\n" +
+        "Amount: $" +
+        amount.toLocaleString(
+            undefined,
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        ) +
+        "\n" +
+        "Crypto: " +
+        (
+            currency
+                ? currency.value
+                : "USDT"
+        ) +
+        "\n" +
+        "Network: " +
+        (
+            network
+                ? network.value
+                : "TRC20"
+        )
+    );
+
+
+    amountInput.value = "";
+
+};
+
+
+/* =========================================
+   DEPOSIT NOTICE
+   NO WEEKEND RESTRICTION
 ========================================= */
 
 function updateWeekendDepositNotice() {
 
     const title =
-        document.getElementById("depositNoticeTitle");
+        document.getElementById(
+            "depositNoticeTitle"
+        );
+
 
     const text =
-        document.getElementById("depositNoticeText");
+        document.getElementById(
+            "depositNoticeText"
+        );
+
 
     if (!title || !text) {
         return;
     }
 
+
     title.textContent =
         "🟢 Deposits are currently available";
 
+
     text.textContent =
         "Crypto deposits are available. You can submit your deposit at any time.";
-   }           );
 
-            return;
-        }
+}
 
-        const amountInput =
-            document.getElementById(
-                "depositAmount"
-            );
 
-        const currency =
-            document.getElementById(
-                "cryptoCurrency"
-            );
+/* =========================================
+   WITHDRAWAL
+========================================= */
 
-        const network =
-            document.getElementById(
-                "cryptoNetwork"
-            );
+window.makeWithdrawal = function () {
 
-        if (!amountInput) {
-            return;
-        }
-
-        const amount =
-            Number(
-                amountInput.value
-            );
-
-        if (
-            !Number.isFinite(amount) ||
-            amount <= 0
-        ) {
-
-            alert(
-                "Please enter a valid deposit amount."
-            );
-
-            return;
-        }
-
-        alert(
-            "Deposit request received.\n\n" +
-            "Amount: $" +
-            amount.toLocaleString() +
-            "\n" +
-            "Crypto: " +
-            (
-                currency
-                    ? currency.value
-                    : "USDT"
-            ) +
-            "\n" +
-            "Network: " +
-            (
-                network
-                    ? network.value
-                    : "TRC20"
-            )
+    const input =
+        document.getElementById(
+            "withdrawAmount"
         );
 
-        amountInput.value = "";
-    };
 
-
-    /* =====================================
-       WITHDRAWAL
-    ===================================== */
-
-    window.makeWithdrawal = function () {
-
-        const input =
-            document.getElementById(
-                "withdrawAmount"
-            );
-
-        const destination =
-            document.getElementById(
-                "bankAccount"
-            );
-
-        if (!input) {
-            return;
-        }
-
-        const amount =
-            Number(
-                input.value
-            );
-
-        if (
-            !Number.isFinite(amount) ||
-            amount <= 0
-        ) {
-
-            alert(
-                "Please enter a valid withdrawal amount."
-            );
-
-            return;
-        }
-
-        if (
-            !destination ||
-            !destination.value.trim()
-        ) {
-
-            alert(
-                "Please enter your destination details."
-            );
-
-            return;
-        }
-
-        alert(
-            "Withdrawal request received.\n\n" +
-            "Amount: $" +
-            amount.toLocaleString() +
-            "\n\n" +
-            "Your request has been recorded."
+    const destination =
+        document.getElementById(
+            "bankAccount"
         );
 
-        input.value = "";
 
-        if (destination) {
-            destination.value = "";
-        }
-    };
-
-
-    /* =====================================
-       DARK MODE
-    ===================================== */
-
-    window.toggleDarkMode = function () {
-
-        document.body.classList.toggle(
-            "dark-mode"
-        );
-
-        const darkMode =
-            document.body.classList.contains(
-                "dark-mode"
-            );
-
-        localStorage.setItem(
-            "chimeDarkMode",
-            darkMode
-                ? "on"
-                : "off"
-        );
-
-        updateThemeStatus();
-    };
-
-
-    function updateThemeStatus() {
-
-        const status =
-            document.getElementById(
-                "themeStatus"
-            );
-
-        if (!status) {
-            return;
-        }
-
-        const darkMode =
-            document.body.classList.contains(
-                "dark-mode"
-            );
-
-        status.textContent =
-            darkMode
-                ? "On"
-                : "Off";
+    if (!input) {
+        return;
     }
 
 
-    /* =====================================
-       LOAD DARK MODE
-    ===================================== */
+    const amount =
+        Number(
+            input.value
+        );
+
 
     if (
-        localStorage.getItem(
-            "chimeDarkMode"
-        ) === "on"
+        !Number.isFinite(amount) ||
+        amount <= 0
     ) {
 
-        document.body.classList.add(
-            "dark-mode"
+        alert(
+            "Please enter a valid withdrawal amount."
         );
+
+        return;
     }
 
 
-    /* =====================================
-       INITIALIZE
-    ===================================== */
+    if (
+        !destination ||
+        !destination.value.trim()
+    ) {
+
+        alert(
+            "Please enter your destination details."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Withdrawal request received.\n\n" +
+        "Amount: $" +
+        amount.toLocaleString(
+            undefined,
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        ) +
+        "\n\n" +
+        "Your request has been recorded."
+    );
+
+
+    input.value = "";
+
+
+    if (destination) {
+        destination.value = "";
+    }
+
+};
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+window.toggleDarkMode = function () {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+
+    const darkMode =
+        document.body.classList.contains(
+            "dark-mode"
+        );
+
+
+    localStorage.setItem(
+        "chimeDarkMode",
+        darkMode
+            ? "on"
+            : "off"
+    );
+
 
     updateThemeStatus();
 
-    updateDashboard();
-
-    updateWeekendDepositNotice();
+};
 
 
-    /* =====================================
-       LIVE TIMER
-    ===================================== */
+function updateThemeStatus() {
 
-    setInterval(
-        updateInvestmentTimer,
-        1000
-    );
+    const status =
+        document.getElementById(
+            "themeStatus"
+        );
 
 
-    /* =====================================
-       WEEKEND CHECK
-    ===================================== */
-
-    setInterval(
-        updateWeekendDepositNotice,
-        60000
-    );
-
-
-    console.log(
-        "Chime Investment loaded successfully."
-    );
-
-});
-/* =========================================
-   CHIME — ACCOUNT DETAILS
-========================================= */
-
-(function () {
-
-    function loadAccountDetails() {
-
-        const email =
-            localStorage.getItem("chimeEmail");
-
-        const emailElement =
-            document.getElementById("accountEmail");
-
-        if (emailElement) {
-            emailElement.textContent =
-                email || "Not added";
-        }
-
-
-        const telegramElement =
-            document.getElementById("accountTelegram");
-
-        if (
-            window.Telegram &&
-            window.Telegram.WebApp
-        ) {
-
-            const tg =
-                window.Telegram.WebApp;
-
-            const user =
-                tg.initDataUnsafe &&
-                tg.initDataUnsafe.user;
-
-            if (telegramElement && user) {
-
-                telegramElement.textContent =
-                    user.username
-                        ? "@" + user.username
-                        : "Telegram User";
-
-            }
-        }
-
-
-        const securityElement =
-            document.getElementById("accountSecurity");
-
-        if (securityElement) {
-
-            securityElement.textContent =
-                "Active";
-
-        }
-
-
-        const createdElement =
-            document.getElementById("accountCreated");
-
-        if (createdElement) {
-
-            let created =
-                localStorage.getItem(
-                    "chimeAccountCreated"
-                );
-
-            if (!created) {
-
-                created =
-                    new Date().toLocaleDateString(
-                        "en-US",
-                        {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                        }
-                    );
-
-                localStorage.setItem(
-                    "chimeAccountCreated",
-                    created
-                );
-
-            }
-
-            createdElement.textContent =
-                created;
-
-        }
-
+    if (!status) {
+        return;
     }
 
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        loadAccountDetails
-    );
+    const darkMode =
+        document.body.classList.contains(
+            "dark-mode"
+        );
 
 
-    window.loadAccountDetails =
-        loadAccountDetails;
+    status.textContent =
+        darkMode
+            ? "On"
+            : "Off";
 
-})();
+}
+
+
 /* =========================================
-   CHIME ACCOUNT DETAILS
+   ACCOUNT DETAILS
 ========================================= */
 
 function updateAccountDetails() {
 
-    /* Telegram username */
+    const email =
+        localStorage.getItem(
+            "chimeEmail"
+        );
 
-    const telegramElement =
-        document.getElementById("accountTelegram");
 
-    if (
-        window.Telegram &&
-        window.Telegram.WebApp
-    ) {
+    const emailElement =
+        document.getElementById(
+            "accountEmail"
+        );
 
-        const user =
-            window.Telegram.WebApp
-                .initDataUnsafe
-                .user;
 
-        if (telegramElement && user) {
+    if (emailElement) {
 
-            telegramElement.textContent =
-                user.username
-                    ? "@" + user.username
-                    : "Telegram User";
+        emailElement.textContent =
+            email || "Not added";
 
-        }
     }
 
 
-    /* Account creation date */
-
     const createdElement =
-        document.getElementById("accountCreated");
+        document.getElementById(
+            "accountCreated"
+        );
+
 
     if (createdElement) {
 
         let created =
             localStorage.getItem(
-                "chimeAccountCreated"
+                "chimeAccountDate"
             );
+
 
         if (!created) {
 
@@ -930,21 +935,26 @@ function updateAccountDetails() {
                     }
                 );
 
+
             localStorage.setItem(
-                "chimeAccountCreated",
+                "chimeAccountDate",
                 created
             );
+
         }
+
 
         createdElement.textContent =
             created;
+
     }
 
 
-    /* Security status */
-
     const securityElement =
-        document.getElementById("accountSecurity");
+        document.getElementById(
+            "accountSecurity"
+        );
+
 
     if (securityElement) {
 
@@ -952,279 +962,54 @@ function updateAccountDetails() {
             "Active";
 
     }
+
+
+    loadTelegramUser();
+
 }
 
 
-/* Run when app loads */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    updateAccountDetails
-);
 /* =========================================
-   CHIME — CREATE ACCOUNT
+   CREATE ACCOUNT
 ========================================= */
 
 window.createChimeAccount = function () {
 
     const name =
-        document.getElementById("signupName").value.trim();
+        document.getElementById(
+            "signupName"
+        ).value.trim();
+
 
     const email =
-        document.getElementById("signupEmail").value.trim();
+        document.getElementById(
+            "signupEmail"
+        ).value.trim();
 
-    const telegram =
-        document.getElementById("signupTelegram").value.trim();
 
     const password =
-        document.getElementById("signupPassword").value;
+        document.getElementById(
+            "signupPassword"
+        ).value;
+
 
     const confirmPassword =
-        document.getElementById("signupConfirmPassword").value;
+        document.getElementById(
+            "signupConfirmPassword"
+        ).value;
+
 
     const terms =
-        document.getElementById("signupTerms").checked;
+        document.getElementById(
+            "signupTerms"
+        ).checked;
+
 
     const message =
-        document.getElementById("signupMessage");
-
-
-    /* Validation */
-
-    if (!name) {
-        message.textContent = "Please enter your full name.";
-        return;
-    }
-
-
-    if (!email || !email.includes("@")) {
-        message.textContent = "Please enter a valid email address.";
-        return;
-    }
-
-
-    if (password.length < 6) {
-        message.textContent =
-            "Password must be at least 6 characters.";
-        return;
-    }
-
-
-    if (password !== confirmPassword) {
-        message.textContent =
-            "Passwords do not match.";
-        return;
-    }
-
-
-    if (!terms) {
-        message.textContent =
-            "Please accept the terms to continue.";
-        return;
-    }
-
-
-    /* Save basic account information */
-
-    localStorage.setItem(
-        "chimeAccountCreated",
-        new Date().toLocaleDateString(
-            "en-US",
-            {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
-        )
-    );
-
-    localStorage.setItem(
-        "chimeUserName",
-        name
-    );
-
-    localStorage.setItem(
-        "chimeEmail",
-        email
-    );
-
-    localStorage.setItem(
-        "chimeHasEnteredApp",
-        "true"
-    );
-
-
-    /* Update profile */
-
-    const profileName =
-        document.getElementById("profileName");
-
-    if (profileName) {
-        profileName.textContent = name;
-    }
-
-
-    /* Success */
-
-    message.textContent =
-        "Account created successfully.";
-
-
-    /* Open dashboard */
-
-    setTimeout(function () {
-
-        showPage("dashboard");
-
-    }, 600);
-
-};
-/* =========================================
-   CHIME — FORCE CORRECT STARTING FLOW
-========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const registered =
-        localStorage.getItem("chimeHasEnteredApp");
-
-    const welcomePages =
-        document.querySelectorAll("#welcome");
-
-    if (registered === "true") {
-
-        const dashboard =
-            document.getElementById("dashboard");
-
-        if (dashboard) {
-            dashboard.classList.add("active");
-        }
-
-        welcomePages.forEach(function (page) {
-            page.classList.remove("active");
-        });
-
-    }
-
-});
-/* =========================================
-   CHIME TELEGRAM USER AUTO-FILL
-========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    try {
-
-        if (window.Telegram && Telegram.WebApp) {
-
-            Telegram.WebApp.ready();
-
-            const user =
-                Telegram.WebApp.initDataUnsafe?.user;
-
-            if (user) {
-
-                const telegramInput =
-                    document.getElementById("signupTelegram");
-
-                const profileUsername =
-                    document.getElementById("profileUsername");
-
-                const profileName =
-                    document.getElementById("profileName");
-
-                const accountTelegram =
-                    document.getElementById("accountTelegram");
-
-                /* TELEGRAM USERNAME */
-
-                if (telegramInput) {
-
-                    if (user.username) {
-
-                        telegramInput.value =
-                            "@" + user.username;
-
-                    } else {
-
-                        telegramInput.value =
-                            "@" + user.first_name;
-
-                    }
-
-                }
-
-
-                /* PROFILE */
-
-                if (profileUsername) {
-
-                    profileUsername.textContent =
-                        user.username
-                            ? "@" + user.username
-                            : "Telegram User";
-
-                }
-
-
-                if (profileName) {
-
-                    profileName.textContent =
-                        user.first_name || "Chime User";
-
-                }
-
-
-                /* ACCOUNT DETAILS */
-
-                if (accountTelegram) {
-
-                    accountTelegram.textContent =
-                        user.username
-                            ? "@" + user.username
-                            : "Telegram User";
-
-                }
-
-            }
-
-        }
-
-    } catch (error) {
-
-        console.log(
-            "Telegram profile information unavailable."
+        document.getElementById(
+            "signupMessage"
         );
 
-    }
-
-});
-/* =========================================
-   CHIME ACCOUNT CREATION
-========================================= */
-
-function createChimeAccount() {
-
-    const name =
-        document.getElementById("signupName").value.trim();
-
-    const email =
-        document.getElementById("signupEmail").value.trim();
-
-    const password =
-        document.getElementById("signupPassword").value;
-
-    const confirmPassword =
-        document.getElementById("signupConfirmPassword").value;
-
-    const terms =
-        document.getElementById("signupTerms").checked;
-
-    const message =
-        document.getElementById("signupMessage");
-
-
-    /* VALIDATION */
 
     if (!name) {
 
@@ -1235,19 +1020,13 @@ function createChimeAccount() {
     }
 
 
-    if (!email) {
+    if (
+        !email ||
+        !email.includes("@")
+    ) {
 
         message.textContent =
-            "Please enter your email address.";
-
-        return;
-    }
-
-
-    if (!password) {
-
-        message.textContent =
-            "Please create a password.";
+            "Please enter a valid email address.";
 
         return;
     }
@@ -1262,7 +1041,10 @@ function createChimeAccount() {
     }
 
 
-    if (password !== confirmPassword) {
+    if (
+        password !==
+        confirmPassword
+    ) {
 
         message.textContent =
             "Passwords do not match.";
@@ -1280,91 +1062,214 @@ function createChimeAccount() {
     }
 
 
-    /* SAVE BASIC ACCOUNT INFORMATION */
+    const accountDate =
+        new Date().toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
 
     localStorage.setItem(
-        "chimeAccountCreated",
+        "chimeHasEnteredApp",
         "true"
     );
+
 
     localStorage.setItem(
         "chimeName",
         name
     );
 
+
+    localStorage.setItem(
+        "chimeUserName",
+        name
+    );
+
+
     localStorage.setItem(
         "chimeEmail",
         email
     );
 
+
     localStorage.setItem(
         "chimeAccountDate",
-        new Date().toLocaleDateString()
+        accountDate
     );
 
 
-    /* UPDATE PROFILE */
-
     const profileName =
-        document.getElementById("profileName");
+        document.getElementById(
+            "profileName"
+        );
+
 
     const accountEmail =
-        document.getElementById("accountEmail");
+        document.getElementById(
+            "accountEmail"
+        );
+
 
     const accountCreated =
-        document.getElementById("accountCreated");
+        document.getElementById(
+            "accountCreated"
+        );
 
 
     if (profileName) {
-
         profileName.textContent = name;
-
     }
 
 
     if (accountEmail) {
-
         accountEmail.textContent = email;
-
     }
 
 
     if (accountCreated) {
-
         accountCreated.textContent =
-            new Date().toLocaleDateString();
-
+            accountDate;
     }
 
-
-    /* SUCCESS MESSAGE */
 
     message.textContent =
         "Account created successfully.";
 
 
-    /* GO TO DASHBOARD */
-
     setTimeout(function () {
 
         showPage("dashboard");
 
-    }, 700);
+    }, 600);
 
-}
+};
+
+
 /* =========================================
-   CHIME LOGOUT
+   LOGOUT
 ========================================= */
 
-function logoutChime() {
+window.logoutChime = function () {
 
     const confirmLogout =
-        confirm("Are you sure you want to logout?");
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
 
     if (!confirmLogout) {
         return;
     }
 
+
+    /* Clear login status */
+
+    localStorage.removeItem(
+        "chimeHasEnteredApp"
+    );
+
+
+    /* Return to welcome */
+
     showPage("welcome");
 
+};
+
+
+/* =========================================
+   INITIAL STARTING PAGE
+========================================= */
+
+function initializeStartingPage() {
+
+    const registered =
+        localStorage.getItem(
+            "chimeHasEnteredApp"
+        );
+
+
+    if (registered === "true") {
+
+        showPage("dashboard");
+
+    } else {
+
+        showPage("welcome");
+
+    }
+
 }
+
+
+/* =========================================
+   APP INITIALIZATION
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        /* Telegram */
+
+        loadTelegramUser();
+
+
+        /* Dark mode */
+
+        if (
+            localStorage.getItem(
+                "chimeDarkMode"
+            ) === "on"
+        ) {
+
+            document.body.classList.add(
+                "dark-mode"
+            );
+
+        }
+
+
+        updateThemeStatus();
+
+
+        /* Account */
+
+        updateAccountDetails();
+
+
+        /* Dashboard */
+
+        updateDashboard();
+
+
+        /* Deposit */
+
+        updateWeekendDepositNotice();
+
+
+        /* Starting page */
+
+        initializeStartingPage();
+
+
+        console.log(
+            "Chime Investment loaded successfully."
+        );
+
+    }
+);
+
+
+/* =========================================
+   LIVE TIMER
+========================================= */
+
+setInterval(
+    updateInvestmentTimer,
+    1000
+);
