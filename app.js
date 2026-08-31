@@ -7,15 +7,16 @@
 /* =========================================
    PAGE NAVIGATION
 ========================================= */
-
 window.showPage = function (pageId) {
 
     const pages = document.querySelectorAll(".page");
 
+    /* Hide EVERY page first */
     pages.forEach(function (page) {
         page.classList.remove("active");
     });
 
+    /* Find the page selected */
     const selectedPage =
         document.getElementById(pageId);
 
@@ -24,10 +25,10 @@ window.showPage = function (pageId) {
         return;
     }
 
+    /* Show ONLY selected page */
     selectedPage.classList.add("active");
 
-    /* Bottom navigation */
-
+    /* Update bottom navigation */
     const navItems =
         document.querySelectorAll(".nav-item");
 
@@ -57,7 +58,6 @@ window.showPage = function (pageId) {
         behavior: "smooth"
     });
 };
-
 
 /* =========================================
    TELEGRAM MINI APP
