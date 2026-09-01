@@ -7485,3 +7485,33 @@ body {
 .page.active {
     display: block !important;
    }
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 15px;
+    padding: 9px 15px;
+
+    background: var(--card);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+.back-button:active {
+    transform: scale(0.95);
+   }
