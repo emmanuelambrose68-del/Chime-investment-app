@@ -543,7 +543,8 @@ function updateActiveInvestment() {
 
 
 /* =========================================
-   7-DAY TIMER
+   2-DAY INVESTMENT TIMER
+   25% PAYMENT DUE ON THE 3RD DAY
 ========================================= */
 
 function updateInvestmentTimer() {
@@ -553,7 +554,6 @@ function updateInvestmentTimer() {
             "investmentTimer"
         );
 
-
     const investment =
         JSON.parse(
             localStorage.getItem(
@@ -561,16 +561,47 @@ function updateInvestmentTimer() {
             )
         );
 
-
     if (!timer || !investment) {
         return;
     }
 
+    /*
+       2 DAYS = 48 HOURS
+
+       If an existing investment still has
+       the old 7-day end time, reset it to
+       48 hours from its start time.
+    */
+
+    const twoDays =
+        2 * 24 * 60 * 60 * 1000;
+
+    if (investment.startTime) {
+
+        const newEndTime =
+            investment.startTime +
+            twoDays;
+
+        if (
+            !investment.endTime ||
+            investment.endTime -
+            investment.startTime >
+            twoDays
+        ) {
+
+            investment.endTime =
+                newEndTime;
+
+            localStorage.setItem(
+                "chimeInvestment",
+                JSON.stringify(investment)
+            );
+        }
+    }
 
     const remaining =
         investment.endTime -
         Date.now();
-
 
     if (remaining <= 0) {
 
@@ -580,13 +611,11 @@ function updateInvestmentTimer() {
         return;
     }
 
-
     const days =
         Math.floor(
             remaining /
             (1000 * 60 * 60 * 24)
         );
-
 
     const hours =
         Math.floor(
@@ -597,7 +626,6 @@ function updateInvestmentTimer() {
             (1000 * 60 * 60)
         );
 
-
     const minutes =
         Math.floor(
             (
@@ -606,7 +634,6 @@ function updateInvestmentTimer() {
             ) /
             (1000 * 60)
         );
-
 
     const seconds =
         Math.floor(
@@ -617,7 +644,6 @@ function updateInvestmentTimer() {
             1000
         );
 
-
     timer.textContent =
         String(days).padStart(2, "0") +
         "d " +
@@ -627,9 +653,7 @@ function updateInvestmentTimer() {
         "m " +
         String(seconds).padStart(2, "0") +
         "s";
-
 }
-
 
 /* =========================================
    CRYPTO DEPOSIT
