@@ -7488,30 +7488,32 @@ body {
 /* =========================================
    BACK BUTTON
 ========================================= */
-
 .back-button {
-    display: inline-flex;
+    display: flex !important;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
 
-    margin-bottom: 15px;
-    padding: 9px 15px;
+    width: fit-content;
+    min-width: 80px;
 
-    background: var(--card);
-    color: var(--text);
+    margin: 0 0 18px 0;
+    padding: 10px 16px;
 
-    border: 1px solid var(--border);
+    background: var(--card) !important;
+    color: var(--text) !important;
+
+    border: 1px solid var(--border) !important;
     border-radius: 12px;
 
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 
     cursor: pointer;
     box-shadow: var(--shadow);
 
-    transition: 0.2s ease;
+    box-sizing: border-box;
 }
 
 .back-button:active {
     transform: scale(0.95);
-   }
+             }
