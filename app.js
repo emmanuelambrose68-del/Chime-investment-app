@@ -192,7 +192,8 @@ window.selectPlan = function (
     percentage,
     days
 ) {
-
+    // Chime investment cycle is 2 days
+    days = 2;
     const amount =
         prompt(
             plan +
