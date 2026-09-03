@@ -1230,11 +1230,99 @@
                     ›
                 </b>
 
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section id="profile" class="page">
+
+    <div class="page-content">
+
+        <!-- PAGE TITLE -->
+        <h1>
+            My Profile
+        </h1>
+
+
+        <!-- PROFILE CARD -->
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <h2 id="profileName">
+                Chime User
+            </h2>
+
+            <p id="profileUsername">
+                @user
+            </p>
+
+        </div>
+
+
+        <!-- PROFILE MENU -->
+        <div class="profile-menu">
+
+
+            <!-- ACCOUNT DETAILS -->
+            <button
+                type="button"
+                onclick="showPage('accountDetails')">
+
+                👤
+
+                <span>
+                    Account Details
+                </span>
+
+                <b>
+                    ›
+                </b>
+
             </button>
 
 
-
+            <!-- TRANSACTION HISTORY -->
             <button
+                type="button"
+                onclick="showPage('transactions')">
+
+                📋
+
+                <span>
+                    Transaction History
+                </span>
+
+                <b>
+                    ›
+                </b>
+
+            </button>
+
+
+            <!-- ABOUT CHIME -->
+            <button
+                type="button"
+                onclick="showPage('learn')">
+
+                📚
+
+                <span>
+                    About Chime
+                </span>
+
+                <b>
+                    ›
+                </b>
+
+            </button>
+
+
+            <!-- NOTIFICATIONS -->
+            <button
+                type="button"
                 onclick="showPage('notifications')">
 
                 🔔
@@ -1250,8 +1338,9 @@
             </button>
 
 
-
+            <!-- SETTINGS -->
             <button
+                type="button"
                 onclick="showPage('settings')">
 
                 ⚙️
@@ -1267,8 +1356,9 @@
             </button>
 
 
-
+            <!-- LOGOUT -->
             <button
+                type="button"
                 class="logout-button"
                 onclick="logoutChime()">
 
@@ -1287,11 +1377,9 @@
 
         </div>
 
-
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
