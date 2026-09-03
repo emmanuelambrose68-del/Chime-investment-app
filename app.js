@@ -1,12 +1,37 @@
 /* =========================================
    CHIME INVESTMENT
-   CLEAN COMPLETE APP JAVASCRIPT
-   DUPLICATE PAGE + NAVIGATION FIX
-========================================= */
+   FIREBASE CONNECTED APP JAVASCRIPT
+   ========================================= */
 
 (function () {
 
     "use strict";
+
+    /* =========================================
+       FIREBASE
+    ========================================= */
+
+    let auth = null;
+    let db = null;
+    let currentUser = null;
+
+    function initializeFirebaseConnection() {
+
+        if (!window.chimeAuth || !window.chimeDB) {
+
+            console.error(
+                "Firebase has not been initialized. Check index.html."
+            );
+
+            return false;
+        }
+
+        auth = window.chimeAuth;
+        db = window.chimeDB;
+
+        return true;
+    }
+
 
     /* =========================================
        PAGE NAVIGATION
@@ -14,20 +39,20 @@
 
     window.showPage = function (pageId) {
 
-        const pages = document.querySelectorAll(".page");
+        const pages =
+            document.querySelectorAll(".page");
 
         if (!pages.length) {
-            console.warn("No .page elements found.");
             return;
         }
 
-        /* Hide EVERY page */
         pages.forEach(function (page) {
+
             page.classList.remove("active");
             page.style.display = "none";
+
         });
 
-        /* Find selected page */
         const selectedPage =
             document.getElementById(pageId);
 
@@ -36,11 +61,10 @@
             return;
         }
 
-        /* Show ONLY selected page */
         selectedPage.classList.add("active");
         selectedPage.style.display = "block";
 
-        /* Update bottom navigation */
+
         const navItems =
             document.querySelectorAll(".nav-item");
 
@@ -48,12 +72,14 @@
             item.classList.remove("active");
         });
 
+
         const navigation = {
             dashboard: 0,
             investments: 1,
             transactions: 2,
             profile: 3
         };
+
 
         if (navigation[pageId] !== undefined) {
 
@@ -63,21 +89,28 @@
             if (navItem) {
                 navItem.classList.add("active");
             }
+
         }
 
-        /* Scroll to top */
+
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
 
-        /* Update page-specific information */
+
         if (pageId === "dashboard") {
             updateDashboard();
         }
 
+
         if (pageId === "profile") {
             updateAccountDetails();
+        }
+
+
+        if (pageId === "transactions") {
+            loadTransactions();
         }
 
     };
@@ -88,14 +121,12 @@
     ========================================= */
 
     window.goBack = function () {
-
         showPage("dashboard");
-
     };
 
 
     /* =========================================
-       TELEGRAM MINI APP
+       TELEGRAM
     ========================================= */
 
     function loadTelegramUser() {
@@ -113,12 +144,14 @@
                 tg.ready();
                 tg.expand();
 
+
                 if (
                     typeof tg.setHeaderColor ===
                     "function"
                 ) {
                     tg.setHeaderColor("#172033");
                 }
+
 
                 if (
                     typeof tg.setBackgroundColor ===
@@ -127,13 +160,16 @@
                     tg.setBackgroundColor("#f5f7fb");
                 }
 
+
                 const user =
                     tg.initDataUnsafe &&
                     tg.initDataUnsafe.user;
 
+
                 if (!user) {
                     return;
                 }
+
 
                 const name =
                     [
@@ -142,6 +178,7 @@
                     ]
                     .filter(Boolean)
                     .join(" ");
+
 
                 const username =
                     user.username
@@ -154,15 +191,18 @@
                         "profileName"
                     );
 
+
                 const profileUsername =
                     document.getElementById(
                         "profileUsername"
                     );
 
+
                 const telegramInput =
                     document.getElementById(
                         "signupTelegram"
                     );
+
 
                 const accountTelegram =
                     document.getElementById(
@@ -183,26 +223,20 @@
 
 
                 if (profileUsername) {
-
                     profileUsername.textContent =
                         username;
-
                 }
 
 
                 if (telegramInput) {
-
                     telegramInput.value =
                         username;
-
                 }
 
 
                 if (accountTelegram) {
-
                     accountTelegram.textContent =
                         username;
-
                 }
 
             }
@@ -219,7 +253,65 @@
 
 
     /* =========================================
-       INVESTMENT PLAN
+       CREATE FIRESTORE USER PROFILE
+    ========================================= */
+
+    async function createUserProfile(
+        user,
+        name,
+        telegramUsername
+    ) {
+
+        if (!db || !user) {
+            return;
+        }
+
+
+        const userRef =
+            db.collection("users").doc(user.uid);
+
+
+        const existing =
+            await userRef.get();
+
+
+        if (!existing.exists) {
+
+            await userRef.set({
+
+                uid: user.uid,
+
+                name: name,
+
+                email: user.email || "",
+
+                telegramUsername:
+                    telegramUsername ||
+                    "Telegram User",
+
+                balance: 0,
+
+                investedCapital: 0,
+
+                totalReturns: 0,
+
+                createdAt:
+                    firebase.firestore.FieldValue
+                    .serverTimestamp(),
+
+                updatedAt:
+                    firebase.firestore.FieldValue
+                    .serverTimestamp()
+
+            });
+
+        }
+
+    }
+
+
+    /* =========================================
+       SELECT INVESTMENT PLAN
     ========================================= */
 
     window.selectPlan = function (
@@ -229,6 +321,18 @@
         percentage,
         days
     ) {
+
+        if (!currentUser) {
+
+            alert(
+                "Please create or sign in to your Chime account first."
+            );
+
+            showPage("signup");
+
+            return;
+        }
+
 
         const amount =
             prompt(
@@ -245,12 +349,15 @@
                 "\n\nEnter your investment amount:"
             );
 
+
         if (amount === null) {
             return;
         }
 
+
         const investment =
             Number(amount);
+
 
         if (
             !Number.isFinite(investment) ||
@@ -264,28 +371,6 @@
                 " and $" +
                 maximum.toLocaleString() +
                 "."
-            );
-
-            return;
-        }
-
-
-        const existingCapital =
-            Number(
-                localStorage.getItem(
-                    "chimeInvestedCapital"
-                ) || 0
-            );
-
-
-        if (
-            existingCapital +
-            investment >
-            2000
-        ) {
-
-            alert(
-                "Your maximum total investment capital is $2,000."
             );
 
             return;
@@ -313,57 +398,69 @@
 
         const investmentData = {
 
+            userId: currentUser.uid,
+
             plan: plan,
+
             capital: investment,
+
             percentage: percentage,
+
             returnAmount: returnAmount,
+
+            days: days,
+
             startTime: startTime,
-            endTime: endTime
+
+            endTime: endTime,
+
+            status: "pending",
+
+            createdAt:
+                firebase.firestore.FieldValue
+                .serverTimestamp()
 
         };
 
 
-        localStorage.setItem(
-            "chimeInvestment",
-            JSON.stringify(
-                investmentData
-            )
-        );
+        db.collection("investments")
+            .add(investmentData)
+            .then(function () {
+
+                alert(
+                    "Investment request recorded.\n\n" +
+                    "Plan: " +
+                    plan +
+                    "\n" +
+                    "Capital: $" +
+                    investment.toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    ) +
+                    "\n" +
+                    "Cycle: " +
+                    days +
+                    " days."
+                );
 
 
-        localStorage.setItem(
-            "chimeInvestedCapital",
-            String(
-                existingCapital +
-                investment
-            )
-        );
+                showPage("dashboard");
 
+                loadActiveInvestment();
 
-        updateDashboard();
+            })
+            .catch(function (error) {
 
+                console.error(error);
 
-        alert(
-            "Investment created successfully.\n\n" +
-            "Plan: " +
-            plan +
-            "\n" +
-            "Capital: $" +
-            investment.toLocaleString(
-                undefined,
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            ) +
-            "\n" +
-            "Cycle: " +
-            days +
-            " days."
-        );
+                alert(
+                    "Unable to record the investment request."
+                );
 
-
-        showPage("dashboard");
+            });
 
     };
 
@@ -372,90 +469,119 @@
        DASHBOARD
     ========================================= */
 
-    function updateDashboard() {
+    async function updateDashboard() {
 
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
-            );
-
-
-        const investedCapital =
-            Number(
-                localStorage.getItem(
-                    "chimeInvestedCapital"
-                ) || 0
-            );
-
-
-        const totalBalance =
-            document.getElementById(
-                "totalBalance"
-            );
-
-
-        const investedAmount =
-            document.getElementById(
-                "investedAmount"
-            );
-
-
-        const profitAmount =
-            document.getElementById(
-                "profitAmount"
-            );
-
-
-        const formatMoney = function (value) {
-
-            return "$" +
-                Number(value || 0).toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                );
-
-        };
-
-
-        if (totalBalance) {
-
-            totalBalance.textContent =
-                formatMoney(
-                    investedCapital
-                );
-
+        if (!currentUser || !db) {
+            return;
         }
 
 
-        if (investedAmount) {
+        try {
 
-            investedAmount.textContent =
-                formatMoney(
-                    investedCapital
+            const userDoc =
+                await db
+                    .collection("users")
+                    .doc(currentUser.uid)
+                    .get();
+
+
+            if (!userDoc.exists) {
+                return;
+            }
+
+
+            const data =
+                userDoc.data();
+
+
+            const balance =
+                Number(data.balance || 0);
+
+
+            const investedCapital =
+                Number(
+                    data.investedCapital || 0
                 );
 
+
+            const totalReturns =
+                Number(
+                    data.totalReturns || 0
+                );
+
+
+            const formatMoney =
+                function (value) {
+
+                    return "$" +
+                        Number(value || 0)
+                            .toLocaleString(
+                                undefined,
+                                {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                }
+                            );
+
+                };
+
+
+            const totalBalance =
+                document.getElementById(
+                    "totalBalance"
+                );
+
+
+            const investedAmount =
+                document.getElementById(
+                    "investedAmount"
+                );
+
+
+            const profitAmount =
+                document.getElementById(
+                    "profitAmount"
+                );
+
+
+            if (totalBalance) {
+
+                totalBalance.textContent =
+                    formatMoney(balance);
+
+            }
+
+
+            if (investedAmount) {
+
+                investedAmount.textContent =
+                    formatMoney(
+                        investedCapital
+                    );
+
+            }
+
+
+            if (profitAmount) {
+
+                profitAmount.textContent =
+                    formatMoney(
+                        totalReturns
+                    );
+
+            }
+
+
+            loadActiveInvestment();
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard error:",
+                error
+            );
+
         }
-
-
-        if (profitAmount) {
-
-            const profit =
-                investment
-                    ? investment.returnAmount
-                    : 0;
-
-            profitAmount.textContent =
-                formatMoney(profit);
-
-        }
-
-
-        updateActiveInvestment();
 
     }
 
@@ -464,7 +590,12 @@
        ACTIVE INVESTMENT
     ========================================= */
 
-    function updateActiveInvestment() {
+    async function loadActiveInvestment() {
+
+        if (!currentUser || !db) {
+            return;
+        }
+
 
         const card =
             document.getElementById(
@@ -472,111 +603,150 @@
             );
 
 
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
-            );
-
-
-        if (!card || !investment) {
-
-            if (card) {
-                card.style.display = "none";
-            }
-
+        if (!card) {
             return;
         }
 
 
-        card.style.display = "block";
+        try {
+
+            const snapshot =
+                await db
+                    .collection("investments")
+                    .where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    )
+                    .where(
+                        "status",
+                        "==",
+                        "active"
+                    )
+                    .limit(1)
+                    .get();
 
 
-        const planName =
-            document.getElementById(
-                "activePlanName"
-            );
+            if (snapshot.empty) {
+
+                card.style.display = "none";
+
+                return;
+            }
 
 
-        const capital =
-            document.getElementById(
-                "activeCapital"
-            );
+            const doc =
+                snapshot.docs[0];
 
 
-        const returnValue =
-            document.getElementById(
-                "activeReturn"
-            );
+            const investment =
+                doc.data();
 
 
-        const endDate =
-            document.getElementById(
-                "investmentEndDate"
-            );
+            card.style.display =
+                "block";
 
 
-        if (planName) {
-
-            planName.textContent =
-                investment.plan;
-
-        }
-
-
-        if (capital) {
-
-            capital.textContent =
-                "$" +
-                Number(
-                    investment.capital
-                ).toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
+            const planName =
+                document.getElementById(
+                    "activePlanName"
                 );
 
-        }
 
-
-        if (returnValue) {
-
-            returnValue.textContent =
-                "$" +
-                Number(
-                    investment.returnAmount
-                ).toLocaleString(
-                    undefined,
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
+            const capital =
+                document.getElementById(
+                    "activeCapital"
                 );
 
+
+            const returnValue =
+                document.getElementById(
+                    "activeReturn"
+                );
+
+
+            const endDate =
+                document.getElementById(
+                    "investmentEndDate"
+                );
+
+
+            if (planName) {
+                planName.textContent =
+                    investment.plan;
+            }
+
+
+            if (capital) {
+
+                capital.textContent =
+                    "$" +
+                    Number(
+                        investment.capital || 0
+                    ).toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+            }
+
+
+            if (returnValue) {
+
+                returnValue.textContent =
+                    "$" +
+                    Number(
+                        investment.returnAmount || 0
+                    ).toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+            }
+
+
+            if (endDate) {
+
+                endDate.textContent =
+                    "Cycle ends: " +
+                    new Date(
+                        investment.endTime
+                    ).toLocaleString();
+
+            }
+
+
+            localStorage.setItem(
+                "chimeInvestment",
+                JSON.stringify({
+                    ...investment,
+                    id: doc.id
+                })
+            );
+
+
+            updateInvestmentTimer();
+
+        } catch (error) {
+
+            console.error(
+                "Investment loading error:",
+                error
+            );
+
         }
-
-
-        if (endDate) {
-
-            endDate.textContent =
-                "Cycle ends: " +
-                new Date(
-                    investment.endTime
-                ).toLocaleString();
-
-        }
-
-
-        updateInvestmentTimer();
 
     }
 
 
     /* =========================================
-       INVESTMENT CYCLE TIMER
+       INVESTMENT TIMER
     ========================================= */
 
     function updateInvestmentTimer() {
@@ -587,21 +757,44 @@
             );
 
 
-        const investment =
-            JSON.parse(
-                localStorage.getItem(
-                    "chimeInvestment"
-                )
-            );
-
-
-        if (!timer || !investment) {
+        if (!timer) {
             return;
         }
 
 
+        let investment = null;
+
+
+        try {
+
+            investment =
+                JSON.parse(
+                    localStorage.getItem(
+                        "chimeInvestment"
+                    )
+                );
+
+        } catch (error) {
+
+            investment = null;
+
+        }
+
+
+        if (!investment) {
+
+            timer.textContent =
+                "00d 00h 00m 00s";
+
+            return;
+
+        }
+
+
         const remaining =
-            investment.endTime -
+            Number(
+                investment.endTime
+            ) -
             Date.now();
 
 
@@ -611,6 +804,7 @@
                 "00d 00h 00m 00s";
 
             return;
+
         }
 
 
@@ -670,6 +864,18 @@
 
     window.makeDeposit = function () {
 
+        if (!currentUser) {
+
+            alert(
+                "Please create an account first."
+            );
+
+            showPage("signup");
+
+            return;
+        }
+
+
         const amountInput =
             document.getElementById(
                 "depositAmount"
@@ -712,32 +918,70 @@
         }
 
 
-        alert(
-            "Deposit request received.\n\n" +
-            "Amount: $" +
-            amount.toLocaleString(
-                undefined,
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            ) +
-            "\nCrypto: " +
-            (
+        const depositData = {
+
+            userId:
+                currentUser.uid,
+
+            amount:
+                amount,
+
+            currency:
                 currency
                     ? currency.value
-                    : "USDT"
-            ) +
-            "\nNetwork: " +
-            (
+                    : "USDT",
+
+            network:
                 network
                     ? network.value
-                    : "TRC20"
-            )
-        );
+                    : "TRC20",
+
+            status:
+                "pending",
+
+            createdAt:
+                firebase.firestore.FieldValue
+                .serverTimestamp()
+
+        };
 
 
-        amountInput.value = "";
+        db.collection("deposits")
+            .add(depositData)
+            .then(function () {
+
+                alert(
+                    "Deposit request submitted.\n\n" +
+                    "Amount: $" +
+                    amount.toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    ) +
+                    "\nCrypto: " +
+                    depositData.currency +
+                    "\nNetwork: " +
+                    depositData.network +
+                    "\n\nStatus: Pending"
+                );
+
+
+                amountInput.value = "";
+
+                loadTransactions();
+
+            })
+            .catch(function (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to submit deposit request."
+                );
+
+            });
 
     };
 
@@ -781,6 +1025,18 @@
 
     window.makeWithdrawal = function () {
 
+        if (!currentUser) {
+
+            alert(
+                "Please create an account first."
+            );
+
+            showPage("signup");
+
+            return;
+        }
+
+
         const input =
             document.getElementById(
                 "withdrawAmount"
@@ -790,6 +1046,12 @@
         const destination =
             document.getElementById(
                 "bankAccount"
+            );
+
+
+        const method =
+            document.getElementById(
+                "withdrawMethod"
             );
 
 
@@ -830,28 +1092,292 @@
         }
 
 
-        alert(
-            "Withdrawal request received.\n\n" +
-            "Amount: $" +
-            amount.toLocaleString(
-                undefined,
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            ) +
-            "\n\nYour request has been recorded."
-        );
+        const withdrawalData = {
+
+            userId:
+                currentUser.uid,
+
+            amount:
+                amount,
+
+            destination:
+                destination.value.trim(),
+
+            method:
+                method
+                    ? method.value
+                    : "crypto",
+
+            status:
+                "pending",
+
+            createdAt:
+                firebase.firestore.FieldValue
+                .serverTimestamp()
+
+        };
 
 
-        input.value = "";
+        db.collection("withdrawals")
+            .add(withdrawalData)
+            .then(function () {
+
+                alert(
+                    "Withdrawal request submitted.\n\n" +
+                    "Amount: $" +
+                    amount.toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    ) +
+                    "\n\nStatus: Pending"
+                );
 
 
-        if (destination) {
-            destination.value = "";
-        }
+                input.value = "";
+
+                destination.value = "";
+
+                loadTransactions();
+
+            })
+            .catch(function (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to submit withdrawal request."
+                );
+
+            });
 
     };
+
+
+    /* =========================================
+       TRANSACTIONS
+    ========================================= */
+
+    async function loadTransactions() {
+
+        const list =
+            document.getElementById(
+                "transactionList"
+            );
+
+
+        if (!list || !currentUser || !db) {
+            return;
+        }
+
+
+        try {
+
+            const transactions = [];
+
+
+            const deposits =
+                await db
+                    .collection("deposits")
+                    .where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    )
+                    .get();
+
+
+            deposits.forEach(function (doc) {
+
+                const data =
+                    doc.data();
+
+
+                transactions.push({
+
+                    id: doc.id,
+
+                    type: "Deposit",
+
+                    amount:
+                        Number(data.amount || 0),
+
+                    status:
+                        data.status || "pending",
+
+                    date:
+                        data.createdAt
+                            ? data.createdAt.toDate()
+                            : new Date()
+
+                });
+
+            });
+
+
+            const withdrawals =
+                await db
+                    .collection("withdrawals")
+                    .where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    )
+                    .get();
+
+
+            withdrawals.forEach(function (doc) {
+
+                const data =
+                    doc.data();
+
+
+                transactions.push({
+
+                    id: doc.id,
+
+                    type: "Withdrawal",
+
+                    amount:
+                        Number(data.amount || 0),
+
+                    status:
+                        data.status || "pending",
+
+                    date:
+                        data.createdAt
+                            ? data.createdAt.toDate()
+                            : new Date()
+
+                });
+
+            });
+
+
+            const investments =
+                await db
+                    .collection("investments")
+                    .where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    )
+                    .get();
+
+
+            investments.forEach(function (doc) {
+
+                const data =
+                    doc.data();
+
+
+                transactions.push({
+
+                    id: doc.id,
+
+                    type: "Investment",
+
+                    amount:
+                        Number(data.capital || 0),
+
+                    status:
+                        data.status || "pending",
+
+                    date:
+                        data.createdAt
+                            ? data.createdAt.toDate()
+                            : new Date()
+
+                });
+
+            });
+
+
+            transactions.sort(
+                function (a, b) {
+
+                    return b.date - a.date;
+
+                }
+            );
+
+
+            if (!transactions.length) {
+
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <span>📋</span>
+                        <h3>No transactions yet</h3>
+                        <p>Your transactions will appear here.</p>
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            list.innerHTML = "";
+
+
+            transactions.forEach(
+                function (transaction) {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "transaction-item";
+
+
+                    item.innerHTML = `
+                        <div>
+                            <strong>
+                                ${transaction.type}
+                            </strong>
+                            <small>
+                                ${transaction.date.toLocaleString()}
+                            </small>
+                        </div>
+
+                        <div>
+                            <strong>
+                                $${transaction.amount.toLocaleString(
+                                    undefined,
+                                    {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    }
+                                )}
+                            </strong>
+
+                            <small>
+                                ${transaction.status}
+                            </small>
+                        </div>
+                    `;
+
+
+                    list.appendChild(item);
+
+                }
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Transaction loading error:",
+                error
+            );
+
+        }
+
+    }
 
 
     /* =========================================
@@ -915,84 +1441,117 @@
        ACCOUNT DETAILS
     ========================================= */
 
-    function updateAccountDetails() {
+    async function updateAccountDetails() {
 
-        const email =
-            localStorage.getItem(
-                "chimeEmail"
-            );
-
-
-        const emailElement =
-            document.getElementById(
-                "accountEmail"
-            );
-
-
-        if (emailElement) {
-
-            emailElement.textContent =
-                email || "Not added";
-
+        if (!currentUser || !db) {
+            return;
         }
 
 
-        const createdElement =
-            document.getElementById(
-                "accountCreated"
-            );
+        try {
+
+            const userDoc =
+                await db
+                    .collection("users")
+                    .doc(currentUser.uid)
+                    .get();
 
 
-        if (createdElement) {
+            if (!userDoc.exists) {
+                return;
+            }
 
-            let created =
-                localStorage.getItem(
-                    "chimeAccountDate"
+
+            const data =
+                userDoc.data();
+
+
+            const emailElement =
+                document.getElementById(
+                    "accountEmail"
                 );
 
 
-            if (!created) {
+            if (emailElement) {
 
-                created =
-                    new Date().toLocaleDateString(
-                        "en-US",
-                        {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                        }
-                    );
-
-
-                localStorage.setItem(
-                    "chimeAccountDate",
-                    created
-                );
+                emailElement.textContent =
+                    data.email ||
+                    currentUser.email ||
+                    "Not added";
 
             }
 
 
-            createdElement.textContent =
-                created;
+            const telegramElement =
+                document.getElementById(
+                    "accountTelegram"
+                );
 
-        }
+
+            if (telegramElement) {
+
+                telegramElement.textContent =
+                    data.telegramUsername ||
+                    "Telegram User";
+
+            }
 
 
-        const securityElement =
-            document.getElementById(
-                "accountSecurity"
+            const createdElement =
+                document.getElementById(
+                    "accountCreated"
+                );
+
+
+            if (createdElement) {
+
+                if (data.createdAt) {
+
+                    createdElement.textContent =
+                        data.createdAt
+                            .toDate()
+                            .toLocaleDateString(
+                                "en-US",
+                                {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric"
+                                }
+                            );
+
+                } else {
+
+                    createdElement.textContent =
+                        "Recently";
+
+                }
+
+            }
+
+
+            const profileName =
+                document.getElementById(
+                    "profileName"
+                );
+
+
+            if (profileName) {
+
+                profileName.textContent =
+                    data.name ||
+                    "Chime User";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Account details error:",
+                error
             );
 
-
-        if (securityElement) {
-
-            securityElement.textContent =
-                "Active";
-
         }
-
-
-        loadTelegramUser();
 
     }
 
@@ -1001,32 +1560,43 @@
        CREATE ACCOUNT
     ========================================= */
 
-    window.createChimeAccount = function () {
+    window.createChimeAccount = async function () {
 
         const nameElement =
             document.getElementById(
                 "signupName"
             );
 
+
         const emailElement =
             document.getElementById(
                 "signupEmail"
             );
+
 
         const passwordElement =
             document.getElementById(
                 "signupPassword"
             );
 
+
         const confirmElement =
             document.getElementById(
                 "signupConfirmPassword"
             );
 
+
         const termsElement =
             document.getElementById(
                 "signupTerms"
             );
+
+
+        const telegramElement =
+            document.getElementById(
+                "signupTelegram"
+            );
+
 
         const message =
             document.getElementById(
@@ -1041,10 +1611,6 @@
             !confirmElement ||
             !termsElement
         ) {
-
-            console.warn(
-                "Signup elements are missing."
-            );
 
             return;
         }
@@ -1070,12 +1636,26 @@
             termsElement.checked;
 
 
-        if (!name) {
+        const telegramUsername =
+            telegramElement
+                ? telegramElement.value.trim()
+                : "Telegram User";
+
+
+        function showMessage(text) {
 
             if (message) {
-                message.textContent =
-                    "Please enter your full name.";
+                message.textContent = text;
             }
+
+        }
+
+
+        if (!name) {
+
+            showMessage(
+                "Please enter your full name."
+            );
 
             return;
         }
@@ -1086,10 +1666,9 @@
             !email.includes("@")
         ) {
 
-            if (message) {
-                message.textContent =
-                    "Please enter a valid email address.";
-            }
+            showMessage(
+                "Please enter a valid email address."
+            );
 
             return;
         }
@@ -1097,10 +1676,9 @@
 
         if (password.length < 6) {
 
-            if (message) {
-                message.textContent =
-                    "Password must be at least 6 characters.";
-            }
+            showMessage(
+                "Password must be at least 6 characters."
+            );
 
             return;
         }
@@ -1111,10 +1689,9 @@
             confirmPassword
         ) {
 
-            if (message) {
-                message.textContent =
-                    "Passwords do not match.";
-            }
+            showMessage(
+                "Passwords do not match."
+            );
 
             return;
         }
@@ -1122,103 +1699,149 @@
 
         if (!terms) {
 
-            if (message) {
-                message.textContent =
-                    "Please accept the applicable terms.";
-            }
+            showMessage(
+                "Please accept the applicable terms."
+            );
 
             return;
         }
 
 
-        const accountDate =
-            new Date().toLocaleDateString(
-                "en-US",
-                {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                }
+        if (!auth || !db) {
+
+            showMessage(
+                "Firebase is not connected. Please refresh the app."
             );
 
-
-        localStorage.setItem(
-            "chimeHasEnteredApp",
-            "true"
-        );
-
-
-        localStorage.setItem(
-            "chimeName",
-            name
-        );
-
-
-        localStorage.setItem(
-            "chimeUserName",
-            name
-        );
-
-
-        localStorage.setItem(
-            "chimeEmail",
-            email
-        );
-
-
-        localStorage.setItem(
-            "chimeAccountDate",
-            accountDate
-        );
-
-
-        const profileName =
-            document.getElementById(
-                "profileName"
-            );
-
-
-        const accountEmail =
-            document.getElementById(
-                "accountEmail"
-            );
-
-
-        const accountCreated =
-            document.getElementById(
-                "accountCreated"
-            );
-
-
-        if (profileName) {
-            profileName.textContent = name;
+            return;
         }
 
 
-        if (accountEmail) {
-            accountEmail.textContent = email;
+        showMessage(
+            "Creating your account..."
+        );
+
+
+        try {
+
+            const credential =
+                await auth
+                    .createUserWithEmailAndPassword(
+                        email,
+                        password
+                    );
+
+
+            currentUser =
+                credential.user;
+
+
+            await createUserProfile(
+                currentUser,
+                name,
+                telegramUsername
+            );
+
+
+            localStorage.setItem(
+                "chimeHasEnteredApp",
+                "true"
+            );
+
+
+            localStorage.setItem(
+                "chimeName",
+                name
+            );
+
+
+            localStorage.setItem(
+                "chimeEmail",
+                email
+            );
+
+
+            if (telegramUsername) {
+
+                localStorage.setItem(
+                    "chimeTelegram",
+                    telegramUsername
+                );
+
+            }
+
+
+            showMessage(
+                "Account created successfully."
+            );
+
+
+            nameElement.value = "";
+            emailElement.value = "";
+            passwordElement.value = "";
+            confirmElement.value = "";
+            termsElement.checked = false;
+
+
+            setTimeout(function () {
+
+                showPage("dashboard");
+
+                updateDashboard();
+
+            }, 700);
+
+
+        } catch (error) {
+
+            console.error(
+                "Account creation error:",
+                error
+            );
+
+
+            let errorMessage =
+                "Unable to create account.";
+
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                errorMessage =
+                    "This email is already registered.";
+
+            }
+
+
+            if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+
+            if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                errorMessage =
+                    "Password is too weak.";
+
+            }
+
+
+            showMessage(
+                errorMessage
+            );
+
         }
-
-
-        if (accountCreated) {
-            accountCreated.textContent =
-                accountDate;
-        }
-
-
-        if (message) {
-
-            message.textContent =
-                "Account created successfully.";
-
-        }
-
-
-        setTimeout(function () {
-
-            showPage("dashboard");
-
-        }, 600);
 
     };
 
@@ -1227,7 +1850,7 @@
        LOGOUT
     ========================================= */
 
-    window.logoutChime = function () {
+    window.logoutChime = async function () {
 
         const confirmLogout =
             confirm(
@@ -1240,18 +1863,34 @@
         }
 
 
-        localStorage.removeItem(
-            "chimeHasEnteredApp"
-        );
+        try {
 
+            if (auth) {
+                await auth.signOut();
+            }
 
-        showPage("welcome");
+            currentUser = null;
+
+            localStorage.removeItem(
+                "chimeHasEnteredApp"
+            );
+
+            showPage("welcome");
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+        }
 
     };
 
 
     /* =========================================
-       REMOVE DUPLICATE ACTIVE PAGES
+       DUPLICATE PAGE CLEANUP
     ========================================= */
 
     function cleanDuplicatePages() {
@@ -1266,7 +1905,9 @@
         pages.forEach(function (page) {
 
             if (
-                page.classList.contains("active")
+                page.classList.contains(
+                    "active"
+                )
             ) {
 
                 if (!activeFound) {
@@ -1277,9 +1918,6 @@
                         "block";
 
                 } else {
-
-                    /* If another page is
-                       already active, hide it */
 
                     page.classList.remove(
                         "active"
@@ -1303,21 +1941,15 @@
 
 
     /* =========================================
-       INITIAL STARTING PAGE
+       STARTING PAGE
     ========================================= */
 
     function initializeStartingPage() {
 
-        const registered =
-            localStorage.getItem(
-                "chimeHasEnteredApp"
-            );
-
-
-        /* First completely hide all pages */
-
         const pages =
-            document.querySelectorAll(".page");
+            document.querySelectorAll(
+                ".page"
+            );
 
 
         pages.forEach(function (page) {
@@ -1332,7 +1964,7 @@
         });
 
 
-        if (registered === "true") {
+        if (currentUser) {
 
             showPage("dashboard");
 
@@ -1346,6 +1978,96 @@
 
 
     /* =========================================
+       FIREBASE AUTH STATE
+    ========================================= */
+
+    function listenForAuthentication() {
+
+        if (!auth) {
+            return;
+        }
+
+
+        auth.onAuthStateChanged(
+            async function (user) {
+
+                currentUser =
+                    user || null;
+
+
+                if (user) {
+
+                    localStorage.setItem(
+                        "chimeHasEnteredApp",
+                        "true"
+                    );
+
+
+                    try {
+
+                        const userDoc =
+                            await db
+                                .collection("users")
+                                .doc(user.uid)
+                                .get();
+
+
+                        if (userDoc.exists) {
+
+                            const data =
+                                userDoc.data();
+
+
+                            localStorage.setItem(
+                                "chimeName",
+                                data.name ||
+                                "Chime User"
+                            );
+
+
+                            localStorage.setItem(
+                                "chimeEmail",
+                                data.email ||
+                                user.email ||
+                                ""
+                            );
+
+                        }
+
+                    } catch (error) {
+
+                        console.error(
+                            "User profile loading error:",
+                            error
+                        );
+
+                    }
+
+
+                    showPage("dashboard");
+
+                    updateDashboard();
+
+                    updateAccountDetails();
+
+
+                } else {
+
+                    localStorage.removeItem(
+                        "chimeHasEnteredApp"
+                    );
+
+                    showPage("welcome");
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
        APP INITIALIZATION
     ========================================= */
 
@@ -1353,15 +2075,15 @@
         "DOMContentLoaded",
         function () {
 
-            /* Clean any duplicate active pages */
+            initializeFirebaseConnection();
+
+
             cleanDuplicatePages();
 
 
-            /* Telegram */
             loadTelegramUser();
 
 
-            /* Dark mode */
             if (
                 localStorage.getItem(
                     "chimeDarkMode"
@@ -1378,20 +2100,10 @@
             updateThemeStatus();
 
 
-            /* Account */
-            updateAccountDetails();
+            listenForAuthentication();
 
 
-            /* Dashboard */
-            updateDashboard();
-
-
-            /* Deposit */
             updateWeekendDepositNotice();
-
-
-            /* Starting page */
-            initializeStartingPage();
 
 
             console.log(
