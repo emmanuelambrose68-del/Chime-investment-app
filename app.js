@@ -2059,7 +2059,27 @@ function updateBottomNavigation(user) {
 
     }
 }
+/* =========================================
+   KEEP NAVIGATION VISIBLE FOR LOGGED-IN USERS
+========================================= */
 
+function ensureLoggedInNavigation() {
+
+    if (
+        window.chimeAuth &&
+        window.chimeAuth.currentUser
+    ) {
+
+        updateBottomNavigation(
+            window.chimeAuth.currentUser
+        );
+
+    } else {
+
+        updateBottomNavigation(null);
+
+    }
+}
 
 /* =========================================
    FIREBASE AUTH STATE
@@ -2225,3 +2245,12 @@ function listenForAuthentication() {
     );
 
 })();
+/* =========================================
+   NAVIGATION CHECK
+========================================= */
+
+setTimeout(function () {
+
+    ensureLoggedInNavigation();
+
+}, 500);
