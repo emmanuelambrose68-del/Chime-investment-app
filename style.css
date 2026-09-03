@@ -3467,12 +3467,27 @@ body {
     background: var(--chime-blue-light);
 }
 
-
 /* =====================================================
    BOTTOM NAVIGATION
 ===================================================== */
 
 .bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    box-sizing: border-box;
+
+    padding: 8px 5px;
+
     background:
         rgba(255,255,255,0.96) !important;
 
@@ -3484,21 +3499,91 @@ body {
 
     box-shadow:
         0 -7px 25px rgba(23,32,51,0.06);
+
+    z-index: 9999;
 }
 
-.nav-item {
+
+/* =====================================================
+   NAVIGATION BUTTONS
+===================================================== */
+
+.bottom-nav .nav-item {
+
+    flex: 1;
+
+    width: 25%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    padding: 7px 2px;
+
+    border: none;
+    background: transparent;
+
+    text-align: center;
+
     transition:
         transform 0.15s ease;
 }
 
-.nav-item:active {
-    transform: scale(0.9);
+
+/* =====================================================
+   NAVIGATION ICON
+===================================================== */
+
+.bottom-nav .nav-item span {
+
+    display: block;
+
+    font-size: 21px;
+
+    line-height: 1;
+
+    margin-bottom: 4px;
 }
 
-.nav-item.active span {
+
+/* =====================================================
+   NAVIGATION TEXT
+===================================================== */
+
+.bottom-nav .nav-item small {
+
+    display: block;
+
+    font-size: 12px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   ACTIVE NAVIGATION
+===================================================== */
+
+.bottom-nav .nav-item.active span {
+
     color: var(--chime-primary) !important;
 }
 
+
+/* =====================================================
+   TAP EFFECT
+===================================================== */
+
+.bottom-nav .nav-item:active {
+
+    transform: scale(0.9);
+}
 
 /* =====================================================
    PAGE HEADINGS
