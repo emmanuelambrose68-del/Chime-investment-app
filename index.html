@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -13,1887 +12,1623 @@
 
     <title>Chime Investment</title>
 
+    <!-- Telegram Mini App -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+    <!-- App CSS -->
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
 <div class="app">
 
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+    <header class="app-header">
 
-<!-- =================================================
-     HEADER
-================================================= -->
+        <div class="brand">
 
-<header class="top-header">
-
-    <div class="brand">
-
-        <div class="brand-logo">C</div>
-
-        <div>
-            <h2>Chime</h2>
-            <span>Investment</span>
-        </div>
-
-    </div>
-
-
-    <button
-        class="notification-btn"
-        onclick="showPage('notifications')">
-
-        🔔
-
-    </button>
-
-</header>
-
-
-
-<!-- =================================================
-     WELCOME
-================================================= -->
-
-<section id="welcome" class="page active">
-
-    <div class="welcome-container">
-
-        <div class="welcome-logo">
-
-            <div class="big-logo">
+            <div class="brand-logo">
                 C
             </div>
 
-        </div>
-
-
-        <h1>
-            Welcome to
-            <span>Chime</span>
-        </h1>
-
-
-        <p class="welcome-subtitle">
-            A simple platform for exploring
-            structured investment opportunities.
-        </p>
-
-
-        <div class="welcome-info">
-
-
-            <div class="welcome-feature">
-
-                <span>💰</span>
-
-                <div>
-                    <strong>Flexible Investment</strong>
-
-                    <p>
-                        Choose an investment level
-                        that suits you.
-                    </p>
-                </div>
-
+            <div class="brand-text">
+                <strong>Chime</strong>
+                <span>Investment</span>
             </div>
-
-
-            <div class="welcome-feature">
-
-                <span>📈</span>
-
-                <div>
-                    <strong>Track Your Growth</strong>
-
-                    <p>
-                        Monitor your capital,
-                        returns and investment cycle.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="welcome-feature">
-
-                <span>🔒</span>
-
-                <div>
-                    <strong>Secure Account</strong>
-
-                    <p>
-                        Manage your Chime account
-                        in one convenient place.
-                    </p>
-                </div>
-
-            </div>
-
 
         </div>
 
-
-        <button
-            class="primary-btn"
-            onclick="showPage('signup')">
-
-            Create Account
-
+        <button class="notification-btn"
+                onclick="showPage('notifications')">
+            🔔
         </button>
 
-
-    </div>
-
-</section>
+    </header>
 
 
+    <!-- =========================================
+         WELCOME PAGE
+    ========================================== -->
+    <section id="welcome" class="page active">
 
-<!-- =================================================
-     SIGN UP
-================================================= -->
+        <div class="page-content">
 
-<section id="signup" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('welcome')">
-
-            ← Back
-
-        </button>
-
-
-        <div class="signup-header">
-
-            <div class="signup-logo">
+            <div class="welcome-logo">
                 C
             </div>
 
-            <h1>
-                Create Account
-            </h1>
+            <h1>Welcome to Chime Investment</h1>
 
-            <p class="page-description">
-                Create your Chime account
-                to continue.
+            <p class="welcome-subtitle">
+                Grow your capital with Chime Investment.
             </p>
 
+
+            <div class="welcome-info">
+
+                <div class="welcome-feature">
+
+                    <span>💰</span>
+
+                    <div>
+                        <strong>Investment Plans</strong>
+
+                        <p>
+                            Explore available investment opportunities.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="welcome-feature">
+
+                    <span>📈</span>
+
+                    <div>
+                        <strong>Track Your Growth</strong>
+
+                        <p>
+                            Monitor your investment and expected return.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="welcome-feature">
+
+                    <span>⏱️</span>
+
+                    <div>
+                        <strong>Investment Timer</strong>
+
+                        <p>
+                            Track the remaining time of your investment cycle.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="showPage('signup')">
+                Get Started
+            </button>
+
+
+            <button class="secondary-btn"
+                    onclick="showPage('learn')">
+                Learn About Chime
+            </button>
+
         </div>
 
-
-        <div class="form-card signup-card">
-
-
-            <label for="signupName">
-                Full Name
-            </label>
-
-            <input
-                type="text"
-                id="signupName"
-                placeholder="Enter your full name">
+    </section>
 
 
-            <label for="signupEmail">
-                Email Address
-            </label>
+    <!-- =========================================
+         SIGN UP PAGE
+    ========================================== -->
+    <section id="signup" class="page">
 
-            <input
-                type="email"
-                id="signupEmail"
-                placeholder="Enter your email">
+        <div class="page-content">
 
+            <button class="back-btn"
+                    onclick="showPage('welcome')">
+                ← Back
+            </button>
 
-            <label for="signupTelegram">
-                Telegram Username
-            </label>
+            <h2>Create Your Chime Account</h2>
 
-            <input
-                type="text"
-                id="signupTelegram"
-                placeholder="@username"
-                readonly>
+            <p class="section-subtitle">
+                Enter your details to get started.
+            </p>
 
 
-            <label for="signupPassword">
-                Password
-            </label>
+            <div class="form-group">
 
-            <input
-                type="password"
-                id="signupPassword"
-                placeholder="Create a password">
+                <label for="signupName">
+                    Full Name
+                </label>
 
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Enter your full name"
+                >
 
-            <label for="signupConfirmPassword">
-                Confirm Password
-            </label>
-
-            <input
-                type="password"
-                id="signupConfirmPassword"
-                placeholder="Confirm your password">
+            </div>
 
 
-            <label class="signup-terms">
+            <div class="form-group">
+
+                <label for="signupEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupTelegram">
+                    Telegram Username
+                </label>
+
+                <input
+                    type="text"
+                    id="signupTelegram"
+                    placeholder="Telegram username"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create a password"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    placeholder="Confirm your password"
+                >
+
+            </div>
+
+
+            <label class="checkbox-row">
 
                 <input
                     type="checkbox"
-                    id="signupTerms">
+                    id="signupTerms"
+                >
 
                 <span>
-                    I agree to the applicable
-                    Chime account and investment terms.
+                    I agree to the Chime Investment terms.
                 </span>
 
             </label>
 
 
-            <button
-                class="primary-btn"
-                onclick="createChimeAccount()">
+            <div id="signupMessage"
+                 class="form-message">
+            </div>
 
-                Create My Account
 
+            <button class="primary-btn"
+                    onclick="createChimeAccount()">
+                Create Account
             </button>
 
-
-            <p
-                id="signupMessage"
-                class="signup-message">
-            </p>
-
-
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- =========================================
+         DASHBOARD
+    ========================================== -->
+    <section id="dashboard" class="page">
 
-<!-- =================================================
-     DASHBOARD
-================================================= -->
+        <div class="page-content">
 
-<section id="dashboard" class="page">
-
-    <div class="dashboard-content">
-
-
-        
-
-
-        <div class="balance-card">
-
-            <div class="balance-top">
-
-                <span>
-                    Total Balance
-                </span>
-
-                <span>
-                    USD
-                </span>
-
-            </div>
-
-
-            <h2 id="totalBalance">
-                $0.00
-            </h2>
-
-
-            <div class="balance-bottom">
-
-                <span>
-                    Available balance
-                </span>
-
-           <div class="dashboard-greeting">
-
-    <div class="greeting-text">
-
-        <p>Welcome back 👋</p>
-
-        <h1>My Dashboard</h1>
-
-    </div>
-
-    <div class="dashboard-mini-logo">
-        C
-    </div>
-
-           </div> </div>
-
-        </div>
-
-
-
-        <!-- ACTIVE INVESTMENT -->
-
-        <div
-            id="activeInvestmentCard"
-            class="active-investment-card"
-            style="display:none;">
-
-            <div class="active-investment-top">
+            <div class="dashboard-heading">
 
                 <div>
 
-                    <span>
-                        Active Investment
-                    </span>
+                    <p class="small-label">
+                        Welcome back
+                    </p>
 
-                    <h3 id="activePlanName">
-                        Investment Plan
-                    </h3>
+                    <h2 id="profileName">
+                        Chime User
+                    </h2>
 
                 </div>
 
-                <span class="active-badge">
-                    ACTIVE
+                <div class="dashboard-icon">
+                    💼
+                </div>
+
+            </div>
+
+
+            <!-- BALANCE -->
+            <div class="balance-card">
+
+                <p>Total Balance</p>
+
+                <h1 id="totalBalance">
+                    $0.00
+                </h1>
+
+                <span>
+                    Available Investment Capital
                 </span>
 
             </div>
 
 
-            <div class="investment-timer">
+            <!-- ACTIVE INVESTMENT -->
+            <div id="activeInvestmentCard"
+                 class="investment-active-card"
+                 style="display:none;">
 
-                <small>
-                    Cycle completes in
-                </small>
+                <div class="card-header">
 
-                <strong id="investmentTimer">
-                    02d 00h 00m 00s
-                </strong>
+                    <div>
 
-            </div>
+                        <span class="small-label">
+                            Active Investment
+                        </span>
 
+                        <h3 id="activePlanName">
+                            Investment Plan
+                        </h3>
 
-            <div class="timer-info">
+                    </div>
 
-                <div>
-
-                    <span>
-                        Capital
+                    <span class="status-badge">
+                        ACTIVE
                     </span>
 
-                    <strong id="activeCapital">
-                        $0.00
+                </div>
+
+
+                <div class="investment-timer-box">
+
+                    <span>
+                        Time Remaining
+                    </span>
+
+                    <strong id="investmentTimer">
+                        00d 00h 00m 00s
                     </strong>
 
                 </div>
 
 
-                <div>
+                <div class="investment-details">
 
-                    <span>
-                        Target Return
-                    </span>
+                    <div>
+                        <span>Capital</span>
+                        <strong id="activeCapital">
+                            $0.00
+                        </strong>
+                    </div>
 
-                    <strong id="activeReturn">
-                        $0.00
-                    </strong>
+                    <div>
+                        <span>Target Return</span>
+                        <strong id="activeReturn">
+                            $0.00
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>End Date</span>
+                        <strong id="investmentEndDate">
+                            —
+                        </strong>
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <p
-                id="investmentEndDate"
-                class="investment-end-date">
-
-                Cycle end date
-
-            </p>
-
-        </div>
-
-
-
-        <!-- QUICK ACTIONS -->
-
-        <div class="section-title">
-
-            <h3>
+            <!-- QUICK ACTIONS -->
+            <h3 class="section-title">
                 Quick Actions
             </h3>
 
-        </div>
+
+            <div class="quick-actions">
+
+                <button onclick="showPage('deposit')">
+                    <span>💳</span>
+                    <strong>Deposit</strong>
+                </button>
 
 
-        <div class="quick-actions">
+                <button onclick="showPage('withdraw')">
+                    <span>💸</span>
+                    <strong>Withdraw</strong>
+                </button>
 
 
-            <button onclick="showPage('deposit')">
-
-                <span>₿</span>
-
-                <strong>
-                    Deposit
-                </strong>
-
-            </button>
+                <button onclick="showPage('investments')">
+                    <span>📊</span>
+                    <strong>Invest</strong>
+                </button>
 
 
-            <button onclick="showPage('withdraw')">
+                <button onclick="showPage('transactions')">
+                    <span>📜</span>
+                    <strong>History</strong>
+                </button>
 
-                <span>💸</span>
-
-                <strong>
-                    Withdraw
-                </strong>
-
-            </button>
+            </div>
 
 
-            <button onclick="showPage('investments')">
-
-                <span>📈</span>
-
-                <strong>
-                    Invest
-                </strong>
-
-            </button>
-
-
-            <button onclick="showPage('transactions')">
-
-                <span>📋</span>
-
-                <strong>
-                    History
-                </strong>
-
-            </button>
-
-        </div>
-
-
-
-        <!-- SUMMARY -->
-
-        <div class="section-title">
-
-            <h3>
+            <!-- SUMMARY -->
+            <h3 class="section-title">
                 Investment Summary
             </h3>
 
-        </div>
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+
+                    <span>Invested</span>
+
+                    <strong id="investedAmount">
+                        $0.00
+                    </strong>
+
+                </div>
 
 
-        <div class="summary-card">
+                <div class="summary-card">
 
-            <div>
+                    <span>Expected Profit</span>
 
-                <span>
-                    Invested Capital
-                </span>
+                    <strong id="profitAmount">
+                        $0.00
+                    </strong>
 
-                <strong id="investedAmount">
-                    $0.00
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    Target Returns
-                </span>
-
-                <strong id="profitAmount">
-                    $0.00
-                </strong>
+                </div>
 
             </div>
 
         </div>
 
-
-        <button
-            class="primary-btn"
-            onclick="showPage('investments')">
-
-            View Investment Plans
-
-        </button>
+    </section>
 
 
-    </div>
+    <!-- =========================================
+         INVESTMENTS PAGE
+    ========================================== -->
+    <section id="investments" class="page">
 
-</section>
+        <div class="page-content">
 
-
-
-<!-- =================================================
-     INVESTMENTS
-================================================= -->
-
-<section id="investments" class="page">
-
-    <div class="page-content">
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
 
 
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
+            <h2>Investment Plans</h2>
 
-            ← Back
-
-        </button>
+            <p class="section-subtitle">
+                Choose an investment plan that matches your capital.
+            </p>
 
 
-        <h1>
-            Investment Plans
-        </h1>
-
-
-        <p class="page-description">
-            Choose an investment level
-            that suits your goals.
-        </p>
-
-
-        <div class="investment-limit">
-
-            <span>
-                Maximum investment capital
-            </span>
-
-            <strong>
-                $2,000
-            </strong>
-
-        </div>
-
-
-        <div class="investment-list">
+            <div class="capital-limit">
+                Maximum Investment Capital:
+                <strong>$2,000</strong>
+            </div>
 
 
             <!-- STARTER -->
+            <div class="plan-card">
 
-            <div class="investment-card">
-
-                <div class="investment-header">
+                <div class="plan-top">
 
                     <div>
-                        <h3>Starter Plan</h3>
-
-                        <span>
-                            $20 – $99
+                        <span class="plan-label">
+                            Starter
                         </span>
+
+                        <h3>Starter Plan</h3>
                     </div>
 
-                    <strong>
+                    <span class="return-badge">
                         25%
-                    </strong>
+                    </span>
 
                 </div>
 
 
-                <div class="investment-details">
+                <div class="plan-price">
+                    $20 - $99
+                </div>
 
-                    <p>
-                        Capital:
-                        <strong>$20 – $99</strong>
-                    </p>
 
-                    <p>
-                        Target Return:
-                        <strong>25%</strong>
-                    </p>
+                <div class="plan-info">
 
-                    <p>
-                        Cycle:
-                        <strong>7 Days</strong>
-                    </p>
+                    <span>
+                        ⏱️ 7 Days
+                    </span>
+
+                    <span>
+                        📈 25% Return
+                    </span>
 
                 </div>
 
 
-                <button
-                    class="primary-btn"
-                    onclick="selectPlan(
-                        'Starter Plan',
-                        20,
-                        99,
-                        25,
-                        7
-                    )">
-
-                    Invest Now
-
+                <button class="primary-btn"
+                        onclick="selectPlan('Starter Plan',20,99,25,7)">
+                    Select Plan
                 </button>
 
             </div>
-
 
 
             <!-- BASIC -->
+            <div class="plan-card">
 
-            <div class="investment-card">
-
-                <div class="investment-header">
+                <div class="plan-top">
 
                     <div>
-                        <h3>Basic Plan</h3>
-
-                        <span>
-                            $100 – $499
+                        <span class="plan-label">
+                            Basic
                         </span>
+
+                        <h3>Basic Plan</h3>
                     </div>
 
-                    <strong>
+                    <span class="return-badge">
                         25%
-                    </strong>
+                    </span>
 
                 </div>
 
 
-                <div class="investment-details">
+                <div class="plan-price">
+                    $100 - $499
+                </div>
 
-                    <p>
-                        Capital:
-                        <strong>$100 – $499</strong>
-                    </p>
 
-                    <p>
-                        Target Return:
-                        <strong>25%</strong>
-                    </p>
+                <div class="plan-info">
 
-                    <p>
-                        Cycle:
-                        <strong>5 Days</strong>
-                    </p>
+                    <span>
+                        ⏱️ 5 Days
+                    </span>
+
+                    <span>
+                        📈 25% Return
+                    </span>
 
                 </div>
 
 
-                <button
-                    class="primary-btn"
-                    onclick="selectPlan(
-                        'Basic Plan',
-                        100,
-                        499,
-                        25,
-                        5
-                    )">
-
-                    Invest Now
-
+                <button class="primary-btn"
+                        onclick="selectPlan('Basic Plan',100,499,25,5)">
+                    Select Plan
                 </button>
 
             </div>
-
 
 
             <!-- GROWTH -->
+            <div class="plan-card">
 
-            <div class="investment-card">
-
-                <div class="investment-header">
+                <div class="plan-top">
 
                     <div>
-                        <h3>Growth Plan</h3>
-
-                        <span>
-                            $500 – $999
+                        <span class="plan-label">
+                            Growth
                         </span>
+
+                        <h3>Growth Plan</h3>
                     </div>
 
-                    <strong>
+                    <span class="return-badge">
                         25%
-                    </strong>
+                    </span>
 
                 </div>
 
 
-                <div class="investment-details">
+                <div class="plan-price">
+                    $500 - $999
+                </div>
 
-                    <p>
-                        Capital:
-                        <strong>$500 – $999</strong>
-                    </p>
 
-                    <p>
-                        Target Return:
-                        <strong>25%</strong>
-                    </p>
+                <div class="plan-info">
 
-                    <p>
-                        Cycle:
-                        <strong>5 Days</strong>
-                    </p>
+                    <span>
+                        ⏱️ 5 Days
+                    </span>
+
+                    <span>
+                        📈 25% Return
+                    </span>
 
                 </div>
 
 
-                <button
-                    class="primary-btn"
-                    onclick="selectPlan(
-                        'Growth Plan',
-                        500,
-                        999,
-                        25,
-                        5
-                    )">
-
-                    Invest Now
-
+                <button class="primary-btn"
+                        onclick="selectPlan('Growth Plan',500,999,25,5)">
+                    Select Plan
                 </button>
 
             </div>
-
 
 
             <!-- PRO -->
+            <div class="plan-card">
 
-            <div class="investment-card">
-
-                <div class="investment-header">
+                <div class="plan-top">
 
                     <div>
-                        <h3>Pro Plan</h3>
-
-                        <span>
-                            $1,000 – $1,499
+                        <span class="plan-label">
+                            Pro
                         </span>
+
+                        <h3>Pro Plan</h3>
                     </div>
 
-                    <strong>
+                    <span class="return-badge">
                         25%
-                    </strong>
+                    </span>
 
                 </div>
 
 
-                <div class="investment-details">
+                <div class="plan-price">
+                    $1,000 - $1,499
+                </div>
 
-                    <p>
-                        Capital:
-                        <strong>$1,000 – $1,499</strong>
-                    </p>
 
-                    <p>
-                        Target Return:
-                        <strong>25%</strong>
-                    </p>
+                <div class="plan-info">
 
-                    <p>
-                        Cycle:
-                        <strong>2 Days</strong>
-                    </p>
+                    <span>
+                        ⏱️ 2 Days
+                    </span>
+
+                    <span>
+                        📈 25% Return
+                    </span>
 
                 </div>
 
 
-                <button
-                    class="primary-btn"
-                    onclick="selectPlan(
-                        'Pro Plan',
-                        1000,
-                        1499,
-                        25,
-                        2
-                    )">
-
-                    Invest Now
-
+                <button class="primary-btn"
+                        onclick="selectPlan('Pro Plan',1000,1499,25,2)">
+                    Select Plan
                 </button>
 
             </div>
-
 
 
             <!-- ELITE -->
+            <div class="plan-card">
 
-            <div class="investment-card elite-card">
-
-                <div class="investment-header">
+                <div class="plan-top">
 
                     <div>
-                        <h3>Elite Plan</h3>
-
-                        <span>
-                            $1,500 – $2,000
+                        <span class="plan-label">
+                            Elite
                         </span>
+
+                        <h3>Elite Plan</h3>
                     </div>
 
-                    <strong>
+                    <span class="return-badge">
                         25%
-                    </strong>
+                    </span>
 
                 </div>
 
 
-                <div class="investment-details">
+                <div class="plan-price">
+                    $1,500 - $2,000
+                </div>
 
-                    <p>
-                        Capital:
-                        <strong>$1,500 – $2,000</strong>
-                    </p>
 
-                    <p>
-                        Target Return:
-                        <strong>25%</strong>
-                    </p>
+                <div class="plan-info">
 
-                    <p>
-                        Cycle:
-                        <strong>2 Days</strong>
-                    </p>
+                    <span>
+                        ⏱️ 2 Days
+                    </span>
+
+                    <span>
+                        📈 25% Return
+                    </span>
 
                 </div>
 
 
-                <button
-                    class="primary-btn"
-                    onclick="selectPlan(
-                        'Elite Plan',
-                        1500,
-                        2000,
-                        25,
-                        2
-                    )">
+                <button class="primary-btn"
+                        onclick="selectPlan('Elite Plan',1500,2000,25,2)">
+                    Select Plan
+                </button>
 
-                    Invest Now
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         TRANSACTION HISTORY
+    ========================================== -->
+    <section id="transactions" class="page">
+
+        <div class="page-content">
+
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
+
+
+            <h2>Transaction History</h2>
+
+            <p class="section-subtitle">
+                View your recent account activity.
+            </p>
+
+
+            <div id="transactionList"
+                 class="transaction-list">
+
+                <div class="empty-state">
+
+                    <div>
+                        📜
+                    </div>
+
+                    <h3>No Transactions Yet</h3>
+
+                    <p>
+                        Your transaction history will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PROFILE PAGE
+    ========================================== -->
+    <section id="profile" class="page">
+
+        <div class="page-content">
+
+            <h2>My Profile</h2>
+
+            <p class="section-subtitle">
+                Manage your Chime account.
+            </p>
+
+
+            <!-- PROFILE CARD -->
+            <div class="profile-card">
+
+                <div class="profile-avatar">
+                    C
+                </div>
+
+
+                <div class="profile-info">
+
+                    <h3 id="profileDisplayName">
+                        Chime User
+                    </h3>
+
+                    <p id="profileUsername">
+                        @username
+                    </p>
+
+                    <span class="profile-status">
+                        Active Account
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE MENU -->
+            <div class="profile-menu">
+
+
+                <button onclick="showPage('accountDetails')">
+
+                    <span class="menu-icon">
+                        👤
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            Account Details
+                        </strong>
+
+                        <small>
+                            View your account information
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </button>
+
+
+                <button onclick="showPage('transactions')">
+
+                    <span class="menu-icon">
+                        📜
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            Transaction History
+                        </strong>
+
+                        <small>
+                            View your transactions
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </button>
+
+
+                <button onclick="showPage('learn')">
+
+                    <span class="menu-icon">
+                        📚
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            About Chime
+                        </strong>
+
+                        <small>
+                            Learn how Chime works
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </button>
+
+
+                <button onclick="showPage('notifications')">
+
+                    <span class="menu-icon">
+                        🔔
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            Notifications
+                        </strong>
+
+                        <small>
+                            View important updates
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </button>
+
+
+                <button onclick="showPage('settings')">
+
+                    <span class="menu-icon">
+                        ⚙️
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            Settings
+                        </strong>
+
+                        <small>
+                            Manage your preferences
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </button>
+
+
+                <button onclick="logoutChime()"
+                        class="logout-item">
+
+                    <span class="menu-icon">
+                        🚪
+                    </span>
+
+                    <span class="menu-text">
+
+                        <strong>
+                            Logout
+                        </strong>
+
+                        <small>
+                            Sign out of your account
+                        </small>
+
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
 
                 </button>
 
             </div>
 
-
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- =========================================
+         ACCOUNT DETAILS
+    ========================================== -->
+    <section id="accountDetails" class="page">
 
-<!-- =================================================
-     TRANSACTION HISTORY
-================================================= -->
+        <div class="page-content">
 
-<section id="transactions" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
-
-            ← Back
-
-        </button>
+            <button class="back-btn"
+                    onclick="showPage('profile')">
+                ← Back
+            </button>
 
 
-        <h1>
-            Transaction History
-        </h1>
+            <h2>Account Details</h2>
 
-
-        <p class="page-description">
-            View your account activity.
-        </p>
-
-
-        <div id="transactionList">
-
-            <div class="empty-state">
-
-                <span>
-                    📋
-                </span>
-
-                <h3>
-                    No transactions yet
-                </h3>
-
-                <p>
-                    Your transactions will appear here.
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =================================================
-     PROFILE
-================================================= -->
-
-<section id="profile" class="page">
-
-    <div class="page-content">
-
-        <h1>My Profile</h1>
-
-        <div class="profile-card">
-
-            <div class="profile-avatar">
-                👤
-            </div>
-
-            <h2 id="profileName">
-                Chime User
-            </h2>
-
-            <p id="profileUsername">
-                @user
+            <p class="section-subtitle">
+                Your Chime account information.
             </p>
 
-        </div>
 
+            <div class="details-card">
 
-        <div class="profile-menu">
-
-            <button onclick="showPage('accountDetails')">
-                👤
-                <span>Account Details</span>
-                <b>›</b>
-            </button>
-
-            <button onclick="showPage('transactions')">
-                📋
-                <span>Transaction History</span>
-                <b>›</b>
-            </button>
-
-            <button onclick="showPage('learn')">
-                📚
-                <span>About Chime</span>
-                <b>›</b>
-            </button>
-
-            <button onclick="showPage('notifications')">
-                🔔
-                <span>Notifications</span>
-                <b>›</b>
-            </button>
-
-            <button onclick="showPage('settings')">
-                ⚙️
-                <span>Settings</span>
-                <b>›</b>
-            </button>
-
-            <button
-                class="logout-button"
-                onclick="logoutChime()">
-
-                🚪
-                <span>Logout</span>
-                <b>›</b>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-    <div class="page-content">
-
-
-        <h1>
-            My Profile
-        </h1>
-
-
-        <div class="profile-card">
-
-            <div class="profile-avatar">
-                👤
-            </div>
-
-
-            <h2 id="profileName">
-                Chime User
-            </h2>
-
-
-            <p id="profileUsername">
-                @user
-            </p>
-
-        </div>
-
-
-
-        <div class="profile-menu">
-
-
-            <button
-                onclick="showPage('accountDetails')">
-
-                👤
-
-                <span>
-                    Account Details
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('transactions')">
-
-                📋
-
-                <span>
-                    Transaction History
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('learn')">
-
-                📚
-
-                <span>
-                    About Chime
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('notifications')">
-
-                🔔
-
-                <span>
-                    Notifications
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('settings')">
-
-                ⚙️
-
-                <span>
-                    Settings
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =================================================
-     ACCOUNT DETAILS
-================================================= -->
-
-<section id="accountDetails" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('profile')">
-
-            ← Back
-
-        </button>
-
-
-        <h1>
-            Account Details
-        </h1>
-
-
-        <p class="page-description">
-            View your Chime account information.
-        </p>
-
-
-        <div class="account-details-card">
-
-
-            <div class="account-detail-row">
-
-                <div class="account-detail-icon">
-                    📧
-                </div>
-
-                <div class="account-detail-info">
+                <div class="detail-row">
 
                     <span>
-                        Email Address
+                        Email
                     </span>
 
                     <strong id="accountEmail">
-                        Not added
+                        —
                     </strong>
 
                 </div>
 
-            </div>
 
-
-            <div class="account-detail-row">
-
-                <div class="account-detail-icon">
-                    ✈️
-                </div>
-
-                <div class="account-detail-info">
+                <div class="detail-row">
 
                     <span>
-                        Telegram Username
+                        Telegram
                     </span>
 
                     <strong id="accountTelegram">
-                        Telegram User
+                        —
                     </strong>
 
                 </div>
 
-            </div>
 
-
-            <div class="account-detail-row">
-
-                <div class="account-detail-icon">
-                    🔐
-                </div>
-
-                <div class="account-detail-info">
+                <div class="detail-row">
 
                     <span>
-                        Account Security
+                        Security
                     </span>
 
-                    <strong
-                        id="accountSecurity"
-                        class="security-active">
-
-                        Active
-
+                    <strong id="accountSecurity">
+                        Protected
                     </strong>
 
                 </div>
 
-            </div>
 
-
-            <div class="account-detail-row">
-
-                <div class="account-detail-icon">
-                    📅
-                </div>
-
-                <div class="account-detail-info">
+                <div class="detail-row">
 
                     <span>
                         Account Created
                     </span>
 
                     <strong id="accountCreated">
-                        Loading...
+                        —
                     </strong>
 
                 </div>
 
             </div>
 
-
         </div>
 
+    </section>
 
-        <div class="security-info-card">
 
-            <div>
-                🛡️
+    <!-- =========================================
+         DEPOSIT PAGE
+    ========================================== -->
+    <section id="deposit" class="page">
+
+        <div class="page-content">
+
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
+
+
+            <h2>Deposit</h2>
+
+            <p class="section-subtitle">
+                Add investment capital using cryptocurrency.
+            </p>
+
+
+            <!-- Optional weekend notice -->
+            <div id="depositNotice"
+                 class="notice-card">
+
+                <strong id="depositNoticeTitle"></strong>
+
+                <p id="depositNoticeText"></p>
+
             </div>
 
-            <section>
 
-                <strong>
-                    Account Security
-                </strong>
+            <div class="form-group">
 
-                <p>
-                    Your account security information
-                    is protected within the Chime app.
-                </p>
+                <label for="cryptoCurrency">
+                    Cryptocurrency
+                </label>
 
-            </section>
+                <select id="cryptoCurrency">
 
-        </div>
+                    <option value="USDT">
+                        USDT
+                    </option>
 
+                    <option value="USDC">
+                        USDC
+                    </option>
 
-    </div>
+                    <option value="BTC">
+                        BTC
+                    </option>
 
-</section>
+                </select>
 
-
-
-<!-- =================================================
-     DEPOSIT
-================================================= -->
-
-<section id="deposit" class="page">
-
-    <div class="page-content">
+            </div>
 
 
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
+            <div class="form-group">
 
-            ← Back
+                <label for="cryptoNetwork">
+                    Network
+                </label>
 
-        </button>
+                <select id="cryptoNetwork">
 
+                    <option value="TRC20">
+                        TRC20
+                    </option>
 
-        <h1>
-            Crypto Deposit
-        </h1>
+                    <option value="ERC20">
+                        ERC20
+                    </option>
 
+                    <option value="BEP20">
+                        BEP20
+                    </option>
 
-        <p class="page-description">
-            Fund your Chime account using
-            cryptocurrency.
-        </p>
+                </select>
 
-
-        
-
-
-        <div class="form-card">
-
-
-            <label>
-                Cryptocurrency
-            </label>
+            </div>
 
 
-            <select id="cryptoCurrency">
+            <div class="form-group">
 
-                <option value="USDT">
-                    USDT
-                </option>
-
-                <option value="USDC">
-                    USDC
-                </option>
-
-                <option value="BTC">
-                    Bitcoin (BTC)
-                </option>
-
-            </select>
-
-
-            <label>
-                Network
-            </label>
-
-
-            <select id="cryptoNetwork">
-
-                <option value="TRC20">
-                    TRON (TRC20)
-                </option>
-
-                <option value="ERC20">
-                    Ethereum (ERC20)
-                </option>
-
-                <option value="BEP20">
-                    BNB Smart Chain (BEP20)
-                </option>
-
-            </select>
-
-
-            <label>
-                Amount in USD
-            </label>
-
-
-            <div class="input-wrapper">
-
-                <span>
-                    $
-                </span>
+                <label for="depositAmount">
+                    Deposit Amount (USD)
+                </label>
 
                 <input
                     type="number"
                     id="depositAmount"
                     placeholder="Enter amount"
                     min="1"
-                    step="0.01">
+                >
 
             </div>
 
 
-            <button
-                class="primary-btn"
-                onclick="makeDeposit()">
-
-                Submit Deposit
-
+            <button class="primary-btn"
+                    onclick="makeDeposit()">
+                Continue Deposit
             </button>
 
 
-            <p class="demo-note">
-                Deposits are processed according
-                to the applicable Chime deposit
-                procedures.
-            </p>
+            <div class="info-box">
 
+                <strong>Important</strong>
+
+                <p>
+                    Deposits are processed according to Chime
+                    Investment procedures.
+                </p>
+
+            </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- =========================================
+         WITHDRAW PAGE
+    ========================================== -->
+    <section id="withdraw" class="page">
 
-<!-- =================================================
-     WITHDRAW
-================================================= -->
+        <div class="page-content">
 
-<section id="withdraw" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
-
-            ← Back
-
-        </button>
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
 
 
-        <h1>
-            Withdraw Capital
-        </h1>
+            <h2>Withdraw</h2>
+
+            <p class="section-subtitle">
+                Submit a withdrawal request.
+            </p>
 
 
-        <p class="page-description">
-            Submit a separate request
-            to withdraw your capital.
-        </p>
+            <div class="form-group">
 
-
-        <div class="form-card">
-
-
-            <label>
-                Withdrawal Amount
-            </label>
-
-
-            <div class="input-wrapper">
-
-                <span>
-                    $
-                </span>
+                <label for="withdrawAmount">
+                    Withdrawal Amount (USD)
+                </label>
 
                 <input
                     type="number"
                     id="withdrawAmount"
                     placeholder="Enter amount"
                     min="1"
-                    step="0.01">
+                >
 
             </div>
 
 
-            <label>
-                Destination
-            </label>
+            <div class="form-group">
+
+                <label for="withdrawMethod">
+                    Withdrawal Method
+                </label>
+
+                <select id="withdrawMethod">
+
+                    <option value="crypto">
+                        Cryptocurrency
+                    </option>
+
+                    <option value="bank">
+                        Bank Account
+                    </option>
+
+                </select>
+
+            </div>
 
 
-            <input
-                type="text"
-                id="bankAccount"
-                placeholder="Wallet address or account details">
+            <div class="form-group">
+
+                <label for="bankAccount">
+                    Destination / Account Details
+                </label>
+
+                <input
+                    type="text"
+                    id="bankAccount"
+                    placeholder="Enter destination details"
+                >
+
+            </div>
 
 
-            <label>
-                Withdrawal Method
-            </label>
-
-
-            <select id="withdrawMethod">
-
-                <option value="crypto">
-                    Cryptocurrency
-                </option>
-
-                <option value="bank">
-                    Bank Transfer
-                </option>
-
-            </select>
-
-
-            <button
-                class="primary-btn"
-                onclick="makeWithdrawal()">
-
-                Request Withdrawal
-
+            <button class="primary-btn"
+                    onclick="makeWithdrawal()">
+                Submit Withdrawal
             </button>
 
 
-        </div>
+            <div class="info-box">
 
-    </div>
+                <strong>Withdrawal Notice</strong>
 
-</section>
+                <p>
+                    Make sure your destination details are correct
+                    before submitting a request.
+                </p>
 
-
-
-<!-- =================================================
-     LEARN
-================================================= -->
-
-<section id="learn" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
-
-            ← Back
-
-        </button>
-
-
-        <h1>
-            About Chime
-        </h1>
-
-
-        <p class="page-description">
-            Learn how the Chime investment
-            model works.
-        </p>
-
-
-        <div class="learn-card">
-
-            <div class="learn-icon">
-                💡
             </div>
 
-            <h2>
-                What is Chime?
-            </h2>
+        </div>
 
-            <p>
-                Chime Investment is designed to
-                provide structured investment
-                opportunities while allowing users
-                to monitor their capital, returns
-                and investment cycles.
+    </section>
+
+
+    <!-- =========================================
+         LEARN ABOUT CHIME
+    ========================================== -->
+    <section id="learn" class="page">
+
+        <div class="page-content">
+
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
+
+
+            <h2>Learn About Chime</h2>
+
+            <p class="section-subtitle">
+                Understand how the Chime Investment model works.
             </p>
 
-        </div>
 
+            <div class="learn-card">
 
-        <div class="learn-card">
+                <div class="learn-icon">
+                    💰
+                </div>
 
-            <div class="learn-icon">
-                📈
+                <h3>Investment Model</h3>
+
+                <p>
+                    Chime Investment allows users to select an
+                    investment plan based on their available capital.
+                </p>
+
             </div>
 
-            <h2>
-                How It Works
-            </h2>
 
-            <p>
-                Users choose an investment plan
-                within the available capital range.
-                Each investment plan has its own cycle based
-                on the investment level: Starter is 7 days,
-                Basic and Growth are 5 days, while Pro
-                and Elite are 2 days.
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    📈
+                </div>
+
+                <h3>Target Return</h3>
+
+                <p>
+                    The investment plans displayed in the app show
+                    a target return of 25% for the selected cycle.
+                </p>
+
+            </div>
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    ⏱️
+                </div>
+
+                <h3>Investment Cycle</h3>
+
+                <p>
+                    Each plan has its own investment cycle. The
+                    dashboard timer shows the remaining time after
+                    an investment is started.
+                </p>
+
+            </div>
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    🔄
+                </div>
+
+                <h3>Reinvestment</h3>
+
+                <p>
+                    According to the Chime model, the remaining
+                    capital can be held for reinvestment into the
+                    next investment cycle.
+                </p>
+
+            </div>
+
+
+            <div class="learn-card">
+
+                <div class="learn-icon">
+                    💵
+                </div>
+
+                <h3>Capital Withdrawal</h3>
+
+                <p>
+                    Users who want to withdraw capital can submit
+                    a separate withdrawal request according to
+                    the applicable procedures.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <strong>Important</strong>
+
+                <p>
+                    Investment returns and processing depend on
+                    the actual operation of the Chime Investment
+                    service. Review the applicable terms before
+                    investing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         NOTIFICATIONS
+    ========================================== -->
+    <section id="notifications" class="page">
+
+        <div class="page-content">
+
+            <button class="back-btn"
+                    onclick="showPage('dashboard')">
+                ← Back
+            </button>
+
+
+            <h2>Notifications</h2>
+
+            <p class="section-subtitle">
+                Important updates from Chime.
             </p>
 
-        </div>
 
+            <div class="notification-card">
 
-        <div class="learn-card">
+                <div class="notification-icon">
+                    🔔
+                </div>
 
-            <div class="learn-icon">
-                💵
+                <div>
+
+                    <strong>
+                        Welcome to Chime Investment
+                    </strong>
+
+                    <p>
+                        Your account dashboard is ready.
+                    </p>
+
+                </div>
+
             </div>
 
-            <h2>
-                Target Return
-            </h2>
 
-            <p>
-                Investment plans display their
-                stated target return and applicable
-                investment terms.
+            <div class="notification-card">
+
+                <div class="notification-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <strong>
+                        Track Your Investment
+                    </strong>
+
+                    <p>
+                        Use the dashboard timer to monitor
+                        your active investment cycle.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SETTINGS
+    ========================================== -->
+    <section id="settings" class="page">
+
+        <div class="page-content">
+
+            <button class="back-btn"
+                    onclick="showPage('profile')">
+                ← Back
+            </button>
+
+
+            <h2>Settings</h2>
+
+            <p class="section-subtitle">
+                Manage your Chime preferences.
             </p>
 
-        </div>
+
+            <div class="settings-list">
 
 
-        <div class="learn-card">
+                <div class="setting-row">
 
-            <div class="learn-icon">
-                ⏱️
+                    <div>
+
+                        <strong>
+                            Currency
+                        </strong>
+
+                        <small>
+                            Account display currency
+                        </small>
+
+                    </div>
+
+                    <span>
+                        USD
+                    </span>
+
+                </div>
+
+
+                <div class="setting-row"
+                     onclick="toggleDarkMode()">
+
+                    <div>
+
+                        <strong>
+                            Dark Mode
+                        </strong>
+
+                        <small>
+                            Change the app appearance
+                        </small>
+
+                    </div>
+
+                    <span id="themeStatus">
+                        Off
+                    </span>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Security
+                        </strong>
+
+                        <small>
+                            Keep your account protected
+                        </small>
+
+                    </div>
+
+                    <span>
+                        🔒
+                    </span>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Notifications
+                        </strong>
+
+                        <small>
+                            Chime account updates
+                        </small>
+
+                    </div>
+
+                    <span>
+                        🔔
+                    </span>
+
+                </div>
+
+
+                <div class="setting-row"
+                     onclick="showPage('learn')">
+
+                    <div>
+
+                        <strong>
+                            About Chime
+                        </strong>
+
+                        <small>
+                            Learn more about the platform
+                        </small>
+
+                    </div>
+
+                    <span>
+                        ›
+                    </span>
+
+                </div>
+
             </div>
 
-            <h2>
-                Investment Cycle Timer
-            </h2>
-
-            <p>
-                Once an investment starts, a live
-                countdown displays the remaining
-                time until the current investment
-                cycle reaches its scheduled completion.
-            </p>
-
         </div>
 
-
-        <div class="learn-card">
-
-            <div class="learn-icon">
-                🧠
-            </div>
-
-            <h2>
-                Invest Wisely
-            </h2>
-
-            <ul class="learn-list">
-
-                <li>
-                    Understand the investment
-                    terms before investing.
-                </li>
-
-                <li>
-                    Consider your financial goals.
-                </li>
-
-                <li>
-                    Keep records of your
-                    investment activity.
-                </li>
-
-                <li>
-                    Understand how deposits,
-                    withdrawals and reinvestment
-                    operate.
-                </li>
-
-            </ul>
-
-        </div>
+    </section>
 
 
-    </div>
+    <!-- =========================================
+         BOTTOM NAVIGATION
+    ========================================== -->
+    <nav class="bottom-nav">
 
-</section>
+        <button class="nav-item active"
+                onclick="showPage('dashboard')">
 
-
-
-<!-- =================================================
-     NOTIFICATIONS
-================================================= -->
-
-<section id="notifications" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('dashboard')">
-
-            ← Back
-
-        </button>
-
-
-        <h1>
-            Notifications
-        </h1>
-
-
-        <div class="empty-state">
-
-            <span>
-                🔔
+            <span class="nav-icon">
+                🏠
             </span>
 
-            <h3>
-                No notifications
-            </h3>
-
-            <p>
-                You're all caught up.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =================================================
-     SETTINGS
-================================================= -->
-
-<section id="settings" class="page">
-
-    <div class="page-content">
-
-
-        <button
-            class="back-btn"
-            onclick="showPage('profile')">
-
-            ← Back
+            <span>
+                Home
+            </span>
 
         </button>
 
 
-        <h1>
-            Settings
-        </h1>
+        <button class="nav-item"
+                onclick="showPage('investments')">
+
+            <span class="nav-icon">
+                📈
+            </span>
+
+            <span>
+                Invest
+            </span>
+
+        </button>
 
 
-        <div class="settings-list">
+        <button class="nav-item"
+                onclick="showPage('transactions')">
+
+            <span class="nav-icon">
+                📜
+            </span>
+
+            <span>
+                History
+            </span>
+
+        </button>
 
 
-            <button>
+        <button class="nav-item"
+                onclick="showPage('profile')">
 
-                💵
+            <span class="nav-icon">
+                👤
+            </span>
 
-                <span>
-                    Currency
-                </span>
+            <span>
+                Profile
+            </span>
 
-                <b>
-                    USD
-                </b>
+        </button>
 
-            </button>
-
-
-            <button
-                class="theme-toggle-row"
-                onclick="toggleDarkMode()">
-
-                🌙
-
-                <span>
-                    Dark Mode
-                </span>
-
-                <strong id="themeStatus">
-                    Off
-                </strong>
-
-            </button>
-
-
-            <button>
-
-                🔐
-
-                <span>
-                    Security
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('notifications')">
-
-                🔔
-
-                <span>
-                    Notifications
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-            <button
-                onclick="showPage('learn')">
-
-                ℹ️
-
-                <span>
-                    About Chime
-                </span>
-
-                <b>
-                    ›
-                </b>
-
-            </button>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =================================================
-     BOTTOM NAVIGATION
-================================================= -->
-
-<nav class="bottom-nav">
-
-
-    <button
-        class="nav-item active"
-        onclick="showPage('dashboard')">
-
-        <span>
-            ⌂
-        </span>
-
-        <small>
-            Home
-        </small>
-
-    </button>
-
-
-    <button
-        class="nav-item"
-        onclick="showPage('investments')">
-
-        <span>
-            📈
-        </span>
-
-        <small>
-            Invest
-        </small>
-
-    </button>
-
-
-    <button
-        class="nav-item"
-        onclick="showPage('transactions')">
-
-        <span>
-            📋
-        </span>
-
-        <small>
-            History
-        </small>
-
-    </button>
-
-
-    <button
-        class="nav-item"
-        onclick="showPage('profile')">
-
-        <span>
-            👤
-        </span>
-
-        <small>
-            Profile
-        </small>
-
-    </button>
-
-
-</nav>
-
+    </nav>
 
 </div>
 
 
+<!-- =========================================
+     APP JAVASCRIPT
+========================================== -->
 <script src="app.js"></script>
 
 </body>
-
-                </html>
+    </html>
