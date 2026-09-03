@@ -2043,25 +2043,22 @@ window.loginChime = async function () {
 
 function updateBottomNavigation(user) {
 
-    const bottomNavigation =
-        document.getElementById("bottomNavigation");
+    const nav = document.getElementById("bottomNavigation");
 
-    if (!bottomNavigation) {
-        return;
-    }
+    if (!nav) return;
 
     if (user) {
 
-        /* Show navigation for logged-in users */
-        bottomNavigation.hidden = false;
+        // Logged in → show navigation
+        nav.style.display = "flex";
 
     } else {
 
-        /* Completely hide navigation for new/logged-out users */
-        bottomNavigation.hidden = true;
+        // Not logged in → hide navigation
+        nav.style.display = "none";
 
     }
-    }
+}
 
 
 /* =========================================
