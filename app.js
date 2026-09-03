@@ -2038,95 +2038,146 @@ window.loginChime = async function () {
     }
 
 
-    /* =========================================
-       FIREBASE AUTH STATE
-    ========================================= */
+/* =========================================
+   BOTTOM NAVIGATION ACCESS
+========================================= */
 
-    function listenForAuthentication() {
+function updateBottomNavigation(user) {
 
-        if (!auth) {
-            return;
-        }
+    const bottomNavigation =
+        document.getElementById("bottomNavigation");
 
+    if (!bottomNavigation) {
+        return;
+    }
 
-        auth.onAuthStateChanged(
-            async function (user) {
+    if (user) {
 
-                currentUser =
-                    user || null;
+        /* Logged-in user */
+        bottomNavigation.style.display = "flex";
 
+    } else {
 
-                if (user) {
+        /* New / logged-out user */
+        bottomNavigation.style.display = "none";
 
-                    localStorage.setItem(
-                        "chimeHasEnteredApp",
-                        "true"
-                    );
-
-
-                    try {
-
-                        const userDoc =
-                            await db
-                                .collection("users")
-                                .doc(user.uid)
-                                .get();
+    }
+}
 
 
-                        if (userDoc.exists) {
+/* =========================================
+   FIREBASE AUTH STATE
+========================================= */
 
-                            const data =
-                                userDoc.data();
+function listenForAuthentication() {
 
-
-                            localStorage.setItem(
-                                "chimeName",
-                                data.name ||
-                                "Chime User"
-                            );
+    if (!auth) {
+        return;
+    }
 
 
-                            localStorage.setItem(
-                                "chimeEmail",
-                                data.email ||
-                                user.email ||
-                                ""
-                            );
+    auth.onAuthStateChanged(
+        async function (user) {
 
-                        }
+            /* Store current Firebase user */
+            currentUser =
+                user || null;
 
-                    } catch (error) {
 
-                        console.error(
-                            "User profile loading error:",
-                            error
+            /* Show/hide bottom navigation */
+            updateBottomNavigation(user);
+
+
+            /* =====================================
+               USER IS LOGGED IN
+            ===================================== */
+
+            if (user) {
+
+                localStorage.setItem(
+                    "chimeHasEnteredApp",
+                    "true"
+                );
+
+
+                try {
+
+                    const userDoc =
+                        await db
+                            .collection("users")
+                            .doc(user.uid)
+                            .get();
+
+
+                    if (userDoc.exists) {
+
+                        const data =
+                            userDoc.data();
+
+
+                        localStorage.setItem(
+                            "chimeName",
+                            data.name ||
+                            "Chime User"
+                        );
+
+
+                        localStorage.setItem(
+                            "chimeEmail",
+                            data.email ||
+                            user.email ||
+                            ""
                         );
 
                     }
 
+                } catch (error) {
 
-                    showPage("dashboard");
-
-                    updateDashboard();
-
-                    updateAccountDetails();
-
-
-                } else {
-
-                    localStorage.removeItem(
-                        "chimeHasEnteredApp"
+                    console.error(
+                        "User profile loading error:",
+                        error
                     );
-
-                    showPage("welcome");
 
                 }
 
+
+                /* Open Dashboard */
+                showPage("dashboard");
+
+
+                /* Update user information */
+                updateDashboard();
+
+                updateAccountDetails();
+
+
             }
-        );
 
-    }
 
+            /* =====================================
+               USER IS NOT LOGGED IN
+            ===================================== */
+
+            else {
+
+                localStorage.removeItem(
+                    "chimeHasEnteredApp"
+                );
+
+
+                /* Hide navigation */
+                updateBottomNavigation(null);
+
+
+                /* Open Welcome page */
+                showPage("welcome");
+
+            }
+
+        }
+    );
+
+}
 
     /* =========================================
        APP INITIALIZATION
