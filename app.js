@@ -33,87 +33,160 @@
     }
 
 
-    /* =========================================
-       PAGE NAVIGATION
-    ========================================= */
+   /* =========================================
+   PAGE NAVIGATION
+========================================= */
 
-    window.showPage = function (pageId) {
+window.showPage = function (pageId) {
 
-        const pages =
-            document.querySelectorAll(".page");
+    const pages =
+        document.querySelectorAll(".page");
 
-        if (!pages.length) {
-            return;
+    if (!pages.length) {
+        return;
+    }
+
+
+    /* Hide all pages */
+    pages.forEach(function (page) {
+
+        page.classList.remove("active");
+        page.style.display = "none";
+
+    });
+
+
+    /* Find selected page */
+    const selectedPage =
+        document.getElementById(pageId);
+
+    if (!selectedPage) {
+
+        console.warn(
+            "Page not found:",
+            pageId
+        );
+
+        return;
+    }
+
+
+    /* Show selected page */
+    selectedPage.classList.add("active");
+    selectedPage.style.display = "block";
+
+
+    /* =====================================
+       BOTTOM NAVIGATION
+    ===================================== */
+
+    const nav =
+        document.getElementById(
+            "bottomNavigation"
+        );
+
+
+    /*
+       Only show bottom navigation
+       when Firebase user is logged in.
+    */
+
+    if (nav) {
+
+        if (currentUser) {
+
+            nav.style.display = "flex";
+
+        } else {
+
+            nav.style.display = "none";
+
         }
 
-        pages.forEach(function (page) {
-
-            page.classList.remove("active");
-            page.style.display = "none";
-
-        });
-
-        const selectedPage =
-            document.getElementById(pageId);
-
-        if (!selectedPage) {
-            console.warn("Page not found:", pageId);
-            return;
-        }
-
-        selectedPage.classList.add("active");
-        selectedPage.style.display = "block";
+    }
 
 
-        const navItems =
-            document.querySelectorAll(".nav-item");
+    /* =====================================
+       ACTIVE NAVIGATION BUTTON
+    ===================================== */
 
-        navItems.forEach(function (item) {
-            item.classList.remove("active");
-        });
-
-
-        const navigation = {
-            dashboard: 0,
-            investments: 1,
-            transactions: 2,
-            profile: 3
-        };
+    const navItems =
+        document.querySelectorAll(".nav-item");
 
 
-        if (navigation[pageId] !== undefined) {
+    navItems.forEach(function (item) {
 
-            const navItem =
-                navItems[navigation[pageId]];
+        item.classList.remove("active");
 
-            if (navItem) {
-                navItem.classList.add("active");
-            }
-
-        }
+    });
 
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    const navigation = {
 
-
-        if (pageId === "dashboard") {
-            updateDashboard();
-        }
-
-
-        if (pageId === "profile") {
-            updateAccountDetails();
-        }
-
-
-        if (pageId === "transactions") {
-            loadTransactions();
-        }
+        dashboard: 0,
+        investments: 1,
+        transactions: 2,
+        profile: 3
 
     };
+
+
+    if (
+        navigation[pageId] !== undefined
+    ) {
+
+        const navItem =
+            navItems[
+                navigation[pageId]
+            ];
+
+
+        if (navItem) {
+
+            navItem.classList.add(
+                "active"
+            );
+
+        }
+
+    }
+
+
+    /* Scroll to top */
+    window.scrollTo({
+
+        top: 0,
+        behavior: "smooth"
+
+    });
+
+
+    /* =====================================
+       PAGE-SPECIFIC UPDATES
+    ===================================== */
+
+    if (pageId === "dashboard") {
+
+        updateDashboard();
+
+    }
+
+
+    if (pageId === "profile") {
+
+        updateAccountDetails();
+
+    }
+
+
+    if (pageId === "transactions") {
+
+        loadTransactions();
+
+    }
+
+};
+    
 
 
     /* =========================================
