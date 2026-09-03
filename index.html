@@ -302,7 +302,63 @@
 
 </section>
 
+<!-- LOGIN PAGE -->
+<section id="login" class="page">
 
+    <div class="page-header">
+        <button onclick="showPage('welcome')" class="back-btn">
+            ←
+        </button>
+
+        <h2>Login</h2>
+    </div>
+
+    <div class="form-container">
+
+        <div class="form-group">
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                autocomplete="email"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+            >
+        </div>
+
+        <button
+            type="button"
+            onclick="loginChime()"
+            class="primary-btn"
+        >
+            Login
+        </button>
+
+        <p style="text-align:center; margin-top:20px;">
+            Don't have an account?
+            <button
+                type="button"
+                onclick="showPage('signup')"
+                class="link-btn"
+            >
+                Create Account
+            </button>
+        </p>
+
+    </div>
+
+</section>
 
 <!-- =====================================================
      DASHBOARD
