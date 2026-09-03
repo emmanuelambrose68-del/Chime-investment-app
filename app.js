@@ -2037,7 +2037,6 @@ window.loginChime = async function () {
 
     }
 
-
 /* =========================================
    BOTTOM NAVIGATION ACCESS
 ========================================= */
@@ -2053,16 +2052,16 @@ function updateBottomNavigation(user) {
 
     if (user) {
 
-        /* Logged-in user */
-        bottomNavigation.style.display = "flex";
+        /* Show navigation for logged-in users */
+        bottomNavigation.hidden = false;
 
     } else {
 
-        /* New / logged-out user */
-        bottomNavigation.style.display = "none";
+        /* Completely hide navigation for new/logged-out users */
+        bottomNavigation.hidden = true;
 
     }
-}
+    }
 
 
 /* =========================================
