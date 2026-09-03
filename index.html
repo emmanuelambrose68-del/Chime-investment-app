@@ -304,63 +304,105 @@
 
 </section>
 
-<!-- LOGIN PAGE -->
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
 <section id="login" class="page">
 
-    <div class="page-header">
-        <button onclick="showPage('welcome')" class="back-btn">
-            ←
+    <div class="page-content">
+
+        <button
+            class="back-btn"
+            onclick="showPage('welcome')">
+
+            ← Back
+
         </button>
 
-        <h2>Login</h2>
-    </div>
 
-    <div class="form-container">
+        <div class="signup-header">
 
-        <div class="form-group">
-            <label>Email Address</label>
+            <div class="signup-logo">
+                C
+            </div>
+
+            <h1>
+                Welcome Back
+            </h1>
+
+            <p class="page-description">
+                Login to your Chime account
+                to continue.
+            </p>
+
+        </div>
+
+
+        <div class="form-card signup-card">
+
+
+            <label for="loginEmail">
+                Email Address
+            </label>
 
             <input
                 type="email"
                 id="loginEmail"
                 placeholder="Enter your email"
-                autocomplete="email"
-            >
-        </div>
+                autocomplete="email">
 
-        <div class="form-group">
-            <label>Password</label>
+
+
+            <label for="loginPassword">
+                Password
+            </label>
 
             <input
                 type="password"
                 id="loginPassword"
                 placeholder="Enter your password"
-                autocomplete="current-password"
-            >
-        </div>
+                autocomplete="current-password">
 
-        <button
-            type="button"
-            onclick="loginChime()"
-            class="primary-btn"
-        >
-            Login
-        </button>
 
-        <p style="text-align:center; margin-top:20px;">
-            Don't have an account?
+
             <button
-                type="button"
-                onclick="showPage('signup')"
-                class="link-btn"
-            >
-                Create Account
+                class="primary-btn"
+                onclick="loginChime()">
+
+                Login
+
             </button>
-        </p>
+
+
+            <p
+                id="loginMessage"
+                class="signup-message">
+            </p>
+
+
+            <p style="text-align:center; margin-top:20px;">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    onclick="showPage('signup')"
+                    class="link-btn">
+
+                    Create Account
+
+                </button>
+
+            </p>
+
+
+        </div>
 
     </div>
 
 </section>
+
 
 <!-- =====================================================
      DASHBOARD
