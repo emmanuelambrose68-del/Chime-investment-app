@@ -2002,7 +2002,48 @@
 
 <script src="app.js"></script>
 
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDF3oWqr5AEL8fsXHh7XvyKVYlRZWxvSiE",
+        authDomain: "chime-investment.firebaseapp.com",
+        projectId: "chime-investment",
+        storageBucket: "chime-investment.firebasestorage.app",
+        messagingSenderId: "985801813247",
+        appId: "1:985801813247:web:081592c6c0be0714c9b0ca",
+        measurementId: "G-J6WBNS14L5"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Make Firebase available to app.js
+    window.chimeFirebase = firebase;
+    window.chimeAuth = firebase.auth();
+    window.chimeDB = firebase.firestore();
+
+    console.log("Chime Firebase connected successfully!");
+
+</script>
+
+
+<!-- =====================================================
+     APP JAVASCRIPT
+===================================================== -->
+
+<script src="app.js"></script>
+
 
 </body>
+
+</html>
 
     </html>
