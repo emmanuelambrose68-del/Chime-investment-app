@@ -1845,7 +1845,68 @@
 
     };
 
+/* =========================================
+   FIREBASE LOGIN
+========================================= */
 
+window.loginChime = async function () {
+
+    const emailInput = document.getElementById("loginEmail");
+    const passwordInput = document.getElementById("loginPassword");
+    const message = document.getElementById("loginMessage");
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+        alert("Please enter your email and password.");
+        return;
+    }
+
+    if (!window.chimeAuth) {
+        alert("Firebase Authentication is not connected.");
+        return;
+    }
+
+    try {
+
+        if (message) {
+            message.textContent = "Logging in...";
+        }
+
+        await window.chimeAuth.signInWithEmailAndPassword(
+            email,
+            password
+        );
+
+        if (message) {
+            message.textContent = "";
+        }
+
+        emailInput.value = "";
+        passwordInput.value = "";
+
+        window.showPage("dashboard");
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        if (message) {
+            message.textContent = "";
+        }
+
+        if (
+            error.code === "auth/invalid-credential" ||
+            error.code === "auth/wrong-password" ||
+            error.code === "auth/user-not-found"
+        ) {
+            alert("Incorrect email or password.");
+        } else {
+            alert("Login failed: " + error.message);
+        }
+    }
+};
     /* =========================================
        LOGOUT
     ========================================= */
