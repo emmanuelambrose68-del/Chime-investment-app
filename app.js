@@ -2068,20 +2068,104 @@ function updateBottomNavigation(user) {
 function listenForAuthentication() {
 
     if (!auth) {
+        console.error("Firebase Auth is not available.");
         return;
     }
 
+    auth.onAuthStateChanged(async function (user) {
 
-    auth.onAuthStateChanged(
-        async function (user) {
-
-            /* Store current Firebase user */
-            currentUser =
-                user || null;
+        /* Store current Firebase user */
+        currentUser = user || null;
 
 
-            /* Show/hide bottom navigation */
-            updateBottomNavigation(user);
+        /* Show or hide bottom navigation */
+        updateBottomNavigation(user);
+
+
+        /* =====================================
+           USER IS LOGGED IN
+        ===================================== */
+
+        if (user) {
+
+            /* Remember that user has entered the app */
+            localStorage.setItem(
+                "chimeHasEnteredApp",
+                "true"
+            );
+
+
+            /* Load user profile */
+            try {
+
+                const userDoc = await db
+                    .collection("users")
+                    .doc(user.uid)
+                    .get();
+
+
+                if (userDoc.exists) {
+
+                    const data = userDoc.data();
+
+
+                    localStorage.setItem(
+                        "chimeName",
+                        data.name || "Chime User"
+                    );
+
+
+                    localStorage.setItem(
+                        "chimeEmail",
+                        data.email || user.email || ""
+                    );
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "User profile loading error:",
+                    error
+                );
+            }
+
+
+            /* Open dashboard */
+            showPage("dashboard");
+
+
+            /* Update dashboard information */
+            updateDashboard();
+
+
+            /* Update account details */
+            updateAccountDetails();
+
+        }
+
+
+        /* =====================================
+           USER IS LOGGED OUT
+        ===================================== */
+
+        else {
+
+            /* Remove login state */
+            localStorage.removeItem(
+                "chimeHasEnteredApp"
+            );
+
+
+            /* Hide bottom navigation */
+            updateBottomNavigation(null);
+
+
+            /* Open welcome page */
+            showPage("welcome");
+        }
+
+    });
+}
 
 
             /* =====================================
