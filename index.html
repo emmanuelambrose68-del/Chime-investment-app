@@ -2292,40 +2292,130 @@
 </nav>
 
 <!-- =====================================================
-     APP JAVASCRIPT
+     BOTTOM NAVIGATION
 ===================================================== -->
 
-<script src="app.js"></script>
+<nav class="bottom-nav" id="bottomNavigation">
+
+    <!-- HOME -->
+    <button
+        type="button"
+        class="nav-item active"
+        onclick="showPage('dashboard')">
+
+        <span>⌂</span>
+
+        <small>
+            Home
+        </small>
+
+    </button>
+
+
+    <!-- INVEST -->
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('investments')">
+
+        <span>📈</span>
+
+        <small>
+            Invest
+        </small>
+
+    </button>
+
+
+    <!-- HISTORY -->
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('transactions')">
+
+        <span>📋</span>
+
+        <small>
+            History
+        </small>
+
+    </button>
+
+
+    <!-- PROFILE -->
+    <button
+        type="button"
+        class="nav-item"
+        onclick="showPage('profile')">
+
+        <span>👤</span>
+
+        <small>
+            Profile
+        </small>
+
+    </button>
+
+</nav>
 
 <!-- =====================================================
      FIREBASE
 ===================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 
 <script>
 
     const firebaseConfig = {
+
         apiKey: "AIzaSyDF3oWqr5AEL8fsXHh7XvyKVYlRZWxvSiE",
-        authDomain: "chime-investment.firebaseapp.com",
-        projectId: "chime-investment",
-        storageBucket: "chime-investment.firebasestorage.app",
-        messagingSenderId: "985801813247",
-        appId: "1:985801813247:web:081592c6c0be0714c9b0ca",
-        measurementId: "G-J6WBNS14L5"
+
+        authDomain:
+            "chime-investment.firebaseapp.com",
+
+        projectId:
+            "chime-investment",
+
+        storageBucket:
+            "chime-investment.firebasestorage.app",
+
+        messagingSenderId:
+            "985801813247",
+
+        appId:
+            "1:985801813247:web:081592c6c0be0714c9b0ca",
+
+        measurementId:
+            "G-J6WBNS14L5"
+
     };
 
-    // Initialize Firebase
+
+    /* Initialize Firebase */
+
     firebase.initializeApp(firebaseConfig);
 
-    // Make Firebase available to app.js
-    window.chimeFirebase = firebase;
-    window.chimeAuth = firebase.auth();
-    window.chimeDB = firebase.firestore();
 
-    console.log("Chime Firebase connected successfully!");
+    /* Make Firebase available to app.js */
+
+    window.chimeFirebase =
+        firebase;
+
+    window.chimeAuth =
+        firebase.auth();
+
+    window.chimeDB =
+        firebase.firestore();
+
+
+    console.log(
+        "Chime Firebase connected successfully!"
+    );
 
 </script>
 
@@ -2338,7 +2428,4 @@
 
 
 </body>
-
-</html>
-
-    </html>
+      </html>
