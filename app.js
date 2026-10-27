@@ -497,43 +497,97 @@ window.showPage = function (pageId) {
             .add(investmentData)
             .then(function () {
 
-                alert(
-                    "Investment request recorded.\n\n" +
-                    "Plan: " +
-                    plan +
-                    "\n" +
-                    "Capital: $" +
-                    investment.toLocaleString(
-                        undefined,
-                        {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        }
-                    ) +
-                    "\n" +
-                    "Cycle: " +
-                    days +
-                    " days."
-                );
 
+/* =========================================
+   CHIME INVESTMENT
+   FLEXIBLE 7-DAY INVESTMENT
+========================================= */
 
-                showPage("dashboard");
+window.selectPlan = async function () {
 
-                loadActiveInvestment();
+    if (!currentUser || !db) {
+        alert("Please sign in to your Chime account first.");
+        showPage("signup");
+        return;
+    }
 
-            })
-            .catch(function (error) {
+    const amountInput = prompt(
+        "CHIME FLEXIBLE INVESTMENT\n\n" +
+        "Minimum: $50\n" +
+        "Maximum: $5,000\n" +
+        "Cycle: 7 days\n" +
+        "Target return: 25% (not guaranteed)\n\n" +
+        "Enter your investment amount:"
+    );
 
-                console.error(error);
+    if (amountInput === null) return;
 
-                alert(
-                    "Unable to record the investment request."
-                );
+    const amount = Number(amountInput);
 
-            });
+    if (
+        !Number.isFinite(amount) ||
+        amount < 50 ||
+        amount > 5000
+    ) {
+        alert("Enter an amount between $50 and $5,000.");
+        return;
+    }
 
+    const targetReturn = amount * 0.25;
+
+    const startTime = Date.now();
+    const endTime =
+        startTime + (7 * 24 * 60 * 60 * 1000);
+
+    const investmentData = {
+        userId: currentUser.uid,
+        plan: "Flexible Investment",
+        capital: amount,
+        percentage: 25,
+        returnAmount: targetReturn,
+        days: 7,
+        startTime: startTime,
+        endTime: endTime,
+        status: "pending",
+        createdAt:
+            firebase.firestore.FieldValue.serverTimestamp()
     };
 
+    try {
+
+        await db.collection("investments")
+            .add(investmentData);
+
+        alert(
+            "Investment request recorded.\n\n" +
+            "Amount: $" + amount.toFixed(2) + "\n" +
+            "Duration: 7 days\n" +
+            "Target return: $" +
+            targetReturn.toFixed(2) +
+            "\n\nReturns are targets, not guaranteed."
+        );
+
+        showPage("dashboard");
+
+        if (typeof loadActiveInvestment === "function") {
+            loadActiveInvestment();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Investment request error:",
+            error
+        );
+
+        alert(
+            "Unable to record your investment request. " +
+            "Please try again."
+        );
+
+    }
+};
+   
 
     /* =========================================
        DASHBOARD
